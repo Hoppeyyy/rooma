@@ -1,6 +1,7 @@
 import react from 'react';
 import * as React from 'react';
 import styled from 'styled-components';
+import { server_api } from '../../env.config';
 
 
 
@@ -178,7 +179,7 @@ marginbottom2="10px"
         </Divider>
 
         {/* Google Login */}
-        <GoogleButton className="opensans">
+        <GoogleButton className="opensans" onClick={googleLogin}>
             <Icon src="/Google.svg"/>
             Login with Google</GoogleButton>
           
@@ -193,6 +194,12 @@ marginbottom2="10px"
 
  
     </Main>
+}
+
+
+const googleLogin = () => {
+    console.log('xxxxxxxxxxxxxxxxxxxxxx');
+    window.open(`${server_api}auth/google`, "_self");
 }
 
 export default LoginForm;
