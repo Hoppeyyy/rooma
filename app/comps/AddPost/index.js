@@ -1,4 +1,4 @@
-import react, { Component } from 'react';
+import react from 'react';
 import styled from 'styled-components';
 import Button from '../Button';
 import ToggleBtn from '../ToggleBtn';
@@ -57,6 +57,7 @@ margin-left:10px;
 const AvatarBox = styled.div`
 display:flex;
 flex-direction:row;
+visibility:${props=>props.visibility};
 `
 const Heading = styled.h3`
 font-size: 21px;
@@ -113,20 +114,16 @@ top:-10px;
 margin-left:-20px;
 `
 const AddPost = ({
-  /*
-  handleChange=()=>{},
-  checked="checked",
-  */
-  
-  onClick=()=>{},
-
+ visibility="hidden",
+  onAddClick=()=>{},
+  onToggleClick=()=>{},
 })=>{
 
 return<Cont>
   <CardCont>
   <TopCont>
   <Heading className="opensans">Add a New Post</Heading>
-  <Icon src="/p_add.png" onClick={onClick}/>
+  <Icon src="/p_add.png" onClick={onAddClick}/>
   </TopCont>
   <TabCont>
     <Button
@@ -191,10 +188,12 @@ return<Cont>
     <GroupTop>
     <Heading className="opensans">Post as group</Heading>
     <ToggleBox>
-    <ToggleBtn/>
+    <ToggleBtn
+      onClick={onToggleClick}
+    />
     </ToggleBox>
     </GroupTop>
-    <AvatarBox>
+    <AvatarBox visibility={visibility}>
       <Avatar
       src="/Avatar.png"
       onClick={() =>{

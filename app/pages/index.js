@@ -1,117 +1,60 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import styled from 'styled-components';
-import React from 'react';
-import NavBar from '../comps/NavBar';
-import Invite from '../comps/Invite';
-import SettingNavCont from '../comps/SettingNavCont';
+import * as React from 'react';
+import Tutorial from '../comps/Tutorial';
+import LoginForm from '../comps/LoginForm'
 import {useState} from 'react';
 
-const Cont = styled.div`
-  padding:5px;
+
+
+const MainCont = styled.div`
   display:flex;
-  width:100%;
-  height:100%;
-  flex-direction:row;
-`
-const GlbNav = styled.div`
-  display:flex;
-  flex-direction:column;
-  flex-grow:1;
-`
-const SetNav = styled.div`
-  display:flex;
-  flex-direction:column;
-  flex-grow:3;
-`
-const Holder = styled.div `
-  display:flex;
-  flex-direction:column;
-  margin-top:30px;
-  flex-grow:4;
+  width:100vw;
+  height:100vh;
+
 `
 
-export default function Home() {
 
-  const [buttonstate1, setButtonState1] = useState(0);
 
-  const HandleClickButtonColor1 = () =>{
-    setButtonState1(1);
-  } 
-  const HandleClickButtonColor2 = () =>{
-    setButtonState1(2);
-  } 
-  const HandleClickButtonColor3 = () =>{
-    setButtonState1(3);
-  } 
-  const HandleClickButtonColor4 = () =>{
-    setButtonState1(4);
-  } 
-  const HandleClickButtonColor5 = () =>{
-    setButtonState1(5);
-  } 
+const LeftCont = styled.div`
+display: flex;
+flex-direction: column;
+flex:1;
+background-color: #F6F6FE;
+justify-content:center;
+`
+const LogoCont = styled.img`
+width: 100px;
+margin: 20px;
+position:absolute;
+top: 10px;
+
+`
+const RightCont = styled.div`
+display:flex;
+flex:1;
+
+
+`
+
+export default function Login() {
+
+  
   return (
-    <Cont>
-      <GlbNav>
-        <NavBar></NavBar>
-        </GlbNav>
-    <SetNav>
-      <h2>Settings</h2>
-      <SettingNavCont
-          heading="Add a member"
-          ps="Invite a new member"
-          src="/Member.png"
-          onClick={() =>{
-            HandleClickButtonColor1();
-          }} 
-          bgcolor={
-            buttonstate1 === 1 ? '#888888' : '#FFFFFF'}
-         
-      />
-      <SettingNavCont
-        heading="House Rules"
-        ps="Learn about house rules"
-        src="/House.png"
-       onClick={() =>{
-        HandleClickButtonColor2();
-      }} 
-      bgcolor={buttonstate1 === 2 ? '#888888' : '#FFFFFF'}
-      /> 
-      <SettingNavCont
-      heading="Manage Profile"
-      ps="Manage profile settings"
-      src="/Test Account.png"
-       onClick={() =>{
-        HandleClickButtonColor3();
-      }} 
-      bgcolor={
-        buttonstate1 === 3 ? '#888888' : '#FFFFFF'}
-      /> 
-      <SettingNavCont
-      heading="Leave group"
-      ps="Leave and join a new group"
-      src="/Export.png"
-       onClick={() =>{
-        HandleClickButtonColor4();
-      }} 
-      bgcolor={
-        buttonstate1 === 4 ? '#888888' : '#FFFFFF'}
-      /> 
-      <SettingNavCont
-      heading="Log Out"
-      ps="Log out from the account"
-      src="/Exit.png"
-       onClick={() =>{
-        HandleClickButtonColor5();
-      }} 
-      bgcolor={
-        buttonstate1 === 5 ? '#888888' : '#FFFFFF'}
-      /> 
-    </SetNav> 
-    <Holder>
-      <Invite></Invite>
-    </Holder> 
-    </Cont>
+  
+    <MainCont>
+        
+        <LeftCont>
+        <LogoCont src="/Mainlogo.svg"/>
+             <Tutorial/>
+        </LeftCont>
+        <RightCont>
+            <LoginForm/>
+        </RightCont>
+
+      
+    </MainCont>
+  
   )
 }
 

@@ -7,6 +7,7 @@ import NewProfile from '../comps/NewProfile';
 
 
 
+
 const MainCont = styled.div`
   display:flex;
   width:100vw;
@@ -42,7 +43,6 @@ export default function CreateProfile() {
 
   
   return (
-  
     <MainCont>
         
         <LeftCont>

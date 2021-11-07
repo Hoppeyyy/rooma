@@ -1,5 +1,6 @@
 import react from 'react';
 import styled from 'styled-components';
+import Button from '../Button';
 
 const Cont = styled.div`
 display:flex;
@@ -22,7 +23,7 @@ font-weight: 400;
 color: #7E7E7E;
 margin-bottom: 20px;
 `
-
+/*
 const Button = styled.button`
 background-color: #714FE9;
 border: none;
@@ -32,15 +33,34 @@ font-size: 16px;
 font-weight: 600;
 border-radius: 4px;
 `
-
+*/
 const AddMembers = ({
- 
+heading="Add Members",
+ps="Start by adding members",
+title="Go to Community",
+width="186px",
+height="50px",
+borderRadius="4.2px",
 })=>{
 
 return<Cont>
-        <Head className="ubuntu">Add Members</Head>
-        <Subhead className="opensans">Start by adding members</Subhead>
-        <Button className="opensans">Go to Community</Button>
+        <Head className="ubuntu">{heading}</Head>
+        <Subhead className="opensans">{ps}</Subhead>
+        <Button 
+        title={title}
+        width={width}
+        height={height}
+        margin="10px"
+        borderRadius={borderRadius}
+        border="none"
+        bgcolor="#724FE9"
+        fontcolor="white"
+        fontSize="20px"
+        fontWeight="700"
+        onClick={()=>{
+
+        }}
+        />
        
       </Cont>
  

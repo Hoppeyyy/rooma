@@ -1,6 +1,7 @@
 import react from 'react';
 import * as React from 'react';
 import styled from 'styled-components';
+import {useRouter} from 'next/router';
 
 const Cont = styled.div`
 display: flex;
@@ -29,10 +30,16 @@ border="none",
 bgcolor="#724FE9",
 fontcolor="white",
 fontSize="20px",
-fontWeight="700"
+fontWeight="700",
+onClick=()=>{},
+routeTo="/pick_a_color",
 }) => {
+
+  const router = useRouter();
    return <Cont>
+     
      <Buttonstyle 
+     onClick={()=>router.push(routeTo)}
      className="opensans"
      width={width}
      height={height}
@@ -43,6 +50,8 @@ fontWeight="700"
     fontcolor={fontcolor}
     fontSize={fontSize}
     fontWeight={fontWeight}
+    onClick={onClick}
+    
      >{title}</Buttonstyle>
     </Cont>
     

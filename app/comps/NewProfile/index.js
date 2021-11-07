@@ -2,7 +2,7 @@ import react from 'react';
 import * as React from 'react';
 import styled from 'styled-components';
 import Button from '../Button'
-
+import {useRouter} from 'next/router';
 
 
 const Main =styled.div`
@@ -61,7 +61,7 @@ const NewProfile = ({
 
 }) => {
    
-
+  const router = useRouter();
     return <Main>
     <Cont>
         <Heading className="ubuntu">Create Profile</Heading>
@@ -87,6 +87,9 @@ const NewProfile = ({
           fontcolor="#724FE9"
           fontSize="20px"
           fontWeight="700"
+          onClick={()=>{
+            router.push("/home")
+        }}
           />
           <Button
             title="Done"
@@ -98,6 +101,9 @@ const NewProfile = ({
             fontcolor="white"
             fontSize="20px"
             fontWeight="700"
+            onClick={()=>{
+              router.push("/home")
+          }}
           />
         </Btnarea>
         

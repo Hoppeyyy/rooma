@@ -5,7 +5,7 @@ import WeeklyUserCont from '../WeeklyUserCont';
 const Cont = styled.div`
 display:flex;
 flex-direction:column;
-margin-top:20px;
+display:${props=>props.display};
 
 `
 const Heading = styled.h3`
@@ -24,9 +24,10 @@ flex-direction:row;
 const WeeklyRewards = ({
   src="/Avatar.png",
   user_name="User Name",
-  user_point="0 pts"
+  user_point="0 pts",
+  display="block",
 })=>{
-  return<Cont>
+  return<Cont display={display}>
     <Heading className="opensans">Weekly Rewards</Heading>
     <UserCont>
     <WeeklyUserCont

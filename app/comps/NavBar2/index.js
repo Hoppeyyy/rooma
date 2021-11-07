@@ -1,4 +1,3 @@
-
 import Image from 'next/image'
 import styled from 'styled-components';
 
@@ -17,13 +16,11 @@ width:75%;
 height:25%;
 display:flex;
 position:relative;
-
 display:flex;
 flex-direction: column;
 align-items:center;
 margin-left:13px;
 top:-70px;
-
 `
 
 const IconCont = styled.div`
@@ -43,20 +40,17 @@ flex-direction:row;
 align-items:center;
 margin-left:35px;
 margin-right:30px;
-
 `
 
 const SetIconCont = styled.div`
 display:flex;
 position: relative;
 top: 85px;
-
 display:flex;
 flex-direction:row;
 align-items:center;
 margin-left:35px;
 margin-right:30px;
-
 `
 
 
@@ -72,8 +66,8 @@ bottom: 30px;
 //items in the div's
 
 const Icon = styled.img`
-width: 30px;
-height: 30px;
+width: 20px;
+height: 20px;
 `
 
 const Title = styled.p`
@@ -93,7 +87,6 @@ font-size:25px;
 font-weight:700;
 margin-top:15px;
 margin-bottom:15px;
-
 `
 const Point = styled.div`
 display:flex;
@@ -107,7 +100,6 @@ font-size: 16px;
 color:white;
 font-weight: 600;
 margin-right: 5px;
-
 `
 
 const BellIcon = styled.img`
@@ -123,8 +115,19 @@ const NavBar2 = ({
     name="Esther Howard",
     points="100 pts",
 
+    onNav2Click=()=>{},
+    // NavBar useState function
+    show=false
+
 }) => {
-    return <CtrlCont>
+
+    if(show === false){
+        return<></>
+    }
+
+    return <CtrlCont onClick={()=>{
+        onNav2Click();
+    }}>
           
               <IconCont>
                   <BellIcon src="/Bell_Icon.svg"/>

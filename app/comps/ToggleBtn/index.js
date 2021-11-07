@@ -3,6 +3,7 @@ import clsx from 'clsx';
 import { styled } from '@mui/system';
 import { useSwitch } from '@mui/core/SwitchUnstyled';
 
+
 const BasicSwitchRoot = styled('span')`
   font-size: 0;
   position: relative;
@@ -65,7 +66,8 @@ function BasicSwitch(props) {
     'Switch-disabled': disabled,
     'Switch-focusVisible': focusVisible,
   };
-
+ 
+  
   return (
     <BasicSwitchRoot className={clsx(stateClasses)}>
       <BasicSwitchThumb className={clsx(stateClasses)} />
@@ -74,10 +76,11 @@ function BasicSwitch(props) {
   );
 }
 
-export default function ToggleBtn() {
-  return (
-    <div>
-      <BasicSwitch />
-    </div>
-  );
+const ToggleBtn = ({
+ onClick=()=>{},
+})=>{
+  return <div>
+  <BasicSwitch onClick={onClick}/>
+</div>
 }
+export default ToggleBtn

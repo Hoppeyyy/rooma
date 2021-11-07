@@ -91,7 +91,14 @@ export default function Members() {
 
         <CardCont>
         <MemberProfile/>
-        <AddMembers/>
+        <AddMembers
+        heading="Add Members"
+        ps="Start by adding members"
+        title="Go to Community"
+        width="200px"
+        height="50px"
+        borderRadius="4.2px"
+        />
         </CardCont>
         </LeftCont>
 

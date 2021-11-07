@@ -24,7 +24,16 @@ const MainCont = styled.div`
   flex-direction:column;
 `
 export default function Community() {
+  
+  const [checked, setChecked] = useState(0);
 
+  const HandleToggleClick = () =>{
+    if (checked === 0){
+    setChecked(1);
+  }else{
+    setChecked(0);
+  }
+  }
   /*const [buttonstate1, setButtonState1] = useState(0);
 
   const HandleClickButtonColor1 = () =>{
@@ -42,12 +51,9 @@ export default function Community() {
   const HandleClickButtonColor5 = () =>{
     setButtonState1(5);
   } */
-  /*const [checked, setChecked] = useState(false);
+ 
   
-  const ToggleBtn = () => {
-    const handleChange = nextChecked => {
-      setChecked(nextChecked);
-  }*/
+
   return (
     <Cont>
       <GlbNav>
@@ -56,6 +62,10 @@ export default function Community() {
         <MainCont>
         <AddPost
         src="/Avatar.png"
+        onToggleClick={() =>{
+          HandleToggleClick();
+        }}
+        visibility={checked === 1 ? 'visible' : 'hidden'}
         />
         </MainCont>
     </Cont>
