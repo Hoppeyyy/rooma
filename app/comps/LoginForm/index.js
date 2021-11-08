@@ -1,10 +1,9 @@
 import react from 'react';
 import * as React from 'react';
 import styled from 'styled-components';
-import { server_api } from '../../env.config';
+import { server_api } from '../../config/env.config';
 import {useRouter} from 'next/router';
-
-
+import { globalContext } from '../../store/context/globalContext';
 
 const Main =styled.div`
 display: flex;
@@ -203,8 +202,10 @@ login="login"
 
 
 const googleLogin = () => {
-    console.log('xxxxxxxxxxxxxxxxxxxxxx');
     window.open(`${server_api}auth/google`, "_self");
 }
+
+
+
 
 export default LoginForm;

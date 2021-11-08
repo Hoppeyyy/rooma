@@ -1,8 +1,10 @@
 import Head from 'next/head'
 import styled from 'styled-components';
 import * as React from 'react';
+import {useContext} from 'react';
 import Button from '../../comps/Button'
 import {useRouter} from 'next/router';
+import { globalContext } from '../../store/context/globalContext';
 
 
 const MainCont = styled.div`
@@ -62,10 +64,12 @@ const JoinFrom = ({
     routeToColor="/pick_a_color",
     
 }) => {
+  const { currentUser, setCurrentUser } = useContext(globalContext);
+
     const router = useRouter();
     return <MainCont>
             <Cont>
-                <Heading className="opensans">Let's Get Started</Heading>
+                <Heading className="opensans">Let's Get Started, {currentUser && currentUser.name}</Heading>
                 <Para className="opensans">Get started by creating a new team and invite your roommates.</Para>
                 <Bot>
                     <Button 

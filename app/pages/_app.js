@@ -1,9 +1,14 @@
 import '../styles/globals.css';
 import useGet from './api/useGet';
+import GlobalContext from '../store/context/globalContext';
 
 function MyApp({ Component, pageProps }) {
   const [doGet] = useGet();
-  return <Component {...pageProps} />
+  return (
+    <GlobalContext>
+      <Component {...pageProps} />
+    </GlobalContext>
+  )
 }
 
 

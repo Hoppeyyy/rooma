@@ -1,10 +1,10 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
-import useErrorCatcher from "./errorCatcher.helper";
-import { server_api } from "../env.config";
+// import useErrorCatcher from "./errorCatcher.helper";
+import { server_api } from "../../config/env.config";
 const usePostForm = () => {
-  const [doErrorCatcher] = useErrorCatcher();
+  // const [doErrorCatcher] = useErrorCatcher();
 
   const doPostForm = (path, bodyFormData, cb) => {
     axios({
@@ -18,7 +18,8 @@ const usePostForm = () => {
         cb(response.data);
       })
       .catch((err) => {
-        doErrorCatcher(err);
+        console.log(err);
+        // doErrorCatcher(err);
       });
   };
 

@@ -1,9 +1,10 @@
-import react from 'react';
+import {useContext} from 'react';
 import * as React from 'react';
 import styled from 'styled-components';
 import Button from '../Button'
 import {useRouter} from 'next/router';
-
+import api from '../../config/axios';
+import { globalContext } from '../../store/context/globalContext';
 
 const Main =styled.div`
 display: flex;
@@ -60,6 +61,17 @@ const NewProfile = ({
 
 
 }) => {
+  const { currentUser, setCurrentUser } = useContext(globalContext);
+  const createRoom =  async () => {
+    const response = await api({
+      method: 'get',
+      url: '/room/create',
+      withCredentials: true
+    })
+    setCurrentUser({...currentUser, roomId: response.data.roomKey})
+    router.push("/room_created")
+    
+  }
    
   const router = useRouter();
     return <Main>
@@ -101,9 +113,7 @@ const NewProfile = ({
             fontcolor="white"
             fontSize="20px"
             fontWeight="700"
-            onClick={()=>{
-              router.push("/home")
-          }}
+            onClick={()=> createRoom()}
           />
         </Btnarea>
         

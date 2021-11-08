@@ -1,8 +1,12 @@
 import Head from 'next/head'
 import styled from 'styled-components';
 import * as React from 'react';
+import {useState} from 'react';
+import api from "../../config/axios";
+
 import Button from '../../comps/Button'
 import {useRouter} from 'next/router';
+// import usePost from "./api/usePost";
 
 
 const MainCont = styled.div`
@@ -105,14 +109,53 @@ const PickColorForm = ({
     border4="none",
     border5="none",
     border6="none",
-    onBtn1=()=>{},
-    onBtn2=()=>{},
-    onBtn3=()=>{},
-    onBtn4=()=>{},
-    onBtn5=()=>{},
-    onBtn6=()=>{},
+
 }) => {
+    // const [doPost] = usePost();
+    const [Color, setColor] = useState("")
     const router = useRouter();
+
+    const submitColor = async (params) => {
+        console.log('color = ' + Color);
+        const response = await api({
+            method: 'patch',
+            url: '/user/update',
+            data: {
+                color: Color,
+              },
+              withCredentials: true
+          })
+
+          if (response.status != 200) {
+            console.log('submitColor err');
+            console.log(response);
+          }
+          else {
+              console.log('999999999999999999999');
+              console.log(response);
+            router.push("/create_profile")
+          }
+    }
+
+    const onBtn1 = () => {
+        setColor('#EA9B9B');
+    }
+    const onBtn2 = () => {
+        setColor('#F0C789');
+    }
+    const onBtn3 = () => {
+        setColor('#ADD9B7');   
+    }
+    const onBtn4 = () => {
+        setColor('#ABCDED');
+    }
+    const onBtn5 = () => {
+        setColor('#FFECA8');
+    }
+    const onBtn6 = () => {
+        setColor('#C0B6FF');
+    }
+
     return <MainCont>
             <Wrap>
                 <Heading className="ubuntu">Welcome to Rooma</Heading>
@@ -156,9 +199,7 @@ const PickColorForm = ({
                 </ColorCont>
                 <Btnarea>
                     <Button 
-                        onClick={()=>{
-                            router.push("/create_profile")
-                        }}
+                        onClick={() => submitColor()}
                         title="Next"
                         width="158px"
                         height="70px"

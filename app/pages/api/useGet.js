@@ -1,10 +1,10 @@
 import React from "react";
 import axios from "axios";
-import { server_api } from "../env.config";
-import useErrorCatcher from "./errorCatcher.helper";
+import { server_api } from "../../config/env.config";
+// import useErrorCatcher from "./errorCatcher.helper";
 
 const useGet = () => {
-  const [doErrorCatcher] = useErrorCatcher();
+  // const [doErrorCatcher] = useErrorCatcher();
   const doGet = (path, cb) => {
     axios
       .get(`${server_api}${path}`, { withCredentials: true })
@@ -19,8 +19,9 @@ const useGet = () => {
         }
       })
       .catch((err) => {
+        console.log('useGet err: ');
         console.log(err);
-        doErrorCatcher(err);
+        // doErrorCatcher(err);
       });
   };
 
