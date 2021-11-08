@@ -27,7 +27,11 @@ const Heading = styled.div`
   font-weight: 700;
   margin-bottom: 25px;
 `;
-const PicUpload = styled.img``;
+const PicUpload = styled.img`
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+`;
 const Get_pic = styled.input`
   font-size: 15px;
   margin-bottom: 50px;
@@ -49,39 +53,64 @@ const Btnarea = styled.div`
   right: 10px;
   top: 800px;
 `;
-const NewProfile = ({}) => {
+const UploadPic = ({}) => {
   const { currentUser, setCurrentUser } = useContext(globalContext);
   const [Files, setFiles] = useState(null);
 
+  let img_src = "";
   let file_arr = [];
+  let src_arr = [];
   const createRoom = async () => {
     const response = await api({
       method: "get",
       url: "/room/create",
       withCredentials: true,
     });
-    setCurrentUser({ ...currentUser, roomId: response.data.roomKey });
-    router.push("/room_created");
+
+    setCurrentUser({
+      ...currentUser,
+      roomId: response.data.roomKey,
+    });
+
+    // router.push("/room_created");
+  };
+
+  const uploadPfp = async () => {
+    let profileImg = await ImageUtil.updatePhoto(Files[0]);
+    setCurrentUser({
+      ...currentUser,
+      pfp: profileImg.pfp,
+    });
   };
 
   function getImg(e) {
+    console.log("aaaaaaaaaaaaaaaaaaaaaaaa");
     file_arr = Array.from(e.target.files);
 
-    setFiles(file_arr);
-  }
+    file_arr.map((img) => {
+      let binaryData = [];
+      binaryData.push(img);
+      const blob = new Blob(binaryData);
 
-  const postSubmit = async (e) => {
-    e.preventDefault();
-    let profileImg = await ImageUtil.updatePhoto(Files[0]);
-    setCurrentUser({ ...currentUser, pfp: profileImg });
-  };
+      img_src = window.URL.createObjectURL(blob);
+
+      src_arr.push(img_src);
+    });
+
+    console.log("000000000000000000000");
+    console.log(src_arr[0]);
+    setFiles({ src_arr, file_arr });
+  }
 
   const router = useRouter();
   return (
     <Main>
       <Cont>
-        <Heading className="ubuntu">Create Profile</Heading>
-        <PicUpload src="/upload_pic.png"></PicUpload>
+        <Heading className="ubuntu">Add picture</Heading>
+        {/* <img src={Files && Files.src_arr[0]} alt="" /> */}
+        <PicUpload
+          src={Files ? Files.src_arr[0] : "/upload_pic.png"}
+        ></PicUpload>
         <input
           className="opensans"
           type="file"
@@ -92,49 +121,6 @@ const NewProfile = ({}) => {
           onChange={(e) => getImg(e)}
         ></input>
         {/* user input */}
-        <Input
-          borderbtm="none"
-          className="opensans"
-          type="text"
-          placeholder="Name"
-        ></Input>
-        <Input
-          borderbtm="none"
-          className="opensans"
-          type="password"
-          placeholder="Age"
-        ></Input>
-        <Input
-          borderbtm="none"
-          className="opensans"
-          type="password"
-          placeholder="Phone"
-        ></Input>
-        <Input
-          borderbtm="none"
-          className="opensans"
-          type="password"
-          placeholder="Status"
-        ></Input>
-        <Input
-          borderbtm="none"
-          className="opensans"
-          type="password"
-          placeholder="Pronouns"
-        ></Input>
-        <Input
-          borderbtm="none"
-          className="opensans"
-          type="password"
-          placeholder="Preference"
-        ></Input>
-        <Input
-          borderbtm="solid"
-          className="opensans"
-          type="password"
-          placeholder="Interests"
-        ></Input>
-        {/* btn to skip or done */}
         <Btnarea>
           <Button
             title="Skip"
@@ -146,12 +132,13 @@ const NewProfile = ({}) => {
             fontcolor="#724FE9"
             fontSize="20px"
             fontWeight="700"
-            onClick={() => {
-              router.push("/home");
+            onClick={async () => {
+              await createRoom();
+              router.push("/room_created");
             }}
           />
           <Button
-            title="Done"
+            title="Submit"
             width="123px"
             height="55px"
             borderRadius="4.5px"
@@ -160,7 +147,11 @@ const NewProfile = ({}) => {
             fontcolor="white"
             fontSize="20px"
             fontWeight="700"
-            onClick={() => createRoom()}
+            onClick={async () => {
+              await createRoom();
+              await uploadPfp();
+              router.push("/room_created");
+            }}
           />
         </Btnarea>
       </Cont>
@@ -168,4 +159,4 @@ const NewProfile = ({}) => {
   );
 };
 
-export default NewProfile;
+export default UploadPic;
