@@ -8,17 +8,11 @@ class ImageUtil {
     console.log("aaaaaaaaaaaaaaaaaaaaaaaa");
     console.log("bbbbbbbbbbbbbbbbbb");
     console.log(`${server_api}s3url`);
-    console.log(file);
+    console.log("file", file);
 
     // const uploadUrl = (await axios.get(`${server_api}user/s3url`)).data.uploadUrl;
 
-    const uploadUrl = (
-      await api({
-        method: "get",
-        url: "/s3url",
-        withCredentials: true,
-      })
-    ).data.uploadUrl;
+    const uploadUrl = (await api.get('/s3url')).data.uploadUrl;
 
     console.log("cccccccccccccccccccc uploadUrl :");
     console.log(uploadUrl);
@@ -43,18 +37,23 @@ class ImageUtil {
     const { config: { url } } = await api.put(
       uploadUrl,
       file,
-      { headers: { "Content-Type": "multipart/form-data" } }
+      {
+        headers: { "Content-Type": "multipart/form-data" },
+        withCredentials: false
+      }
     )
 
-    console.log("url url url url");
-    console.log(url);
 
     /* Save stored url to file user */
     const fileUrl = url.split("?")[0];
+    console.log('fileUrl', fileUrl);
+
     const data = { pfp: fileUrl };
-    const user = axios.put(`${server_api}user/update`, data);
+    const user = await api.patch(`${server_api}user/update`, data);
     console.log("ddddddddddddddddddddddd user : ");
     console.log(user);
+    const res = await api.get('/auth/authenticate');
+    console.log('user', res.data);
     return user;
   }
 }

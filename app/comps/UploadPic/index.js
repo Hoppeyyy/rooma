@@ -53,7 +53,7 @@ const Btnarea = styled.div`
   right: 10px;
   top: 800px;
 `;
-const UploadPic = ({}) => {
+const UploadPic = ({ }) => {
   const { currentUser, setCurrentUser } = useContext(globalContext);
   const [Files, setFiles] = useState(null);
 
@@ -62,7 +62,7 @@ const UploadPic = ({}) => {
   let src_arr = [];
   const createRoom = async () => {
     const response = await api({
-      method: "get",
+      method: "put",
       url: "/room/create",
       withCredentials: true,
     });
@@ -76,7 +76,8 @@ const UploadPic = ({}) => {
   };
 
   const uploadPfp = async () => {
-    let profileImg = await ImageUtil.updatePhoto(Files.file_arr);
+    console.log("UPLOADINGGG");
+    let profileImg = await ImageUtil.updatePhoto(Files.file);
     setCurrentUser({
       ...currentUser,
       pfp: profileImg.pfp,
@@ -100,7 +101,7 @@ const UploadPic = ({}) => {
     console.log("000000000000000000000");
     console.log(src_arr[0]);
     // setFiles({ src_arr, file_arr });
-    setFiles({ src_arr, file_arr: e.target.files[0] })
+    setFiles({ src_arr, file: e.target.files[0] })
   }
 
   const router = useRouter();
@@ -123,7 +124,7 @@ const UploadPic = ({}) => {
         ></input>
         {/* user input */}
         <Btnarea>
-          <Button
+          {/* <Button
             title="Skip"
             width="123px"
             height="55px"
@@ -137,7 +138,7 @@ const UploadPic = ({}) => {
               await createRoom();
               router.push("/room_created");
             }}
-          />
+          /> */}
           <Button
             title="Submit"
             width="123px"
@@ -151,12 +152,12 @@ const UploadPic = ({}) => {
             onClick={async () => {
               // await createRoom();
               await uploadPfp();
-              router.push("/room_created");
+              // router.push("/room_created");
             }}
           />
         </Btnarea>
       </Cont>
-    </Main>
+    </Main >
   );
 };
 
