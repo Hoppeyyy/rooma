@@ -7,7 +7,7 @@ class ImageUtil {
     /* Get upload url from s3 bucket */
     console.log("aaaaaaaaaaaaaaaaaaaaaaaa");
     console.log("bbbbbbbbbbbbbbbbbb");
-    console.log(`${server_api}user/s3url`);
+    console.log(`${server_api}s3url`);
     console.log(file);
 
     // const uploadUrl = (await axios.get(`${server_api}user/s3url`)).data.uploadUrl;
@@ -15,7 +15,7 @@ class ImageUtil {
     const uploadUrl = (
       await api({
         method: "get",
-        url: "/user/s3url",
+        url: "/s3url",
         withCredentials: true,
       })
     ).data.uploadUrl;
@@ -29,16 +29,22 @@ class ImageUtil {
     //   headers: { "Content-Type": "multipart/form-data" },
     // });
 
-    const {
-      config: { url },
-    } = await api({
-      method: "put",
-      url: uploadUrl,
-      data: {
-        file,
-      },
-      withCredentials: true,
-    });
+    // const {
+    //   config: { url },
+    // } = await api({
+    //   method: "put",
+    //   url: uploadUrl,
+    //   data: {
+    //     file,
+    //   },
+    //   withCredentials: true,
+    // });
+
+    const { config: { url } } = await api.put(
+      uploadUrl,
+      file,
+      { headers: { "Content-Type": "multipart/form-data" } }
+    )
 
     console.log("url url url url");
     console.log(url);

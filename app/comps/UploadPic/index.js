@@ -76,7 +76,7 @@ const UploadPic = ({}) => {
   };
 
   const uploadPfp = async () => {
-    let profileImg = await ImageUtil.updatePhoto(Files[0]);
+    let profileImg = await ImageUtil.updatePhoto(Files.file_arr);
     setCurrentUser({
       ...currentUser,
       pfp: profileImg.pfp,
@@ -99,7 +99,8 @@ const UploadPic = ({}) => {
 
     console.log("000000000000000000000");
     console.log(src_arr[0]);
-    setFiles({ src_arr, file_arr });
+    // setFiles({ src_arr, file_arr });
+    setFiles({ src_arr, file_arr: e.target.files[0] })
   }
 
   const router = useRouter();
@@ -148,7 +149,7 @@ const UploadPic = ({}) => {
             fontSize="20px"
             fontWeight="700"
             onClick={async () => {
-              await createRoom();
+              // await createRoom();
               await uploadPfp();
               router.push("/room_created");
             }}
