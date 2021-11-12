@@ -401,9 +401,8 @@ export default function Community() {
             ></AddFilter>
         </AddFilterDiv>
 
-        <PostArea>
         
-=======
+
         <PostArea1>
 
         <CommunityPost
@@ -473,9 +472,10 @@ export default function Community() {
         />
         </PostArea2>
         </MainCont>
-        <RightCont>
+        
+          <RightCont>
 
-        </RightCont>
+          </RightCont>
     </Cont>
   )
 }

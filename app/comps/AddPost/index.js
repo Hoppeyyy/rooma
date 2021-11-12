@@ -260,10 +260,10 @@ return<Cont>
     onClick={onBtnClick8}
     />
   </TabCont>  
-=======
+
   
     
-  </TabCont>
+  {/* </TabCont> */}
 
   <Input type="text" name="text" placeholder="Add a new post here"/>
   <BtmCont>
