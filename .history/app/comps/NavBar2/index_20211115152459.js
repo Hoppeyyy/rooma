@@ -183,7 +183,17 @@ const NavBar2 = ({
     AltNum="1",
     // making nav width change
     onContClick=()=>{},
-    expand=true,
+    Navwidth="288px",
+    display="flex",
+    displayLogo="none",
+    displayHome="block",
+    displayTask="block",
+    displayChat="block",
+    displayMember="block",
+    displayCommunity="block",
+    displaySetting="block",
+    alignItems="unset",
+    justifyContent="space-even",
     // changing the color by detecting the page location
     color1="#4E4E4E",
     src1="/Home_Icon.svg",
@@ -205,19 +215,6 @@ const NavBar2 = ({
     onBackClick=()=>{},
     NotificationWidth="288px",
 }) => {
-    
-    var Navwidth=expand ? '140px' : '288px', 
-    display=expand  ? 'none' : 'flex',
-    displayLogo=expand ? 'flex' : 'none',
-    displayHome=expand ? 'none' : 'block',
-    displayTask=expand? 'none' : 'block',
-    displayChat=expand? 'none' : 'block',
-    displayMember=expand ? 'none' : 'block',
-    displayCommunity=expand ? 'none' : 'block',
-    displaySetting=expand? 'none' : 'block',
-    alignItems=expand? 'center':'unset',
-    justifyContent=expand ? 'center':'space-even';
-
     const router = useRouter();
     return <CtrlCont >
             <IconCont display={Contdisplay2}>
@@ -285,8 +282,7 @@ const NavBar2 = ({
                          
                         >
                         <TabCont
-                           onClick={(e)=>{
-                            e.stopPropagation()
+                           onClick={()=>{
                             router.push("/chat")
                         }}
                         >
@@ -315,8 +311,7 @@ const NavBar2 = ({
                         
                         >
                         <TabCont
-                           onClick={(e)=>{
-                            e.stopPropagation()
+                           onClick={()=>{
                             router.push("/community")
                         }}
                         >

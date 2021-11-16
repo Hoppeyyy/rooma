@@ -66,7 +66,7 @@ export default function Community() {
   
   const [checked, setChecked] = useState(0);
   const [buttonstate1, setButtonState1] = useState(0);
-  const [buttonstate5, setButtonState5] = useState(0);
+  const [buttonstate5, setButtonState5] = useState(1);
   const [buttonstate2, setButtonState2] = useState(0);
   const [onPostClick, setPostClick] =useState(0);
   // ADD POST: useState Function 
@@ -306,17 +306,7 @@ const [buttonstate22, setButtonState22] = useState(0);
     onContClick={()=>{
       GlobalNavClick();
     }}
-    Navwidth={buttonstate5 === 1 ? '140px' : '288px' || buttonstate22 ===1 ? '288px':''}
-    display={buttonstate5 === 1 ? 'none' : 'flex'}
-    displayLogo={buttonstate5 === 1 ? 'flex' : 'none'}
-    displayHome={buttonstate5 === 1 ? 'none' : 'block'}
-    displayTask={buttonstate5 === 1 ? 'none' : 'block'}
-    displayChat={buttonstate5 === 1 ? 'none' : 'block'}
-    displayMember={buttonstate5 === 1 ? 'none' : 'block'}
-    displayCommunity={buttonstate5 === 1 ? 'none' : 'block'}
-    displaySetting={buttonstate5 === 1 ? 'none' : 'block'}
-    alignItems={buttonstate5 === 1 ? 'center':'unset'}
-    justifyContent={buttonstate5 ===1 ? 'center':'space-even'}
+    expand={buttonstate5===1}
 
     onNotificationClick={()=>{
       NotificationClick();

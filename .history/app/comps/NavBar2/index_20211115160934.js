@@ -302,7 +302,7 @@ const NavBar2 = ({
                         <TabCont
                            onClick={(e)=>{
                             e.stopPropagation()
-                            router.push("/members")
+                            // router.push("/members")
                         }}
                         >
                             <Icon src={src4}/>
@@ -315,8 +315,7 @@ const NavBar2 = ({
                         
                         >
                         <TabCont
-                           onClick={(e)=>{
-                            e.stopPropagation()
+                           onClick={()=>{
                             router.push("/community")
                         }}
                         >
