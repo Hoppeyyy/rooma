@@ -17,10 +17,12 @@ height:100vh;
 const CardCont = styled.div`
 width:700px;
 min-height:${props=>props.height};
+max-height:100px;
 background-color:white;
 box-shadow: 0px 4.014px 47.8px 0px #0000001C;
 border-radius:22px;
 margin-top: 5px;
+overflow-y:auto;
 `
 const TopCont = styled.div`
 display:flex;
@@ -142,7 +144,33 @@ return<Cont>
     date="5:00-7:00PM"
    />
    
-   
+   <RemindContent
+     bgcolor="rgba(240,199,137,30%)"
+     display={reminder_display}
+     task_name="On going Task Name"
+     vlcolor="#F0C789"
+     name="Name"
+     date="5:00-7:00PM"
+     margintop="0px;"
+    /> 
+     <RemindContent
+     bgcolor="rgba(240,199,137,30%)"
+     display={reminder_display}
+     task_name="On going Task Name"
+     vlcolor="#F0C789"
+     name="Name"
+     date="5:00-7:00PM"
+     margintop="0px;"
+    /> 
+     <RemindContent
+     bgcolor="rgba(240,199,137,30%)"
+     display={reminder_display}
+     task_name="On going Task Name"
+     vlcolor="#F0C789"
+     name="Name"
+     date="5:00-7:00PM"
+     margintop="0px;"
+    /> 
    
    
     
