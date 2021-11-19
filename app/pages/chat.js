@@ -175,18 +175,18 @@ export default function Chat() {
           bgcolor={
             buttonstate1 === 1 ? '#FAFAFA' : '#FFFFFF'}/>
 
-        <ChatNav bgcolor="white" info="Darleen, Deavon"  onClick={() =>{
+        <ChatNav  info="Darleen, Deavon"  onClick={() =>{
         HandleClickButtonColor2();
       }} 
       bgcolor={buttonstate1 === 2 ? '#FAFAFA' : '#FFFFFF'}/>
 
-        <ChatNav bgcolor="white" info="Floyd Miles" display="none" marginleft="40px"onClick={() =>{
+        <ChatNav info="Floyd Miles" display="none" marginleft="40px"onClick={() =>{
         HandleClickButtonColor3();
       }} 
       bgcolor={
         buttonstate1 === 3 ? '#FAFAFA' : '#FFFFFF'}
         />
-        <ChatNav bgcolor="white" info="Devon Lane" display="none" marginleft="40px"
+        <ChatNav  info="Devon Lane" display="none" marginleft="40px"
         onClick={() =>{
             HandleClickButtonColor4();
           }} 

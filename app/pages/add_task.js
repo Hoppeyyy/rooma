@@ -206,7 +206,7 @@ export default function Add_task() {
           day="Oct8"
           week="Thrusday"
           bgcolor="rgba(240,199,137,30%)"
-          visibility="visible"
+          // visibility="visible"
           task_name="Event Name"
           vlcolor="#F0C789"
           name="Name"
