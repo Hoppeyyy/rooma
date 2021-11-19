@@ -2,7 +2,7 @@ import Head from "next/head";
 import Image from "next/image";
 import styled from "styled-components";
 import React from "react";
-import NavBar2 from "../comps/NavBar2";
+import NavBar3 from "../comps/NavBar3";
 import Invite from "../comps/Invite";
 import HouseRules from "../comps/HouseRules";
 import ManageProfile from "../comps/ManageProfile";
@@ -139,59 +139,7 @@ export default function Home() {
   return (
     <Cont>
       <NavCont>
-        <NavBar2
-          // user pic src
-          src="/Avatar.png"
-          // user name
-          name="Esther Howard"
-          // user rooma point
-          user_point="100 pts"
-          // if there is new message in alert display:block else display:none
-          Alertdisplay="block"
-          // showing user is in setting page right now
-          color6="#8867EB"
-          src6="/Settings_Icon_Color.svg"
-          onContClick={() => {
-            GlobalNavClick();
-          }}
-          Navwidth={
-            buttonstate5 === 1
-              ? "140px"
-              : "288px" || buttonstate6 === 1
-              ? "288px"
-              : ""
-          }
-          display={buttonstate5 === 1 ? "none" : "flex"}
-          displayLogo={buttonstate5 === 1 ? "flex" : "none"}
-          displayHome={buttonstate5 === 1 ? "none" : "block"}
-          displayTask={buttonstate5 === 1 ? "none" : "block"}
-          displayChat={buttonstate5 === 1 ? "none" : "block"}
-          displayMember={buttonstate5 === 1 ? "none" : "block"}
-          displayCommunity={buttonstate5 === 1 ? "none" : "block"}
-          displaySetting={buttonstate5 === 1 ? "none" : "block"}
-          alignItems={buttonstate5 === 1 ? "center" : "unset"}
-          justifyContent={buttonstate5 === 1 ? "center" : "space-even"}
-          onNotificationClick={() => {
-            NotificationClick();
-          }}
-          onBackClick={() => {
-            BackClick();
-          }}
-          Contdisplay={
-            buttonstate6 === 1
-              ? "none"
-              : "flex" || buttonstate7 === 1
-              ? "flex"
-              : "none"
-          }
-          Contdisplay2={
-            buttonstate6 === 1
-              ? "flex"
-              : "none" || buttonstate7 === 1
-              ? "none"
-              : "flex"
-          }
-        />
+        <NavBar3 />
       </NavCont>
       <LeftCont>
         <SetNav>

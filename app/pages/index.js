@@ -1,16 +1,11 @@
 import styled from "styled-components";
 import * as React from "react";
 import { useState, useContext } from "react";
-import NavBar2 from "../comps/NavBar2";
+import NavBar3 from "../comps/NavBar3";
 import Greeting from "../comps/Greeting";
 import Reminder from "../comps/Reminder";
-import Completed from "../comps/Completed";
-import WeeklyRewards from "../comps/WeeklyRewards";
-import CalendarComp from "../comps/CalendarComp";
-import Event from "../comps/Event";
 import { requireAuthen } from "../api/require.authen";
-import { globalContext } from "../store/globalContext";
-import CreateProfile from "./create_profile";
+import CalEventMerged from "../comps/CalEventMerged";
 
 const MainCont = styled.div`
   display: flex;
@@ -39,46 +34,8 @@ const RightCont = styled.div`
 `;
 
 export default function Home(props) {
-  const {
-    currentUser,
-    setCurrentUser,
-    currentError,
-    setCurrentError,
-    setCurrentMsg,
-    currentMsg,
-  } = useContext(globalContext);
-
   // detect button clicked or not
   const [buttonstate1, setButtonState1] = useState(0);
-  const [displayForm, setDisplayForm] = useState(false);
-  const [CalDate, setCalDate] = useState(null);
-  const [calTrigger, setcalTrigger] = useState(false)
-
-  const EventHandleClick = () => {
-    setDisplayForm(!displayForm);
-    // if (buttonstate1 === 0) {
-    //   setButtonState1(1);
-    // } else {
-    //   setButtonState1(0);
-    // }
-  };
-
-  const onSetcalTrigger = () => {
-    console.log("fffffffffffffffffffffff________calTrigger");
-    console.log(calTrigger);
-    setcalTrigger(!calTrigger)
-  };
-
-  const onDateSelect = (date) => {
-
-    setCalDate(date);
-  };
-
-  const onEventSubmitClick = () => {
-    // setButtonState1(0);
-    setDisplayForm(!displayForm);
-    setcalTrigger(!calTrigger);
-  };
 
   const [buttonstate2, setButtonState2] = useState(0);
   const ReminderHandleClick = () => {
@@ -139,59 +96,7 @@ export default function Home(props) {
   return (
     <MainCont>
       <LeftCont>
-        <NavBar2
-          // user pic src
-          src={props.auth.user.pfp}
-          // user name
-          name={props.auth.user.name}
-          // user rooma point
-          user_point="100 pts"
-          // if there is new message in alert display:block else display:none
-          Alertdisplay="block"
-          // showing user is in home page right now
-          color1="#8867EB"
-          src1="/Home_Icon_color.svg"
-          onContClick={() => {
-            GlobalNavClick();
-          }}
-          Navwidth={
-            buttonstate5 === 1
-              ? "140px"
-              : "288px" || buttonstate6 === 1
-              ? "288px"
-              : ""
-          }
-          display={buttonstate5 === 1 ? "none" : "flex"}
-          displayLogo={buttonstate5 === 1 ? "flex" : "none"}
-          displayHome={buttonstate5 === 1 ? "none" : "block"}
-          displayTask={buttonstate5 === 1 ? "none" : "block"}
-          displayChat={buttonstate5 === 1 ? "none" : "block"}
-          displayMember={buttonstate5 === 1 ? "none" : "block"}
-          displayCommunity={buttonstate5 === 1 ? "none" : "block"}
-          displaySetting={buttonstate5 === 1 ? "none" : "block"}
-          alignItems={buttonstate5 === 1 ? "center" : "unset"}
-          justifyContent={buttonstate5 === 1 ? "center" : "space-even"}
-          onNotificationClick={() => {
-            NotificationClick();
-          }}
-          onBackClick={() => {
-            BackClick();
-          }}
-          Contdisplay={
-            buttonstate6 === 1
-              ? "none"
-              : "flex" || buttonstate7 === 1
-              ? "flex"
-              : "none"
-          }
-          Contdisplay2={
-            buttonstate6 === 1
-              ? "flex"
-              : "none" || buttonstate7 === 1
-              ? "none"
-              : "flex"
-          }
-        />
+        <NavBar3 />
       </LeftCont>
 
       <MiddleCont>
@@ -239,30 +144,8 @@ export default function Home(props) {
       </MiddleCont>
 
       <RightCont>
-        <CalendarComp onDateSelect={onDateSelect} calTrigger={calTrigger} />
-        <Event
-          height="550px"
-          day={CalDate ? CalDate.toDateString() : ""}
-          // week="Select date above to view events"
-          bgcolor="rgba(240,199,137,30%)"
-          // visibility="visible"
-          task_name="Event Name"
-          vlcolor="#F0C789"
-          name="Name"
-          date="5:00-7:00PM"
-          onClick={() => {
-            EventHandleClick();
-          }}
-          visibility={buttonstate1 === 1 ? "hidden" : "visible"}
-          src={displayForm === true ? "/add_rotate.png" : "/add.png"}
-          visibility2={buttonstate1 === 1 ? "visible" : "hidden"}
-          onSubmitClick={onEventSubmitClick}
-          displayForm={displayForm}
-          CalDate={CalDate}
-          onSetcalTrigger={onSetcalTrigger}
-        />
+        <CalEventMerged />
       </RightCont>
-
     </MainCont>
   );
 }

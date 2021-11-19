@@ -131,8 +131,8 @@ const TaskComp = ({ display = "none", onClick = () => {} }) => {
   const weekends = [
     { id: "Monday", clicked: false, displayName: "Mon" },
     { id: "Tuesday", clicked: false, displayName: "Tue" },
-    { id: "Wednesday", clicked: false, displayName: "Thur" },
-    { id: "Thursday", clicked: false, displayName: "Wed" },
+    { id: "Wednesday", clicked: false, displayName: "Wed" },
+    { id: "Thursday", clicked: false, displayName: "Thur" },
     { id: "Friday", clicked: false, displayName: "Fri" },
     { id: "Saturday", clicked: false, displayName: "Sat" },
     { id: "Sunday", clicked: false, displayName: "Sun" },
@@ -145,11 +145,11 @@ const TaskComp = ({ display = "none", onClick = () => {} }) => {
     (async () => {
       try {
         console.log("sending request");
-        const user = axiosInstance.post("/auth/local", {
-          email: "meow@gmail.com",
-          password: "meow123",
-        });
-        console.log(user.data);
+        // const user = axiosInstance.post("/auth/local", {
+        //   email: "meow@gmail.com",
+        //   password: "meow123",
+        // });
+        // console.log(user.data);
         const roommate = await axiosInstance.get("/user/roommates", {});
         console.log("hey", roommate.data);
         setOriginalRoom(roommate.data.roommates);
@@ -232,6 +232,7 @@ const TaskComp = ({ display = "none", onClick = () => {} }) => {
       setPointButtons(points);
       setRoommates(originalRoom);
       //clear fields after submit
+
 
       console.log(addTodo);
     } catch (err) {

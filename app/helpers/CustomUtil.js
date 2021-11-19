@@ -1,6 +1,5 @@
 class CustomUtil {
-
-  static flattenHours (date) {
+  static flattenHours(date) {
     // date : any date object, preferably from "2012-09-22"
     const flat = date.toISOString().replace(/T.*$/, "") + "T00:00:00.000Z";
     return flat;
@@ -36,7 +35,7 @@ class CustomUtil {
         // );
 
         // Clear the previously applied color
-        
+
         if (
           firstDate.getTime() <= date_obj.getTime() &&
           date_obj.getTime() <= secondDate.getTime()
@@ -46,7 +45,8 @@ class CustomUtil {
           // console.log("444444444444444444");
           // console.log("444444444444444444");
           // console.log(date.parentNode);
-          date.parentNode.style.backgroundColor = "rgba(240,199,137,30%)";
+          // date.parentNode.style.backgroundColor = "rgba(240,199,137,30%)";
+          date.parentNode.style.backgroundColor = event.color;
         }
       });
     });

@@ -108,7 +108,7 @@ const Event = ({
         const duration = event.startAt;
         return (
           <RemindContent
-            bgcolor={bgcolor}
+            bgcolor={event.color}
             // visibility={visibility}
             task_name={event.title}
             vlcolor={vlcolor}

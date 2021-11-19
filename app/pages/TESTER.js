@@ -4,7 +4,7 @@ import * as React from 'react';
 import CommunityPost from '../comps/CommunityPost';
 import FilterButton from '../comps/FilterButton';
 import NavBar from '../comps/NavBar';
-import NavBar2 from '../comps/NavBar2';
+import NavBar3 from '../comps/NavBar3';
 import WeeklyRewards from '../comps/WeeklyRewards';
 import WeeklyUserCont from '../comps/WeeklyUserCont';
 import Reminder from '../comps/Reminder';

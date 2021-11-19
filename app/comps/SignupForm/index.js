@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { useRouter } from "next/router";
 import { register } from "../../api/auth.api";
 import { globalContext } from "../../store/globalContext";
-import ErrorMsg from "../../UI/errorMsg";
+import ErrorMsg from "../../UI/ErrorMsg";
 
 const Main = styled.div`
   display: flex;

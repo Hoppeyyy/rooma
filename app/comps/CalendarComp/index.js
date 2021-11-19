@@ -55,24 +55,20 @@ const CalendarComp = ({ onDateSelect, calTrigger }) => {
       ".react-calendar .react-calendar__month-view__days button abbr"
     );
 
-    const startAt = new Date(
-      dates_arr[0].getAttribute("aria-label")
-    );
+    const startAt = new Date(dates_arr[0].getAttribute("aria-label"));
     const endAt = new Date(
       dates_arr[dates_arr.length - 1].getAttribute("aria-label")
     );
 
     // const calduration = `?startAt=${startAt}&endAt=${endAt}`;
-    const calduration = `?startAt=${CustomUtil.flattenHours(startAt)}&endAt=${CustomUtil.flattenHours(endAt)}`;
+    const calduration = `?startAt=${CustomUtil.flattenHours(
+      startAt
+    )}&endAt=${CustomUtil.flattenHours(endAt)}`;
 
-    console.log("getMonthEvents_______cccccccccccccccccccc");
-    console.log(calduration);
     getEvents(calduration, (err, result) => {
       if (err) {
         console.log(err);
       } else {
-        //  setEvents(result.data.events);
-        console.log(result.data.events);
         CustomUtil.colorReactCal(dates_arr, result.data.events);
       }
     });

@@ -6,6 +6,7 @@ export default function GlobalContext(props) {
   const [currentUser, setCurrentUser] = useState(null);
   const [currentError, setCurrentError] = useState("");
   const [currentMsg, setCurrentMsg] = useState("");
+  const [currentExpandNav, setCurrentExpandNav] = useState(false);
 
   return (
     <globalContext.Provider
@@ -16,6 +17,8 @@ export default function GlobalContext(props) {
         setCurrentError,
         currentMsg,
         setCurrentMsg,
+        currentExpandNav,
+        setCurrentExpandNav,
       }}
     >
       {props.children}
