@@ -78,7 +78,7 @@ const Message = styled.button`
 `;
 
 const MembersProfile = ({
-  avatar = "/Avatar2.png",
+  avatar = "/upload_pic.png",
   name = "Esther Howard",
   phone = "",
   points = "0 pts",
@@ -95,7 +95,7 @@ const MembersProfile = ({
   return (
     <Cont boxshadow={boxshadow} margintop={margintop}>
       <CardCont>
-        <Avatar src={avatar} />
+        <Avatar src={avatar ? avatar : "/upload_pic.png"} />
 
         <InfoCont>
           <Name className="opensans">{name}</Name>

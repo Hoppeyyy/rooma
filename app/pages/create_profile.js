@@ -31,8 +31,6 @@ const RightCont = styled.div`
 `;
 
 export default function CreateProfile(props) {
-  console.log("sssssssssssssssssssssssss");
-  console.log(props.auth.user);
 
   return (
     <MainCont>

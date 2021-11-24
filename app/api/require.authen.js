@@ -4,7 +4,6 @@ import router from "next/router";
 import { server_api } from "../config/env.config";
 
 export const requireAuthen = async (ctx, RoomRedirect = false) => {
-  console.log("1111111111111111111111");
 
   // using cookie to request a user
   const response = await api({
@@ -14,6 +13,9 @@ export const requireAuthen = async (ctx, RoomRedirect = false) => {
       ? { cookie: ctx.req.headers.cookie }
       : undefined,
   });
+
+  console.log('11111 require Authennnn response');
+  console.log(response);
 
   // const response = await axios
   //   .get(`${server_api}auth/authenticate`, {
@@ -34,7 +36,7 @@ export const requireAuthen = async (ctx, RoomRedirect = false) => {
 
   // user not found back to login page
   if (response.status != 200) {
-    console.log("aaaaaaaaaaaaaaaaaaaaaaaa");
+    console.log('2222222 require Authennnn USER NOT FOUND ==> Login');
     // return {
     //   redirect: {
     //     destination: "/login",
@@ -47,10 +49,9 @@ export const requireAuthen = async (ctx, RoomRedirect = false) => {
     };
   }
 
-  console.log("aaaaaaaaaaaaaaaaaaaaaaaa");
-  console.log(response);
   if (!response.data.roomId && RoomRedirect) {
-    console.log("bbbbbbbbbbbbbbbbbb");
+    console.log('2222222 require Authennnn USER FOUND but no room ID ===> Join');
+
     // return {
     //   redirect: {
     //     destination: "/join",
@@ -63,12 +64,34 @@ export const requireAuthen = async (ctx, RoomRedirect = false) => {
     };
   }
 
+  console.log('333333 all good proceed to home page.');
+
   // return {
   //   props: {
   //     user: response.data,
   //   },
   // };
   return { user: response.data };
+};
+
+
+export const requireAuthenCompo = async (cb) => {
+  console.log('requireAuthenCompo requireAuthenCompo');
+  await axios
+    .get(`${server_api}auth/authenticate`, {
+      withCredentials: true,
+    })
+    .then((response) => {
+      console.log("eeeeeeeeeeeeeeeeeeeeee");
+      console.log(response);
+      cb(null, response.data)
+    })
+    .catch((error) => {
+      console.log("xxxxxxxxxxxxxxxxxxxxxx");
+      console.log(error);
+      cb(error);
+    });
+
 };
 
 export const checkUser = () => {

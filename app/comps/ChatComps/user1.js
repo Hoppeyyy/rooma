@@ -55,7 +55,7 @@ const User1 = ({ chatter, user }) => {
   return (
     <NavCont>
       <ProfileCont>
-        <Avatar src={chatter.pfp ? chatter.pfp : "/Avatar2.png"} />
+        <Avatar src={chatter.pfp ? chatter.pfp : "/upload_pic.png"} />
       </ProfileCont>
 
       <InfoCont>

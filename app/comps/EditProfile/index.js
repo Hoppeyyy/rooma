@@ -59,10 +59,7 @@ const Input = styled.input`
   font-weight: 400;
 `;
 const Btnarea = styled.div`
-  display: flex;
-  position: absolute;
-  right: 10px;
-  top: 800px;
+  margin-left: auto;
 `;
 
 const AgeInput = styled.div`
@@ -197,6 +194,7 @@ const EditProfile = ({
             onSetErrMessage("issue with submission");
           } else {
             onSetMessage("update user success");
+            setCurrentUser({ ...currentUser, pfp: retrieveUrl });
             // Need to call setCurrentUser here with the returned value.
           }
         });
@@ -219,11 +217,30 @@ const EditProfile = ({
     return option_arr;
   };
 
+  const getPicUpload = () => {
+    let srcfile = "/upload_pic.png";
+
+    if (File) {
+      if (File.src) {
+        srcfile = File.src;
+      } else if (user.user.pfp) {
+        srcfile = user.user.pfp;
+      }
+    } else {
+      if (user.user.pfp) {
+        srcfile = user.user.pfp;
+      }
+    }
+
+    return srcfile;
+  };
+
   return (
     <Main display={display}>
       <Cont>
         <Heading className="ubuntu">Edit Profile</Heading>
-        <PicUpload src={File ? File.src : user.user.pfp}></PicUpload>
+
+        <PicUpload src={getPicUpload()}></PicUpload>
         <Button
           title="Upload Picture"
           width="200px"
@@ -299,12 +316,7 @@ const EditProfile = ({
             }}
           ></Input>
         </Profileinput>
-        {/* <Input
-          borderbtm="none"
-          className="opensans"
-          type="text"
-          placeholder="Status"
-        ></Input> */}
+
         <Profileinput>
           <InputLabel>Pronouns</InputLabel>
           <Input
@@ -320,6 +332,37 @@ const EditProfile = ({
             }}
           ></Input>
         </Profileinput>
+
+        <Profileinput>
+          <InputLabel>Occupation</InputLabel>
+          <Input
+            name="occupation"
+            borderbtm="none"
+            className="opensans"
+            type="text"
+            placeholder="Occupation"
+            defaultValue={user.user.occupation}
+            onChange={(e) => {
+              onFormChange(e);
+            }}
+          ></Input>
+        </Profileinput>
+
+        <Profileinput>
+          <InputLabel>School</InputLabel>
+          <Input
+            name="school"
+            borderbtm="none"
+            className="opensans"
+            type="text"
+            placeholder="School/Company"
+            defaultValue={user.user.school}
+            onChange={(e) => {
+              onFormChange(e);
+            }}
+          ></Input>
+        </Profileinput>
+
         {/* <Input
           borderbtm="none"
           className="opensans"

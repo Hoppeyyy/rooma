@@ -316,7 +316,7 @@ const TaskComp = ({ display = "none", onClick = () => {} }) => {
                 </MemCont>
               ))}
               {/* <MemCont>
-                <Avatar src="/Avatar2.png" />
+                <Avatar src="/upload_pic.png" />
                 <Name className="opensans">Victoria</Name>
               </MemCont> */}
             </MemWrap>

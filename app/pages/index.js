@@ -7,6 +7,8 @@ import Reminder from "../comps/Reminder";
 import { requireAuthen } from "../api/require.authen";
 import CalEventMerged from "../comps/CalEventMerged";
 import { getRoomates } from "../api/room.api";
+import LoadingSpinner from "../UI/LoadingSpinner";
+
 const MainCont = styled.div`
   display: flex;
   flex-direction: row;
@@ -34,10 +36,9 @@ const RightCont = styled.div`
 `;
 
 export default function Home(props) {
-  console.log("2222222222222222 props.roomates");
-  console.log(props.roomates);
   // detect button clicked or not
   const [buttonstate1, setButtonState1] = useState(0);
+  const [onLinkClicked, setOnLinkClicked] = useState(false);
 
   const [buttonstate2, setButtonState2] = useState(0);
   const ReminderHandleClick = () => {
@@ -95,60 +96,69 @@ export default function Home(props) {
       setButtonState6(1);
     }
   };
+
+  const onLinkClick = () => {
+    setOnLinkClicked(true);
+  };
+
   return (
     <MainCont>
       <LeftCont>
-        <NavBar3 />
+        <NavBar3 onLinkClick={onLinkClick} />
       </LeftCont>
+      {onLinkClicked ? (
+        <LoadingSpinner />
+      ) : (
+        <>
+          <MiddleCont>
+            <Greeting
+              width="250px"
+              height="100px"
+              heading="Hello"
+              // User should be connected with the users' name
+              User={props.auth.user ? props.auth.user.name : "user!"}
+              ps="Here’s your schedule this week"
+              visibility="visible"
+            />
 
-      <MiddleCont>
-        <Greeting
-          width="250px"
-          height="100px"
-          heading="Hello"
-          // User should be connected with the users' name
-          User={props.auth.user ? props.auth.user.name : "user!"}
-          ps="Here’s your schedule this week"
-          visibility="visible"
-        />
+            <Reminder
+              // heading need to change when the user click the calendar and change the date for reminder
+              heading="Today"
+              roomates={props.roomates}
+              // def_visibility will be visible when the user didn't schedule anything on the date. if there is a reminder, it should be hidden
+              def_visibility="hidden"
+              // checked is for completed radio button. defalt set as checked, but once the user want to bring the reminder back to active reminder, the button should be unclicked and the reminder cont will be deleted in completed reminder and bring it to the active reminder comp
+              checked="defaultChecked"
+              onMoreClick={() => {
+                ReminderHandleClick();
+              }}
+              height={buttonstate2 === 1 ? "850px" : "600px"}
+              top={buttonstate2 === 1 ? "920px" : "675px"}
+              title_more={buttonstate2 === 1 ? "Close " : "More "}
+              //complete_display={buttonstate2 === 1 ? 'none' : 'block'}
+              rewards_display={buttonstate2 === 1 ? "none" : "block"}
+              onCompleteClick={() => {
+                CompleteHandleClick();
+              }}
+              title_complete={buttonstate3 === 1 ? "Hide " : "Completed "}
+              reminder_display={buttonstate3 === 1 ? "none" : "block"}
+              reminder_completed_display={buttonstate3 === 1 ? "block" : "none"}
+              //complete_width={buttonstate3 === 1 ? '685px' : '235px'}
+              //complete_height={buttonstate3 === 1 ? '360px' : '47px'}
+              //complete_borderRadius={buttonstate3 === 1 ? '22px' : '8px'}
+              //more_display={buttonstate3 === 1 ? 'none' : 'flex'}
+              //more_after_display={buttonstate3 === 1 ? 'flex' : 'none'}
 
-        <Reminder
-          // heading need to change when the user click the calendar and change the date for reminder
-          heading="Today"
-          roomates={props.roomates}
-          // def_visibility will be visible when the user didn't schedule anything on the date. if there is a reminder, it should be hidden
-          def_visibility="hidden"
-          // checked is for completed radio button. defalt set as checked, but once the user want to bring the reminder back to active reminder, the button should be unclicked and the reminder cont will be deleted in completed reminder and bring it to the active reminder comp
-          checked="defaultChecked"
-          onMoreClick={() => {
-            ReminderHandleClick();
-          }}
-          height={buttonstate2 === 1 ? "850px" : "600px"}
-          top={buttonstate2 === 1 ? "920px" : "675px"}
-          title_more={buttonstate2 === 1 ? "Close " : "More "}
-          //complete_display={buttonstate2 === 1 ? 'none' : 'block'}
-          rewards_display={buttonstate2 === 1 ? "none" : "block"}
-          onCompleteClick={() => {
-            CompleteHandleClick();
-          }}
-          title_complete={buttonstate3 === 1 ? "Hide " : "Completed "}
-          reminder_display={buttonstate3 === 1 ? "none" : "block"}
-          reminder_completed_display={buttonstate3 === 1 ? "block" : "none"}
-          //complete_width={buttonstate3 === 1 ? '685px' : '235px'}
-          //complete_height={buttonstate3 === 1 ? '360px' : '47px'}
-          //complete_borderRadius={buttonstate3 === 1 ? '22px' : '8px'}
-          //more_display={buttonstate3 === 1 ? 'none' : 'flex'}
-          //more_after_display={buttonstate3 === 1 ? 'flex' : 'none'}
-
-          onChecked_trigger={() => {
-            CompleteAfterHandleClick();
-          }}
-        />
-      </MiddleCont>
-
-      <RightCont>
-        <CalEventMerged />
-      </RightCont>
+              onChecked_trigger={() => {
+                CompleteAfterHandleClick();
+              }}
+            />
+          </MiddleCont>
+          <RightCont>
+            <CalEventMerged />
+          </RightCont>
+        </>
+      )}
     </MainCont>
   );
 }
@@ -156,10 +166,12 @@ export default function Home(props) {
 export const getServerSideProps = async (context) => {
   // return requireAuthen(context);
   let authProp = await requireAuthen(context, true);
-  let roomates = await getRoomates(context);
+
   if (!authProp.hasOwnProperty("user")) {
     return { redirect: authProp };
   } else {
+    let roomates = await getRoomates(context);
+
     return {
       props: {
         auth: authProp,

@@ -174,8 +174,6 @@ const LoginForm = ({
 
     loginUser(user_obj, (err, result) => {
       if (err) {
-        console.log("xxxxxxxxxxxxxxxxxxxxxx");
-        console.log(setCurrentError);
         setCurrentError(err.err);
       } else {
         setCurrentUser({
@@ -207,6 +205,8 @@ const LoginForm = ({
             placeholder="Email"
             name="email"
             onChange={onFormChange}
+            maxLength="20"
+            required
           ></Input>
         </Label>
         <Label className="opensans">
@@ -218,6 +218,8 @@ const LoginForm = ({
             placeholder="Password"
             name="password"
             onChange={onFormChange}
+            maxLength="30"
+            required
           ></Input>
         </Label>
         <Link className="opensans">Forgot Password?</Link>

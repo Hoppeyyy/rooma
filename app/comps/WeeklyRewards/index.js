@@ -1,7 +1,6 @@
 import react, { useEffect, useState } from "react";
 import styled from "styled-components";
 import WeeklyUserCont from "../WeeklyUserCont";
-import { getRoomates } from "../../api/room.api";
 
 const Cont = styled.div`
   display: flex;
@@ -22,19 +21,19 @@ const UserCont = styled.div`
 `;
 
 const WeeklyRewards = ({
-  src = "/Avatar.png",
+  src = "/upload_pic.png",
   user_name = "User Name",
   user_point = "0 pts",
   display = "block",
   roomates,
 }) => {
-  const getRoomates = () => {
+  const grabRoomates = () => {
     let rm_list = [];
     for (let i = 0; i < roomates.length; i++) {
       if (i < 2) {
         rm_list.push(
           <WeeklyUserCont
-            src={roomates[i].pfp ? roomates[i].pfp : "/Avatar2.png"}
+            src={roomates[i].pfp ? roomates[i].pfp : "/upload_pic.png"}
             user_name={roomates[i].name}
             user_point={roomates[i].points}
           />
@@ -49,7 +48,7 @@ const WeeklyRewards = ({
     <Cont display={display}>
       <Heading className="opensans">Weekly Rewards</Heading>
       <UserCont>
-        {getRoomates()}
+        {grabRoomates()}
         {/* {roomates.length && (
           <>
             <WeeklyUserCont

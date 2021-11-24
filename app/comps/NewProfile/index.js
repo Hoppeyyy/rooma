@@ -95,9 +95,6 @@ const NewProfile = ({ user }) => {
   });
   const [PreferencesInput, setPreferencesInput] = useState([]);
 
-  useEffect(() => {
-    // console.log(PreferencesInput);
-  });
   const onPreferenceSelect = (title) => {
     if (PreferencesInput.includes(title)) {
       setPreferencesInput(PreferencesInput.filter((item) => item !== title));
@@ -107,9 +104,6 @@ const NewProfile = ({ user }) => {
   };
 
   const onFormChange = (e) => {
-    console.log(e.target.name);
-    console.log(e.target.value);
-
     const name = e.target.name;
     const value = e.target.value;
     setUserData({ ...UserData, [name]: value });
@@ -283,6 +277,27 @@ const NewProfile = ({ user }) => {
             onFormChange(e);
           }}
         ></Input>
+        <Input
+          name="occupation"
+          borderbtm="none"
+          className="opensans"
+          type="text"
+          placeholder="Occupation"
+          onChange={(e) => {
+            onFormChange(e);
+          }}
+        ></Input>
+        <Input
+          name="school"
+          borderbtm="none"
+          className="opensans"
+          type="text"
+          placeholder="School/Company"
+          onChange={(e) => {
+            onFormChange(e);
+          }}
+        ></Input>
+
         {/* <Input
           borderbtm="none"
           className="opensans"

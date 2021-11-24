@@ -7,6 +7,8 @@ export default function GlobalContext(props) {
   const [currentError, setCurrentError] = useState("");
   const [currentMsg, setCurrentMsg] = useState("");
   const [currentExpandNav, setCurrentExpandNav] = useState(false);
+  const [loadingSpinner, setLoadingSpinner] = useState(false);
+
 
   return (
     <globalContext.Provider
@@ -19,6 +21,8 @@ export default function GlobalContext(props) {
         setCurrentMsg,
         currentExpandNav,
         setCurrentExpandNav,
+        loadingSpinner,
+        setLoadingSpinner
       }}
     >
       {props.children}

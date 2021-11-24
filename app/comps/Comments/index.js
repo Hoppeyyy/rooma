@@ -67,13 +67,13 @@ CommentNum="10",
   <BotCont>
     <CommentArea>
     <UserComment
-      src="Avatar2.png"
+      src="upload_pic.png"
       UserName="Jane Williams"
       MsgTime="1hr"
       Content="Thank you for the info! I’m interested!"
     />
      <UserComment
-      src="Avatar2.png"
+      src="upload_pic.png"
       UserName="Kristine"
       MsgTime="50min"
       Content="This is a private message"

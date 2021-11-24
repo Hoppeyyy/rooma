@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import Image from "next/image";
 import styled from "styled-components";
 import { useRouter } from "next/router";
@@ -6,6 +6,7 @@ import Button from "../Button";
 import PointCont from "../PointCont";
 import Notification from "../Notification";
 import { globalContext } from "../../store/globalContext";
+import { requireAuthenCompo } from "../../api/require.authen";
 
 const CtrlCont = styled.div`
   display: flex;
@@ -171,7 +172,7 @@ const RoomaLogo = styled.img`
   margin: auto;
 `;
 const NavBar3 = ({
-  src = "/Avatar.png",
+  src = "/upload_pic.png",
   name = "Esther Howard",
   user_point = "100 pts",
   Alertdisplay = "block",
@@ -190,10 +191,28 @@ const NavBar3 = ({
   src5 = "/search.svg",
   color6 = "#4E4E4E",
   src6 = "/Settings_Icon.svg",
+  onLinkClick,
 }) => {
-  const { currentExpandNav, setCurrentExpandNav } = useContext(globalContext);
+  const {
+    setCurrentUser,
+    currentUser,
+    currentExpandNav,
+    setCurrentExpandNav,
+    setLoadingSpinner,
+  } = useContext(globalContext);
   const [NoticeView, setNoticeView] = useState(false);
+
   const router = useRouter();
+
+  useEffect(async () => {
+    await requireAuthenCompo((err, res) => {
+      if (err) {
+        console.log(err);
+      } else {
+        setCurrentUser(res);
+      }
+    });
+  }, []);
 
   const onContClick = () => {
     setCurrentExpandNav(!currentExpandNav);
@@ -231,9 +250,24 @@ const NavBar3 = ({
                 </Alert>
               </BellIconArea>
               <ProfileCont>
-                <Pic src={src}></Pic>
-                <Name className="opensans">{name}</Name>
-                <PointCont width="90px" height="40px" user_point={user_point} />
+                {currentUser && (
+                  <>
+                    <Pic
+                      src={
+                        currentUser.pfp ? currentUser.pfp : "/upload_pic.png"
+                      }
+                    ></Pic>
+
+                    <Name className="opensans">
+                      {currentUser.name ? currentUser.name : ""}
+                    </Name>
+                    <PointCont
+                      width="90px"
+                      height="40px"
+                      user_point={user_point}
+                    />
+                  </>
+                )}
               </ProfileCont>
             </TopCont>
             {/*after closing show Rooma icon here*/}
@@ -247,6 +281,7 @@ const NavBar3 = ({
               color={color1}
               onClick={(e) => {
                 e.stopPropagation();
+                onLinkClick();
                 router.push("/");
               }}
             >
@@ -262,6 +297,7 @@ const NavBar3 = ({
               color={color2}
               onClick={(e) => {
                 e.stopPropagation();
+                onLinkClick();
                 router.push("/add_task");
               }}
             >
@@ -277,6 +313,7 @@ const NavBar3 = ({
               color={color3}
               onClick={(e) => {
                 e.stopPropagation();
+                onLinkClick();
                 router.push("/chat");
               }}
             >
@@ -292,6 +329,7 @@ const NavBar3 = ({
               color={color4}
               onClick={(e) => {
                 e.stopPropagation();
+                onLinkClick();
                 router.push("/members");
               }}
             >
@@ -307,6 +345,7 @@ const NavBar3 = ({
               color={color5}
               onClick={(e) => {
                 e.stopPropagation();
+                onLinkClick();
                 router.push("/community");
               }}
             >
@@ -322,6 +361,8 @@ const NavBar3 = ({
             color={color6}
             onClick={(e) => {
               e.stopPropagation();
+              // setLoadingSpinner(true);
+              onLinkClick();
               router.push("/setting");
             }}
           >
