@@ -67,70 +67,61 @@ const BottomCont = styled.div`
 
 const Assigned = () => {
   const [todos, setTodos] = useState([]);
+  const [roommates, setRoommates] = useState([]);
+  const [todoCards, setTodoCards] = useState([]);
 
-  const initialState = {
-    title: "yes",
-    users: [],
-    days: [],
-    taskId: "",
-  };
-
-  const [displayTodos, setDisplayTodos] = useState([initialState]);
-  const [roommates, setRoommates] = useState([
-    {
-      title: "",
-      users: [],
-      days: [],
-    },
-  ]);
-
+  function titleCase(string) {
+    return string.toString().toUpperCase();
+  }
   useEffect(() => {
-    (async () => {
+    (async (data) => {
       try {
         console.log("sending request");
-        const todoRes = await axiosInstance.get("/task/list", {});
-        setTodos(todoRes.data.tasks);
-        // Your arrayconst
-
         const roommate = await axiosInstance.get("/user/roommates ", {});
-        console.log("hey", roommate.data);
+        // console.log("hey", roommate.data);
         setRoommates(roommate.data.roommates);
 
-        const dates = todos.map((o) => ({
-          title: o.title,
-          id: o.id,
-          day: dayjs(o.date).format("dddd"),
-          user: o.id,
-        }));
-        console.log("hereis", dates);
-        // const empty = [
-        //   {
-        //     title: "",
-        //     users: [],
-        //     days: [""],
-        //     taskId: "",
-        //   },
-        // ];
+        const assignedUsers = roommates
+          .filter((res) => res.clicked === true)
+          .map((ele) => ele.id);
+
+        const newcards = await (
+          await axiosInstance.get("/task/schedule", {})
+        ).data.schedules;
+        console.log(newcards);
+
+        //      const addTodo = await axiosInstance.post("/task/create", {
+        //   title: data.title,
+        //   points: pts,
+        //   assignedUsers: assignedUsers,
+        //   days: days,
+        //   startAt: date,
+        // });
+
+        setTodoCards(newcards);
+        console.log("card", todoCards);
       } catch (err) {
         console.log(err.message);
       }
     })();
   }, []);
+
   return (
     <div>
-      {todos.map((todo) => (
+      {todoCards.map((todo) => (
         <MainCont>
           <Cont>
             <TopCont>
               <Title className="opensans">{todo.title}</Title>
               <Week key={todo.id} className="opensans">
-                {todo.days} <Time className="opensans">11:00 AM</Time>
+                {titleCase(todo.days)}
+                {/* <Time className="opensans">11:00 AM</Time> */}
               </Week>
               <Point className="opensans">{todo.points} pts</Point>
             </TopCont>
             <BottomCont>
               <Assigned_User />
-              <Assigned_User src="Avatar2.png" name="Leah" order="Order 2" />
+              <Assigned_User src="Avatar2.png" name={todo.assignedUsers}order="Order 2" />
               <Assigned_User src="Avatar3.png" name="Hailey" order="Order 3" />
               <Assigned_User order="Order 4" marginbottom="30px;" />
             </BottomCont>

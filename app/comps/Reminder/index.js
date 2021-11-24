@@ -92,7 +92,6 @@ const Reminder = ({
   title_complete = "Completed ",
   title_more = "More ",
   rewards_display = "block",
-  checked = "checked",
   onMoreClick = () => {},
   onCompleteClick = () => {},
   /* After expanding completed button on the top */
@@ -105,9 +104,27 @@ const Reminder = ({
   const [todotmw, setTodoTmw] = useState([]);
 
   const backgroundColor = (e) => {
-    console.log(e);
+    // console.log(e);
     return e + "70";
   };
+  useEffect(() => {
+    (async () => {
+      try {
+        console.log("sending request");
+
+        const todoRes = await axiosInstance.get("/task/list", {});
+
+        const todoResTask = todoRes.data.tasks;
+        const newTodoResTask = todoResTask.map((file) => {
+          return { ...file, color: "", name: "" };
+        });
+        console.log("11111111", newTodoResTask);
+        setTodos(newTodoResTask);
+      } catch (err) {
+        console.log(err.message);
+      }
+    })();
+  }, []);
 
   useEffect(() => {
     (async () => {
@@ -133,7 +150,7 @@ const Reminder = ({
             e.name = user.name;
           }
         });
-        // console.log("heheheh", todos);
+        console.log("heheheh", todos);
 
         const todayTodos = todos.filter(
           (o) => dayjs(o.date).format("MM-DD-YY") === today
@@ -151,24 +168,19 @@ const Reminder = ({
     })();
   }, [todos]);
 
-  useEffect(() => {
-    (async () => {
-      try {
-        console.log("sending request");
-
-        const todoRes = await axiosInstance.get("/task/list", {});
-
-        const todoResTask = todoRes.data.tasks;
-        const newTodoResTask = todoResTask.map((file) => {
-          return { ...file, color: "", name: "" };
-        });
-        console.log("11111111", newTodoResTask);
-        setTodos(newTodoResTask);
-      } catch (err) {
-        console.log(err.message);
+  function handleButtonClick(todoId) {
+    alert("hey");
+    todos.forEach(function (e) {
+      if (e.date == todoId) {
+        if (e.status == "complete") {
+          e.status = "incomplete";
+        } else {
+          e.status = "complete";
+        }
       }
-    })();
-  }, []);
+    });
+    console.log(todos);
+  }
 
   return (
     <Cont>
@@ -200,6 +212,7 @@ const Reminder = ({
                   name={todo.name}
                   date="5:00-7:00PM"
                   margintop="0px;"
+                  onclickfunction={(event) => handleButtonClick(todo.date)}
                 />
               ))
             )}
@@ -219,6 +232,7 @@ const Reminder = ({
                   name={todo.name}
                   date="5:00-7:00PM"
                   margintop="0px;"
+                  onclickfunction={(event) => handleButtonClick(todo.date)}
                 />
               ))
             )}
@@ -276,3 +290,4 @@ const Reminder = ({
   );
 };
 export default Reminder;
+
