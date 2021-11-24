@@ -80,11 +80,18 @@ const Message = styled.button`
 const MembersProfile = ({
   avatar = "/Avatar2.png",
   name = "Esther Howard",
-  phone = "(603) 555-0123",
+  phone = "",
   points = "0 pts",
   boxshadow = "0px 3.3273186683654785px 39.09598922729492px 0px #0000001C",
   margintop = "38px",
 }) => {
+  let formattedphone = "";
+
+  if (phone) {
+    formattedphone =
+      "(" + phone.slice(0, 3) + ") " + phone.slice(3, 6) + "-" + phone.slice(6);
+  }
+
   return (
     <Cont boxshadow={boxshadow} margintop={margintop}>
       <CardCont>
@@ -94,7 +101,7 @@ const MembersProfile = ({
           <Name className="opensans">{name}</Name>
           <Phone className="opensans">
             <Icon src="/phone.svg" />
-            {phone}
+            {formattedphone}
           </Phone>
 
           <ButtonCont>

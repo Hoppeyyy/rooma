@@ -99,6 +99,7 @@ const Reminder = ({
   onCompleteClick = () => {},
   /* After expanding completed button on the top */
   //onCompleteClick_After=()=>{},
+  roomates,
 }) => {
   const [todos, setTodos] = useState([]);
   const [roommates, setRoommates] = useState([]);
@@ -148,7 +149,6 @@ const Reminder = ({
 
         setTodoToday(todayTodos);
         setTodoTmw(tomorrowTodos);
-
       } catch (err) {}
     })();
   }, [todos]);
@@ -272,7 +272,7 @@ const Reminder = ({
       </TopCont>
       {/*WeeklyRewards cont */}
       <BotCont>
-        <WeeklyRewards display={rewards_display} />
+        <WeeklyRewards display={rewards_display} roomates={roomates} />
       </BotCont>
     </Cont>
   );

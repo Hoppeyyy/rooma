@@ -19,8 +19,6 @@ const updateProfile = (user_obj, cb) => {
     .catch((error) => {
       console.log("patch updateProfile error");
       console.log(error);
-      console.log(error.response);
-      console.log(error.response.data);
 
       if (!error.response) {
         cb(new Error(serverCrash));

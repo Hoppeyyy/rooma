@@ -78,11 +78,8 @@ const DetailHolder = styled.div`
 
 export default function Members(props) {
   const [buttonstate5, setButtonState5] = useState(0);
+  const [DisplayedUser, setDisplayedUser] = useState(props.users[0]);
 
-  console.log("777777777777777777777");
-  console.log("777777777777777777777");
-
-  console.log(props.users);
   const GlobalNavClick = () => {
     if (buttonstate5 === 0) {
       setButtonState5(1);
@@ -101,10 +98,29 @@ export default function Members(props) {
     }
   };
 
+  const getPreferences = () => {
+    const user_list = DisplayedUser.preference.map((pref) => {
+      return (
+        <Button
+          width="125px"
+          height="40px"
+          bgcolor="#F2EFFD"
+          title={pref}
+          fontSize="14px"
+          fontcolor="#7751E8"
+          border=" 1px solid #7751E8"
+          fontWeight="500"
+          borderRadius="29px"
+        />
+      );
+    });
+    return user_list;
+  };
+
   const displayMembers = () => {
     const user_list = props.users.map((user) => {
       return (
-        <CardCont key={user.id}>
+        <CardCont key={user.id} onClick={() => setDisplayedUser(user)}>
           <MemberProfile name={user.name} avatar={user.pfp} />
         </CardCont>
       );
@@ -151,123 +167,39 @@ export default function Members(props) {
       {/* Right Container */}
       <RightCont>
         <ProfileHolder>
-          <MemberProfile boxshadow="none" />
+          {DisplayedUser && (
+            <MemberProfile
+              boxshadow="none"
+              name={DisplayedUser.name}
+              avatar={DisplayedUser.pfp}
+              phone={DisplayedUser.phone}
+            />
+          )}
         </ProfileHolder>
 
         <InfoHolder>
-          <Profile className="opensans">Profile</Profile>
+          <Profile className="opensans">About Me</Profile>
           <Details className="opensans">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus velit
-            consequat suspendisse sed semper mattis sed aliquet vulputate. Nisl
-            ut commodo, aliquam mattis.
+            {DisplayedUser.interests ? DisplayedUser.interests : "?"}
           </Details>
 
           <DetailHolder>
-            <ProfileInfo />
-            <ProfileInfo head="She/Her" subhead="pronouns" headsize="23px" />
-            <ProfileInfo head="Student" subhead="Occupation" headsize="23px" />
-            <ProfileInfo head="BCIT" subhead="School" headsize="23px" />
+            <ProfileInfo head={DisplayedUser.age ? DisplayedUser.age : "?"} />
+            <ProfileInfo
+              head={DisplayedUser.pronouns ? DisplayedUser.pronouns : "?"}
+              subhead="pronouns"
+              headsize="23px"
+            />
+            {/* <ProfileInfo head="Student" subhead="Occupation" headsize="23px" />
+            <ProfileInfo head="BCIT" subhead="School" headsize="23px" />  */}
           </DetailHolder>
 
           {/* Preference */}
           <Profile className="opensans">Preference</Profile>
 
-          <DetailHolder>
-            <Button
-              width="125px"
-              height="40px"
-              bgcolor="#F2EFFD"
-              title="No Pets"
-              fontSize="14px"
-              fontcolor="#7751E8"
-              border=" 1px solid #7751E8"
-              fontWeight="500"
-              borderRadius="29px"
-            />
-            <Button
-              width="125px"
-              height="40px"
-              bgcolor="#F2EFFD"
-              title="No smokers"
-              fontSize="14px"
-              fontcolor="#7751E8"
-              border=" 1px solid #7751E8"
-              fontWeight="500"
-              borderRadius="29px"
-            />
-            <Button
-              width="125px"
-              height="40px"
-              bgcolor="#F2EFFD"
-              title="No loud noises"
-              fontSize="14px"
-              fontcolor="#7751E8"
-              border=" 1px solid #7751E8"
-              fontWeight="500"
-              borderRadius="29px"
-            />
-            <Button
-              width="125px"
-              height="40px"
-              bgcolor="#F2EFFD"
-              title="Respect"
-              fontSize="14px"
-              fontcolor="#7751E8"
-              border=" 1px solid #7751E8"
-              fontWeight="500"
-              borderRadius="29px"
-            />
-          </DetailHolder>
+          <DetailHolder>{getPreferences()}</DetailHolder>
 
           {/* Interest */}
-          <Profile className="opensans">Interest</Profile>
-
-          <DetailHolder>
-            <Button
-              width="125px"
-              height="40px"
-              bgcolor="#F2EFFD"
-              title="Hiking"
-              fontSize="14px"
-              fontcolor="#7751E8"
-              border=" 1px solid #7751E8"
-              fontWeight="500"
-              borderRadius="29px"
-            />
-            <Button
-              width="125px"
-              height="40px"
-              bgcolor="#F2EFFD"
-              title="Game"
-              fontSize="14px"
-              fontcolor="#7751E8"
-              border=" 1px solid #7751E8"
-              fontWeight="500"
-              borderRadius="29px"
-            />
-            <Button
-              width="125px"
-              height="40px"
-              bgcolor="#F2EFFD"
-              title="Shopping"
-              fontSize="14px"
-              fontcolor="#7751E8"
-              border=" 1px solid #7751E8"
-              fontWeight="500"
-              borderRadius="29px"
-            />
-            <Button
-              width="125px"
-              height="40px"
-              bgcolor="#F2EFFD"
-              title="Skiing"
-              fontSize="14px"
-              fontcolor="#7751E8"
-              border=" 1px solid #7751E8"
-              fontWeight="500"
-              borderRadius="29px"
-            />
-          </DetailHolder>
         </InfoHolder>
       </RightCont>
     </MainCont>

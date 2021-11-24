@@ -6,7 +6,7 @@ import Greeting from "../comps/Greeting";
 import Reminder from "../comps/Reminder";
 import { requireAuthen } from "../api/require.authen";
 import CalEventMerged from "../comps/CalEventMerged";
-
+import { getRoomates } from "../api/room.api";
 const MainCont = styled.div`
   display: flex;
   flex-direction: row;
@@ -34,6 +34,8 @@ const RightCont = styled.div`
 `;
 
 export default function Home(props) {
+  console.log("2222222222222222 props.roomates");
+  console.log(props.roomates);
   // detect button clicked or not
   const [buttonstate1, setButtonState1] = useState(0);
 
@@ -113,6 +115,7 @@ export default function Home(props) {
         <Reminder
           // heading need to change when the user click the calendar and change the date for reminder
           heading="Today"
+          roomates={props.roomates}
           // def_visibility will be visible when the user didn't schedule anything on the date. if there is a reminder, it should be hidden
           def_visibility="hidden"
           // checked is for completed radio button. defalt set as checked, but once the user want to bring the reminder back to active reminder, the button should be unclicked and the reminder cont will be deleted in completed reminder and bring it to the active reminder comp
@@ -153,14 +156,14 @@ export default function Home(props) {
 export const getServerSideProps = async (context) => {
   // return requireAuthen(context);
   let authProp = await requireAuthen(context, true);
-
+  let roomates = await getRoomates(context);
   if (!authProp.hasOwnProperty("user")) {
     return { redirect: authProp };
   } else {
     return {
       props: {
         auth: authProp,
-        // events: Math.random(),
+        roomates: roomates.props.users,
       },
     };
   }
