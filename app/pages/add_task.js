@@ -4,13 +4,15 @@ import * as React from "react";
 import NavBar3 from "../comps/NavBar3";
 import CalendarComp from "../comps/CalendarComp";
 import Event from "../comps/Event";
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 import Greeting from "../comps/Greeting";
 import AddMembers from "../comps/AddMembers";
 import Tab from "../comps/TaskComp/tabs";
 import TaskComp from "../comps/TaskComp/task";
 import Assigned from "../comps/TaskComp/assigned";
 import CalEventMerged from "../comps/CalEventMerged";
+import { globalContext } from "../store/globalContext";
+import LoadingSpinner from "../UI/LoadingSpinner";
 
 const MainCont = styled.div`
   display: flex;
@@ -45,6 +47,21 @@ const AddTaskCont = styled.div`
 export default function Add_task() {
   const [buttonstate1, setButtonState1] = useState(0);
   const [buttonstate5, setButtonState5] = useState(0);
+  const {
+    setCurrentUser,
+    currentUser,
+    currentExpandNav,
+    setCurrentExpandNav,
+    setLoadingSpinner,
+    loadingSpinner,
+  } = useContext(globalContext);
+  const [onLinkClicked, setOnLinkClicked] = useState(false);
+
+  useEffect(() => {
+    if (loadingSpinner) {
+      setLoadingSpinner(false);
+    }
+  }, [loadingSpinner]);
 
   const GlobalNavClick = () => {
     if (buttonstate5 === 0) {
@@ -101,69 +118,79 @@ export default function Add_task() {
       setButtonState10(0);
     }
   };
+
+  const onLinkClick = () => {
+    setOnLinkClicked(true);
+  };
   return (
     <MainCont>
       <LeftCont>
-        <NavBar3 />
+        <NavBar3 onLinkClick={onLinkClick} />
       </LeftCont>
-      <MiddleCont>
-        <Greeting
-          width="250px"
-          height="100px"
-          heading="Add Tasks"
-          User=""
-          ps=""
-          visibility="visible"
-        />
-        <AddTaskCont>
-          <AddMembers
-            heading="Add Task"
-            ps="Start by adding a task"
-            title="Add Task"
-            width="132px"
-            height="50px"
-            borderRadius="4.2px"
-            onClick={() => {
-              HandleClickTaskComp1();
-            }}
-            display={
-              buttonstate8 || buttonstate9 || buttonstate10 === 1
-                ? "none"
-                : "flex"
-            }
-          />
-          <Tab
-            display={buttonstate9 || buttonstate10 === 1 ? "flex" : "none"}
-            onTabClick={() => {
-              HandleClickTaskComp3();
-            }}
-          />
-          <TaskComp
-            onClick={() => {
-              HandleClickTaskComp2();
-            }}
-            display={
-              buttonstate8 || buttonstate10 === 1
-                ? "flex"
-                : "none" || buttonstate9 === 1
-                ? "none"
-                : "flex"
-            }
-          />
-          <Assigned
-            display={
-              buttonstate9 === 1
-                ? "flex"
-                : "none" || buttonstate10 === 1
-                ? "none"
-                : "flex"
-            }
-          />
-        </AddTaskCont>
-      </MiddleCont>
-      <RightCont>
-        <CalEventMerged />
-      </RightCont>
+      {onLinkClicked ? (
+        <LoadingSpinner />
+      ) : (
+        <>
+          <MiddleCont>
+            <Greeting
+              width="250px"
+              height="100px"
+              heading="Add Tasks"
+              User=""
+              ps=""
+              visibility="visible"
+            />
+            <AddTaskCont>
+              <AddMembers
+                heading="Add Task"
+                ps="Start by adding a task"
+                title="Add Task"
+                width="132px"
+                height="50px"
+                borderRadius="4.2px"
+                onClick={() => {
+                  HandleClickTaskComp1();
+                }}
+                display={
+                  buttonstate8 || buttonstate9 || buttonstate10 === 1
+                    ? "none"
+                    : "flex"
+                }
+              />
+              <Tab
+                display={buttonstate9 || buttonstate10 === 1 ? "flex" : "none"}
+                onTabClick={() => {
+                  HandleClickTaskComp3();
+                }}
+              />
+              <TaskComp
+                onClick={() => {
+                  HandleClickTaskComp2();
+                }}
+                display={
+                  buttonstate8 || buttonstate10 === 1
+                    ? "flex"
+                    : "none" || buttonstate9 === 1
+                    ? "none"
+                    : "flex"
+                }
+              />
+              <Assigned
+                display={
+                  buttonstate9 === 1
+                    ? "flex"
+                    : "none" || buttonstate10 === 1
+                    ? "none"
+                    : "flex"
+                }
+              />
+            </AddTaskCont>
+          </MiddleCont>
+          <RightCont>
+            <CalEventMerged />
+          </RightCont>
+        </>
+      )}
     </MainCont>
   );
 }

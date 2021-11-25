@@ -311,13 +311,13 @@ const TaskComp = ({ display = "none", onClick = () => {} }) => {
                     key={roommate.id}
                     onClick={() => handleRoommatesClick(roommate.id)}
                     className={roommate.clicked ? "memberBorder" : null}
-                    src="/Avatar2.png"
+                    src="/upload_pic.png"
                   />
                   <Name className="opensans">{roommate.name}</Name>
                 </MemCont>
               ))}
               {/* <MemCont>
-                <Avatar src="/Avatar2.png" />
+                <Avatar src="/upload_pic.png" />
                 <Name className="opensans">Victoria</Name>
               </MemCont> */}
             </MemWrap>

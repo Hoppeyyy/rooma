@@ -162,7 +162,7 @@ const RoomaLogo = styled.img`
   align-items: center;
 `;
 const NavBar2 = ({
-  src = "/Avatar.png",
+  src = "/upload_pic.png",
   name = "Esther Howard",
   user_point = "100 pts",
   Alertdisplay = "block",

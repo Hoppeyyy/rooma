@@ -10,6 +10,7 @@ import Button from "../comps/Button";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { getRoomates } from "../api/room.api";
+import LoadingSpinner from "../UI/LoadingSpinner";
 
 const MainCont = styled.div`
   display: flex;
@@ -79,7 +80,10 @@ const DetailHolder = styled.div`
 export default function Members(props) {
   const [buttonstate5, setButtonState5] = useState(0);
   const [DisplayedUser, setDisplayedUser] = useState(props.users[0]);
+  const [onLinkClicked, setOnLinkClicked] = useState(false);
 
+  console.log("eeeeeeeeeeeeeeeeeeeeee");
+  console.log(props.users);
   const GlobalNavClick = () => {
     if (buttonstate5 === 0) {
       setButtonState5(1);
@@ -121,7 +125,11 @@ export default function Members(props) {
     const user_list = props.users.map((user) => {
       return (
         <CardCont key={user.id} onClick={() => setDisplayedUser(user)}>
-          <MemberProfile name={user.name} avatar={user.pfp} />
+          <MemberProfile
+            name={user.name}
+            avatar={user.pfp}
+            phone={user.phone}
+          />
         </CardCont>
       );
     });
@@ -138,19 +146,27 @@ export default function Members(props) {
       setButtonState6(1);
     }
   };
-  const router = useRouter();
+
+  const onLinkClick = () => {
+    setOnLinkClicked(true);
+  };
   return (
     <MainCont>
       <NavCont>
-        <NavBar3 />
+        <NavBar3 onLinkClick={onLinkClick} />
       </NavCont>
-      <LeftCont>
-        <Heading className="ubuntu">Members</Heading>
 
-        {displayMembers()}
-        {/* <CardCont>
+      {onLinkClicked ? (
+        <LoadingSpinner />
+      ) : (
+        <>
+          <LeftCont>
+            <Heading className="ubuntu">Members</Heading>
+
+            {displayMembers()}
+            {/* <CardCont>
           <MemberProfile /> */}
-        {/* <AddMembers
+            {/* <AddMembers
         heading="Add Members"
         ps="Start by adding members"
         title="Go to Community"
@@ -161,47 +177,62 @@ export default function Members(props) {
           router.push("/community")
         }}
         /> */}
-        {/* </CardCont> */}
-      </LeftCont>
+            {/* </CardCont> */}
+          </LeftCont>
 
-      {/* Right Container */}
-      <RightCont>
-        <ProfileHolder>
-          {DisplayedUser && (
-            <MemberProfile
-              boxshadow="none"
-              name={DisplayedUser.name}
-              avatar={DisplayedUser.pfp}
-              phone={DisplayedUser.phone}
-            />
-          )}
-        </ProfileHolder>
+          {/* Right Container */}
+          <RightCont>
+            <ProfileHolder>
+              {DisplayedUser && (
+                <MemberProfile
+                  boxshadow="none"
+                  name={DisplayedUser.name}
+                  avatar={DisplayedUser.pfp}
+                  phone={DisplayedUser.phone}
+                />
+              )}
+            </ProfileHolder>
 
-        <InfoHolder>
-          <Profile className="opensans">About Me</Profile>
-          <Details className="opensans">
-            {DisplayedUser.interests ? DisplayedUser.interests : "?"}
-          </Details>
+            <InfoHolder>
+              <Profile className="opensans">About Me</Profile>
+              <Details className="opensans">
+                {DisplayedUser.interests ? DisplayedUser.interests : "?"}
+              </Details>
 
-          <DetailHolder>
-            <ProfileInfo head={DisplayedUser.age ? DisplayedUser.age : "?"} />
-            <ProfileInfo
-              head={DisplayedUser.pronouns ? DisplayedUser.pronouns : "?"}
-              subhead="pronouns"
-              headsize="23px"
-            />
-            {/* <ProfileInfo head="Student" subhead="Occupation" headsize="23px" />
-            <ProfileInfo head="BCIT" subhead="School" headsize="23px" />  */}
-          </DetailHolder>
+              <DetailHolder>
+                <ProfileInfo
+                  head={DisplayedUser.age ? DisplayedUser.age : "?"}
+                />
+                <ProfileInfo
+                  head={DisplayedUser.pronouns ? DisplayedUser.pronouns : "?"}
+                  subhead="pronouns"
+                  headsize="23px"
+                />
+                <ProfileInfo
+                  head={
+                    DisplayedUser.occupation ? DisplayedUser.occupation : "?"
+                  }
+                  subhead="Occupation"
+                  headsize="23px"
+                />
 
-          {/* Preference */}
-          <Profile className="opensans">Preference</Profile>
+                <ProfileInfo
+                  head={DisplayedUser.school ? DisplayedUser.school : "?"}
+                  subhead="School"
+                  headsize="23px"
+                />
+              </DetailHolder>
 
-          <DetailHolder>{getPreferences()}</DetailHolder>
+              {/* Preference */}
+              <Profile className="opensans">Preference</Profile>
 
-          {/* Interest */}
-        </InfoHolder>
-      </RightCont>
+              <DetailHolder>{getPreferences()}</DetailHolder>
+
+              {/* Interest */}
+            </InfoHolder>
+          </RightCont>
+        </>
+      )}
     </MainCont>
   );
 }

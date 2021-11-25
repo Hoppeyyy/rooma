@@ -49,7 +49,7 @@ margin:7px;
 `
 
 const UserComment = ({
-  src="Avatar2.png",
+  src="upload_pic.png",
   UserName="Chisaki",
   MsgTime="11:20",
   Content="Hello World",

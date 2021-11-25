@@ -51,7 +51,7 @@ margin-right: 20px;
 const Assigned_User = ({
   display="flex",
   order = "Order1",
-  src="/Avatar.png",
+  src="/upload_pic.png",
   name="Maria",
   marginbottom="0px;"
 })=>{

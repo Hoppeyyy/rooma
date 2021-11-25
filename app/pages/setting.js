@@ -15,6 +15,7 @@ import { globalContext } from "../store/globalContext";
 import { useRouter } from "next/router";
 import EditProfile from "../comps/EditProfile";
 import { requireAuthen } from "../api/require.authen";
+import LoadingSpinner from "../UI/LoadingSpinner";
 
 const Cont = styled.div`
   display: flex;
@@ -66,6 +67,7 @@ export default function Home(props) {
   const [Message, setMessage] = useState("");
   const [ErrMessage, setErrMessage] = useState("");
   const router = useRouter();
+  const [onLinkClicked, setOnLinkClicked] = useState(false);
 
   const onSetErrMessage = (msg) => {
     setErrMessage(msg);
@@ -138,97 +140,108 @@ export default function Home(props) {
     }
   };
 
+  const onLinkClick = () => {
+    setOnLinkClicked(true);
+  };
+
   return (
     <Cont>
       <NavCont>
-        <NavBar3 />
+        <NavBar3 onLinkClick={onLinkClick} />
       </NavCont>
-      <LeftCont>
-        <SetNav>
-          <Title className="ubuntu">Settings</Title>
-          <SettingNavCont
-            heading="Add a member"
-            ps="Invite a new member"
-            src="/Member.png"
-            onClick={() => {
-              HandleClickButtonColor1();
-              HandleClickRightCont1();
-              onSetErrMessage("");
-              onSetMessage("");
-            }}
-            bgcolor={buttonstate1 === 1 ? "#FAFAFA" : "#FFFFFF"}
-          />
-          <SettingNavCont
-            heading="House Rules"
-            ps="Learn about house rules"
-            src="/House.png"
-            onClick={() => {
-              HandleClickButtonColor2();
-              HandleClickRightCont2();
-              onSetErrMessage("");
-              onSetMessage("");
-            }}
-            bgcolor={buttonstate1 === 2 ? "#FAFAFA" : "#FFFFFF"}
-          />
-          <SettingNavCont
-            heading="Manage Profile"
-            ps="Manage profile settings"
-            src="/Test Account.png"
-            onClick={() => {
-              HandleClickButtonColor3();
-              HandleClickRightCont3();
-              onSetErrMessage("");
-              onSetMessage("");
-            }}
-            bgcolor={buttonstate1 === 3 ? "#FAFAFA" : "#FFFFFF"}
-          />
-          <SettingNavCont
-            heading="Leave group"
-            ps="Leave and join a new group"
-            src="/Export.png"
-            onClick={() => {
-              HandleClickButtonColor4();
-              HandleClickRightCont4();
-              onSetErrMessage("");
-              onSetMessage("");
-            }}
-            bgcolor={buttonstate1 === 4 ? "#FAFAFA" : "#FFFFFF"}
-          />
-          <SettingNavCont
-            heading="Log Out"
-            ps="Log out from the account"
-            src="/Exit.png"
-            onClick={() => {
-              HandleClickButtonColor5();
-              HandleClickRightCont5();
-              onSetErrMessage("");
-              onSetMessage("");
-            }}
-            bgcolor={buttonstate1 === 5 ? "#FAFAFA" : "#FFFFFF"}
-          />
-        </SetNav>
-      </LeftCont>
-      <Holder>
-        <Invite display={showRightCont === 1 ? "flex" : "none"}></Invite>
-        <HouseRules
-          display={showRightCont === 2 ? "flex" : "none"}
-        ></HouseRules>
-        {/* <ManageProfile
+
+      {onLinkClicked ? (
+        <LoadingSpinner />
+      ) : (
+        <>
+          <LeftCont>
+            <SetNav>
+              <Title className="ubuntu">Settings</Title>
+              <SettingNavCont
+                heading="Add a member"
+                ps="Invite a new member"
+                src="/Member.png"
+                onClick={() => {
+                  HandleClickButtonColor1();
+                  HandleClickRightCont1();
+                  onSetErrMessage("");
+                  onSetMessage("");
+                }}
+                bgcolor={buttonstate1 === 1 ? "#FAFAFA" : "#FFFFFF"}
+              />
+              <SettingNavCont
+                heading="House Rules"
+                ps="Learn about house rules"
+                src="/House.png"
+                onClick={() => {
+                  HandleClickButtonColor2();
+                  HandleClickRightCont2();
+                  onSetErrMessage("");
+                  onSetMessage("");
+                }}
+                bgcolor={buttonstate1 === 2 ? "#FAFAFA" : "#FFFFFF"}
+              />
+              <SettingNavCont
+                heading="Manage Profile"
+                ps="Manage profile settings"
+                src="/Test Account.png"
+                onClick={() => {
+                  HandleClickButtonColor3();
+                  HandleClickRightCont3();
+                  onSetErrMessage("");
+                  onSetMessage("");
+                }}
+                bgcolor={buttonstate1 === 3 ? "#FAFAFA" : "#FFFFFF"}
+              />
+              <SettingNavCont
+                heading="Leave group"
+                ps="Leave and join a new group"
+                src="/Export.png"
+                onClick={() => {
+                  HandleClickButtonColor4();
+                  HandleClickRightCont4();
+                  onSetErrMessage("");
+                  onSetMessage("");
+                }}
+                bgcolor={buttonstate1 === 4 ? "#FAFAFA" : "#FFFFFF"}
+              />
+              <SettingNavCont
+                heading="Log Out"
+                ps="Log out from the account"
+                src="/Exit.png"
+                onClick={() => {
+                  HandleClickButtonColor5();
+                  HandleClickRightCont5();
+                  onSetErrMessage("");
+                  onSetMessage("");
+                }}
+                bgcolor={buttonstate1 === 5 ? "#FAFAFA" : "#FFFFFF"}
+              />
+            </SetNav>
+          </LeftCont>
+          <Holder>
+            <Invite display={showRightCont === 1 ? "flex" : "none"}></Invite>
+            <HouseRules
+              display={showRightCont === 2 ? "flex" : "none"}
+            ></HouseRules>
+            {/* <ManageProfile
           display={showRightCont === 3 ? "flex" : "none"}
         ></ManageProfile> */}
-        <EditProfile
-          Message={Message}
-          ErrMessage={ErrMessage}
-          onSetErrMessage={onSetErrMessage}
-          onSetMessage={onSetMessage}
-          user={props.auth}
-          display={showRightCont === 3 ? "flex" : "none"}
-        ></EditProfile>
-        <LeaveGroup
-          display={showRightCont === 4 ? "flex" : "none"}
-        ></LeaveGroup>
-        <LogOut display={showRightCont === 5 ? "flex" : "none"}></LogOut>
-      </Holder>
+            <EditProfile
+              Message={Message}
+              ErrMessage={ErrMessage}
+              onSetErrMessage={onSetErrMessage}
+              onSetMessage={onSetMessage}
+              user={props.auth}
+              display={showRightCont === 3 ? "flex" : "none"}
+            ></EditProfile>
+            <LeaveGroup
+              display={showRightCont === 4 ? "flex" : "none"}
+            ></LeaveGroup>
+            <LogOut display={showRightCont === 5 ? "flex" : "none"}></LogOut>
+          </Holder>
+        </>
+      )}
     </Cont>
   );
 }

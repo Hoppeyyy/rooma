@@ -9,6 +9,7 @@ import CommunityPost from "../comps/CommunityPost";
 import Comments from "../comps/Comments";
 import FilterOptionsButton from "../comps/FilterOptionsButton";
 import AddFilter from "../comps/AddFilter";
+import LoadingSpinner from "../UI/LoadingSpinner";
 
 const Cont = styled.div`
   display: flex;
@@ -61,6 +62,7 @@ const AddFilterDiv = styled.div`
 `;
 
 export default function Community() {
+  const [onLinkClicked, setOnLinkClicked] = useState(false);
   const [checked, setChecked] = useState(0);
   const [buttonstate1, setButtonState1] = useState(0);
   const [buttonstate5, setButtonState5] = useState(0);
@@ -276,225 +278,236 @@ export default function Community() {
       setButtonState22(1);
     }
   };
+
+  const onLinkClick = () => {
+    setOnLinkClicked(true);
+  };
   return (
     <Cont>
       <GlbNav>
-        <NavBar3 />
+        <NavBar3 onLinkClick={onLinkClick} />
       </GlbNav>
-      <MainCont>
-        <AddPost
-          src="/Avatar.png"
-          onAddClick={() => {
-            HandleAddClick();
-          }}
-          height={buttonstate1 === 1 ? "450px" : "65px"}
-          display={buttonstate1 === 1 ? "block" : "none"}
-          onToggleClick={() => {
-            HandleToggleClick();
-          }}
-          visibility={checked === 1 ? "visible" : "hidden"}
-          onPostClick={() => {
-            HandleAddPost();
-          }}
-          // ADD POST: button color changes from here
-          onBtnClick1={() => {
-            Btn1();
-          }}
-          btn_bgcolor1={buttonstate6 === 1 ? "#7751E8" : "#ffffff"}
-          fontcolor1={buttonstate6 === 1 ? "#ffffff" : "#7751E8"}
-          onBtnClick2={() => {
-            Btn2();
-          }}
-          btn_bgcolor2={buttonstate7 === 1 ? "#7751E8" : "#ffffff"}
-          fontcolor2={buttonstate7 === 1 ? "#ffffff" : "#7751E8"}
-          onBtnClick3={() => {
-            Btn3();
-          }}
-          btn_bgcolor3={buttonstate8 === 1 ? "#7751E8" : "#ffffff"}
-          fontcolor3={buttonstate8 === 1 ? "#ffffff" : "#7751E8"}
-          onBtnClick4={() => {
-            Btn4();
-          }}
-          btn_bgcolor4={buttonstate9 === 1 ? "#7751E8" : "#ffffff"}
-          fontcolor4={buttonstate9 === 1 ? "#ffffff" : "#7751E8"}
-          onBtnClick5={() => {
-            Btn5();
-          }}
-          btn_bgcolor5={buttonstate10 === 1 ? "#7751E8" : "#ffffff"}
-          fontcolor5={buttonstate10 === 1 ? "#ffffff" : "#7751E8"}
-          onBtnClick6={() => {
-            Btn6();
-          }}
-          btn_bgcolor6={buttonstate11 === 1 ? "#7751E8" : "#ffffff"}
-          fontcolor6={buttonstate11 === 1 ? "#ffffff" : "#7751E8"}
-          onBtnClick7={() => {
-            Btn7();
-          }}
-          btn_bgcolor7={buttonstate12 === 1 ? "#7751E8" : "#ffffff"}
-          fontcolor7={buttonstate12 === 1 ? "#ffffff" : "#7751E8"}
-          onBtnClick8={() => {
-            Btn8();
-          }}
-          btn_bgcolor8={buttonstate13 === 1 ? "#7751E8" : "#ffffff"}
-          fontcolor8={buttonstate13 === 1 ? "#ffffff" : "#7751E8"}
 
-          // ADD POST: button color changes end
-        />
+      {onLinkClicked ? (
+        <LoadingSpinner />
+      ) : (
+        <>
+          <MainCont>
+            <AddPost
+              src="/upload_pic.png"
+              onAddClick={() => {
+                HandleAddClick();
+              }}
+              height={buttonstate1 === 1 ? "450px" : "65px"}
+              display={buttonstate1 === 1 ? "block" : "none"}
+              onToggleClick={() => {
+                HandleToggleClick();
+              }}
+              visibility={checked === 1 ? "visible" : "hidden"}
+              onPostClick={() => {
+                HandleAddPost();
+              }}
+              // ADD POST: button color changes from here
+              onBtnClick1={() => {
+                Btn1();
+              }}
+              btn_bgcolor1={buttonstate6 === 1 ? "#7751E8" : "#ffffff"}
+              fontcolor1={buttonstate6 === 1 ? "#ffffff" : "#7751E8"}
+              onBtnClick2={() => {
+                Btn2();
+              }}
+              btn_bgcolor2={buttonstate7 === 1 ? "#7751E8" : "#ffffff"}
+              fontcolor2={buttonstate7 === 1 ? "#ffffff" : "#7751E8"}
+              onBtnClick3={() => {
+                Btn3();
+              }}
+              btn_bgcolor3={buttonstate8 === 1 ? "#7751E8" : "#ffffff"}
+              fontcolor3={buttonstate8 === 1 ? "#ffffff" : "#7751E8"}
+              onBtnClick4={() => {
+                Btn4();
+              }}
+              btn_bgcolor4={buttonstate9 === 1 ? "#7751E8" : "#ffffff"}
+              fontcolor4={buttonstate9 === 1 ? "#ffffff" : "#7751E8"}
+              onBtnClick5={() => {
+                Btn5();
+              }}
+              btn_bgcolor5={buttonstate10 === 1 ? "#7751E8" : "#ffffff"}
+              fontcolor5={buttonstate10 === 1 ? "#ffffff" : "#7751E8"}
+              onBtnClick6={() => {
+                Btn6();
+              }}
+              btn_bgcolor6={buttonstate11 === 1 ? "#7751E8" : "#ffffff"}
+              fontcolor6={buttonstate11 === 1 ? "#ffffff" : "#7751E8"}
+              onBtnClick7={() => {
+                Btn7();
+              }}
+              btn_bgcolor7={buttonstate12 === 1 ? "#7751E8" : "#ffffff"}
+              fontcolor7={buttonstate12 === 1 ? "#ffffff" : "#7751E8"}
+              onBtnClick8={() => {
+                Btn8();
+              }}
+              btn_bgcolor8={buttonstate13 === 1 ? "#7751E8" : "#ffffff"}
+              fontcolor8={buttonstate13 === 1 ? "#ffffff" : "#7751E8"}
 
-        <FilterButtonDiv>
-          <FilterOptionsButton
-            onFilterButtonClick={() => {
-              ClickFilterButton();
-            }}
-          ></FilterOptionsButton>
-        </FilterButtonDiv>
-        <AddFilterDiv>
-          <AddFilter
-            display={showFilterComp === 1 ? "block" : "none"}
-            // ADD FILTER BUTTON: button color changes from here
-            onBtnClick1={() => {
-              Btn9();
-            }}
-            btn_bgcolor1={buttonstate14 === 1 ? "#7751E8" : "#ffffff"}
-            fontcolor1={buttonstate14 === 1 ? "#ffffff" : "#7751E8"}
-            onBtnClick2={() => {
-              Btn10();
-            }}
-            btn_bgcolor2={buttonstate15 === 1 ? "#7751E8" : "#ffffff"}
-            fontcolor2={buttonstate15 === 1 ? "#ffffff" : "#7751E8"}
-            onBtnClick3={() => {
-              Btn11();
-            }}
-            btn_bgcolor3={buttonstate16 === 1 ? "#7751E8" : "#ffffff"}
-            fontcolor3={buttonstate16 === 1 ? "#ffffff" : "#7751E8"}
-            onBtnClick4={() => {
-              Btn12();
-            }}
-            btn_bgcolor4={buttonstate17 === 1 ? "#7751E8" : "#ffffff"}
-            fontcolor4={buttonstate17 === 1 ? "#ffffff" : "#7751E8"}
-            onBtnClick5={() => {
-              Btn13();
-            }}
-            btn_bgcolor5={buttonstate18 === 1 ? "#7751E8" : "#ffffff"}
-            fontcolor5={buttonstate18 === 1 ? "#ffffff" : "#7751E8"}
-            onBtnClick6={() => {
-              Btn14();
-            }}
-            btn_bgcolor6={buttonstate19 === 1 ? "#7751E8" : "#ffffff"}
-            fontcolor6={buttonstate19 === 1 ? "#ffffff" : "#7751E8"}
-            onBtnClick7={() => {
-              Btn15();
-            }}
-            btn_bgcolor7={buttonstate20 === 1 ? "#7751E8" : "#ffffff"}
-            fontcolor7={buttonstate20 === 1 ? "#ffffff" : "#7751E8"}
-            onBtnClick8={() => {
-              Btn16();
-            }}
-            btn_bgcolor8={buttonstate21 === 1 ? "#7751E8" : "#ffffff"}
-            fontcolor8={buttonstate21 === 1 ? "#ffffff" : "#7751E8"}
+              // ADD POST: button color changes end
+            />
 
-            // ADD FILTER BUTTON: button color changes end
-          ></AddFilter>
-        </AddFilterDiv>
+            <FilterButtonDiv>
+              <FilterOptionsButton
+                onFilterButtonClick={() => {
+                  ClickFilterButton();
+                }}
+              ></FilterOptionsButton>
+            </FilterButtonDiv>
+            <AddFilterDiv>
+              <AddFilter
+                display={showFilterComp === 1 ? "block" : "none"}
+                // ADD FILTER BUTTON: button color changes from here
+                onBtnClick1={() => {
+                  Btn9();
+                }}
+                btn_bgcolor1={buttonstate14 === 1 ? "#7751E8" : "#ffffff"}
+                fontcolor1={buttonstate14 === 1 ? "#ffffff" : "#7751E8"}
+                onBtnClick2={() => {
+                  Btn10();
+                }}
+                btn_bgcolor2={buttonstate15 === 1 ? "#7751E8" : "#ffffff"}
+                fontcolor2={buttonstate15 === 1 ? "#ffffff" : "#7751E8"}
+                onBtnClick3={() => {
+                  Btn11();
+                }}
+                btn_bgcolor3={buttonstate16 === 1 ? "#7751E8" : "#ffffff"}
+                fontcolor3={buttonstate16 === 1 ? "#ffffff" : "#7751E8"}
+                onBtnClick4={() => {
+                  Btn12();
+                }}
+                btn_bgcolor4={buttonstate17 === 1 ? "#7751E8" : "#ffffff"}
+                fontcolor4={buttonstate17 === 1 ? "#ffffff" : "#7751E8"}
+                onBtnClick5={() => {
+                  Btn13();
+                }}
+                btn_bgcolor5={buttonstate18 === 1 ? "#7751E8" : "#ffffff"}
+                fontcolor5={buttonstate18 === 1 ? "#ffffff" : "#7751E8"}
+                onBtnClick6={() => {
+                  Btn14();
+                }}
+                btn_bgcolor6={buttonstate19 === 1 ? "#7751E8" : "#ffffff"}
+                fontcolor6={buttonstate19 === 1 ? "#ffffff" : "#7751E8"}
+                onBtnClick7={() => {
+                  Btn15();
+                }}
+                btn_bgcolor7={buttonstate20 === 1 ? "#7751E8" : "#ffffff"}
+                fontcolor7={buttonstate20 === 1 ? "#ffffff" : "#7751E8"}
+                onBtnClick8={() => {
+                  Btn16();
+                }}
+                btn_bgcolor8={buttonstate21 === 1 ? "#7751E8" : "#ffffff"}
+                fontcolor8={buttonstate21 === 1 ? "#ffffff" : "#7751E8"}
 
-        <PostArea1>
-          <CommunityPost
-            title="Any recommendations on resturaunts in Vancouver?"
-            name="Floyd Miles"
-            src="/Avatar3.png"
-            button_title="restaurants"
-            time="6h ago"
-            text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
-            likeNum="100"
-            CommentNum="10"
-            onPostClick={() => {
-              PostClick();
-            }}
-          />
-          <CommunityPost
-            title="Furniture Sale"
-            name="Hannah M"
-            src="/Avatar3.png"
-            button_title="Event"
-            time="6h ago"
-            text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
-            likeNum="230"
-            CommentNum="20"
-            onPostClick={() => {
-              PostClick();
-            }}
-          />
-        </PostArea1>
-        <PostArea2>
-          <CommunityPost
-            title="Need Roommates!"
-            name="Jo K"
-            src="/Avatar3.png"
-            button_title="roommates"
-            time="2h ago"
-            text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
-            likeNum="1100"
-            CommentNum="15"
-            onPostClick={() => {
-              PostClick();
-            }}
-          />
-          <CommunityPost
-            title="Music Festival on Queen Park!"
-            name="Rachel K"
-            src="/Avatar3.png"
-            button_title="Event"
-            time="12h ago"
-            text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
-            likeNum="800"
-            CommentNum="30"
-            onPostClick={() => {
-              PostClick();
-            }}
-          />
-        </PostArea2>
-        <PostArea2>
-          <CommunityPost
-            title="Need Roommates!"
-            name="Jo K"
-            src="/Avatar3.png"
-            button_title="roommates"
-            time="2h ago"
-            text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
-            likeNum="1100"
-            CommentNum="15"
-            onPostClick={() => {
-              PostClick();
-            }}
-          />
-          <CommunityPost
-            title="Music Festival on Queen Park!"
-            name="Rachel K"
-            src="/Avatar3.png"
-            button_title="Event"
-            time="12h ago"
-            text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
-            likeNum="800"
-            CommentNum="30"
-            onPostClick={() => {
-              PostClick();
-            }}
-          />
-        </PostArea2>
-      </MainCont>
-      <RightCont>
-        <Comments
-          visibility={onPostClick === 1 ? "visible" : "hidden"}
-          title="Any recommendations on resturaunts in Vancouver?"
-          name="Floyd Miles"
-          src="/Avatar3.png"
-          button_title="restaurants"
-          time="6h ago"
-          text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
-          likeNum="100"
-          CommentNum="10"
-        />
-      </RightCont>
+                // ADD FILTER BUTTON: button color changes end
+              ></AddFilter>
+            </AddFilterDiv>
+
+            <PostArea1>
+              <CommunityPost
+                title="Any recommendations on resturaunts in Vancouver?"
+                name="Floyd Miles"
+                src="/Avatar3.png"
+                button_title="restaurants"
+                time="6h ago"
+                text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
+                likeNum="100"
+                CommentNum="10"
+                onPostClick={() => {
+                  PostClick();
+                }}
+              />
+              <CommunityPost
+                title="Furniture Sale"
+                name="Hannah M"
+                src="/Avatar3.png"
+                button_title="Event"
+                time="6h ago"
+                text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
+                likeNum="230"
+                CommentNum="20"
+                onPostClick={() => {
+                  PostClick();
+                }}
+              />
+            </PostArea1>
+            <PostArea2>
+              <CommunityPost
+                title="Need Roommates!"
+                name="Jo K"
+                src="/Avatar3.png"
+                button_title="roommates"
+                time="2h ago"
+                text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
+                likeNum="1100"
+                CommentNum="15"
+                onPostClick={() => {
+                  PostClick();
+                }}
+              />
+              <CommunityPost
+                title="Music Festival on Queen Park!"
+                name="Rachel K"
+                src="/Avatar3.png"
+                button_title="Event"
+                time="12h ago"
+                text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
+                likeNum="800"
+                CommentNum="30"
+                onPostClick={() => {
+                  PostClick();
+                }}
+              />
+            </PostArea2>
+            <PostArea2>
+              <CommunityPost
+                title="Need Roommates!"
+                name="Jo K"
+                src="/Avatar3.png"
+                button_title="roommates"
+                time="2h ago"
+                text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
+                likeNum="1100"
+                CommentNum="15"
+                onPostClick={() => {
+                  PostClick();
+                }}
+              />
+              <CommunityPost
+                title="Music Festival on Queen Park!"
+                name="Rachel K"
+                src="/Avatar3.png"
+                button_title="Event"
+                time="12h ago"
+                text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
+                likeNum="800"
+                CommentNum="30"
+                onPostClick={() => {
+                  PostClick();
+                }}
+              />
+            </PostArea2>
+          </MainCont>
+          <RightCont>
+            <Comments
+              visibility={onPostClick === 1 ? "visible" : "hidden"}
+              title="Any recommendations on resturaunts in Vancouver?"
+              name="Floyd Miles"
+              src="/Avatar3.png"
+              button_title="restaurants"
+              time="6h ago"
+              text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
+              likeNum="100"
+              CommentNum="10"
+            />
+          </RightCont>
+        </>
+      )}
     </Cont>
   );
 }

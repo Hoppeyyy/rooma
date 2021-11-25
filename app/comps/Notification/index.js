@@ -137,7 +137,7 @@ const Notification= ({
         <Cont>
             <Now className="opensans">Now</Now>
             <NotiCont>
-                <Avatar src="Avatar2.png"/>
+                <Avatar src="upload_pic.png"/>
                 <RightCont>
                 <Message><Span>Hailey Kim</Span> finished her Garbage task!</Message>
                 <ButtonCont>

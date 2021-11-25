@@ -81,7 +81,7 @@ const ChatNav = ({
 }) => {
   const getProfileCont = () => {
     // const chat_list = chatterInfo.map((chatter) => {
-    //   let srcImg = chatter.pfp ? chatter.pfp : "/Avatar2.png";
+    //   let srcImg = chatter.pfp ? chatter.pfp : "/upload_pic.png";
 
     //   return <Img1 src={srcImg} />;
     // });
@@ -89,7 +89,7 @@ const ChatNav = ({
     let chat_list = [];
     for (let i = 0; i < chatterInfo.length; i++) {
       if (i < 3) {
-        let srcImg = chatterInfo[i].pfp ? chatterInfo[i].pfp : "/Avatar2.png";
+        let srcImg = chatterInfo[i].pfp ? chatterInfo[i].pfp : "/upload_pic.png";
         chat_list.push(<Img1 src={srcImg} />);
       }
     }
@@ -99,8 +99,8 @@ const ChatNav = ({
   return (
     <NavCont onClick={onClick} bgcolor={bgcolor} margintop={margintop}>
       <ProfileCont>
-        {/* <Img1 src="/Avatar2.png" />
-        <Img2 display={display} src="/Avatar2.png" /> */}
+        {/* <Img1 src="/upload_pic.png" />
+        <Img2 display={display} src="/upload_pic.png" /> */}
         {getProfileCont()}
       </ProfileCont>
       {/* <p>{chatterInfo.length > 3 && "..."}</p> */}

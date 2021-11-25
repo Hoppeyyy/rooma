@@ -36,7 +36,7 @@ const Heading = styled.h3`
 `;
 
 const WeeklyUserCont = ({
-  src = "/Avatar.png",
+  src = "/upload_pic.png",
   user_name = "User Name",
   user_point = "0 pts",
 }) => {

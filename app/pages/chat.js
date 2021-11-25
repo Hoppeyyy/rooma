@@ -11,6 +11,7 @@ import { getRoomates } from "../api/room.api";
 import { globalContext } from "../store/globalContext";
 import { requireAuthen } from "../api/require.authen";
 import ChatBox from "../comps/ChatComps/ChatBox";
+import LoadingSpinner from "../UI/LoadingSpinner";
 
 const MainCont = styled.div`
   display: flex;
@@ -80,6 +81,7 @@ export default function Chat(props) {
   const [RightChatter, setRightChatter] = useState(props.chatters);
   const [YourMsgs, setYourMsgs] = useState(["Hello you"]);
   const [Selected, setSelected] = useState("0000");
+  const [onLinkClicked, setOnLinkClicked] = useState(false);
 
   const HandleClickButtonColor = (clickId) => {
     setSelected(clickId);
@@ -159,37 +161,48 @@ export default function Chat(props) {
     return chat_list;
   };
 
+  const onLinkClick = () => {
+    setOnLinkClicked(true);
+  };
+
   return (
     <MainCont>
-      <NavBar3 />
-      <LeftCont>
-        <TopCont>
-          <Heading className="ubuntu">Chat</Heading>
-          <Icon src="/chat.svg" />
-        </TopCont>
+      <NavBar3 onLinkClick={onLinkClick} />
 
-        <NavCont>
-          <ChatNav
-            chatterInfo={props.chatters}
-            bgcolor={Selected === "0000" ? "#FAFAFA" : "#FFFFFF"}
+      {onLinkClicked ? (
+        <LoadingSpinner />
+      ) : (
+        <>
+          <LeftCont>
+            <TopCont>
+              <Heading className="ubuntu">Chat</Heading>
+              <Icon src="/chat.svg" />
+            </TopCont>
+
+            <NavCont>
+              <ChatNav
+                chatterInfo={props.chatters}
+                bgcolor={Selected === "0000" ? "#FAFAFA" : "#FFFFFF"}
+                user={props.auth.user}
+                onClick={() => {
+                  HandleClickButtonColor("0000");
+                  setYourMsgs([`Hello y'all`]);
+                  setRightChatter(props.chatters);
+                }}
+              />
+              {getChats()}
+            </NavCont>
+          </LeftCont>
+
+          {/* Right Container */}
+          <ChatBox
             user={props.auth.user}
-            onClick={() => {
-              HandleClickButtonColor("0000");
-              setYourMsgs([`Hello y'all`]);
-              setRightChatter(props.chatters);
-            }}
+            RightChatter={RightChatter}
+            YourMsgs={YourMsgs}
+            onMsgSubmit={(e, msg) => onMsgSubmit(e, msg)}
           />
-          {getChats()}
-        </NavCont>
-      </LeftCont>
-
-      {/* Right Container */}
-      <ChatBox
-        user={props.auth.user}
-        RightChatter={RightChatter}
-        YourMsgs={YourMsgs}
-        onMsgSubmit={(e, msg) => onMsgSubmit(e, msg)}
-      />
+        </>
+      )}
       {/* <RightCont>
         <ChatCont1>
           <User1></User1>
@@ -208,11 +221,10 @@ export default function Chat(props) {
 export const getServerSideProps = async (ctx) => {
   let authProp = await requireAuthen(ctx, true);
 
-  let chatters = await getRoomates(ctx);
-
   if (!authProp.hasOwnProperty("user")) {
     return { redirect: authProp };
   } else {
+    let chatters = await getRoomates(ctx);
     return {
       props: {
         auth: authProp,

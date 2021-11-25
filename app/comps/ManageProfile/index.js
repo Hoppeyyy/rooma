@@ -102,7 +102,7 @@ const ManageProfile = ({
 
                 <RightCont>
                     <ProfileHolder>
-                        <Avatar src="/Avatar.png"></Avatar>
+                        <Avatar src="/upload_pic.png"></Avatar>
                         <SmallDiv>
                             <Name className="opensans">Esther Howard</Name>
                             <Phone className="opensans">

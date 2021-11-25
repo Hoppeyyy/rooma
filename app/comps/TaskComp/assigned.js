@@ -130,7 +130,7 @@ const Assigned = () => {
             </TopCont>
             <BottomCont>
               <Assigned_User />
-              <Assigned_User src="Avatar2.png" name="Leah" order="Order 2" />
+              <Assigned_User src="upload_pic.png" name="Leah" order="Order 2" />
               <Assigned_User src="Avatar3.png" name="Hailey" order="Order 3" />
               <Assigned_User order="Order 4" marginbottom="30px;" />
             </BottomCont>

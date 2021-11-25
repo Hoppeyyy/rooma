@@ -18,7 +18,7 @@ const Avatar = ({
   handleChange=()=>{},
   checked="checked",
   */
-  src="/Avatar.png",
+  src="/upload_pic.png",
   onClick=()=>{},
 
 })=>{

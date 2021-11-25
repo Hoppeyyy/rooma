@@ -281,13 +281,13 @@ return<Cont>
     </GroupTop>
     <AvatarBox visibility={visibility}>
       <Avatar
-      src="/Avatar.png"
+      src="/upload_pic.png"
       onClick={() =>{
         
       }} 
       />
       <Avatar
-      src="/Avatar2.png"
+      src="/upload_pic.png"
       onClick={() =>{
         
       }} 
