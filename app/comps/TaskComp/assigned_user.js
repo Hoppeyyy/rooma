@@ -26,6 +26,7 @@ color: #3E3D3D;
 const UserCont = styled.div`
 display:flex;
 flex-direction: column;
+position:relative;
 margin-top: 30px;
 margin-left: 50px;
 
@@ -50,7 +51,7 @@ margin-right: 20px;
 `
 const Assigned_User = ({
   display="flex",
-  order = "Order1",
+  order = "Order 1",
   src="/upload_pic.png",
   name="Maria",
   marginbottom="0px;"

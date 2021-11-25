@@ -42,6 +42,7 @@ const RightCont = styled.div`
 const AddTaskCont = styled.div`
   display: flex;
   flex-direction: column;
+  align-items:center;
 `;
 
 export default function Add_task() {

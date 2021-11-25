@@ -176,7 +176,6 @@ export default function Chat(props) {
           <LeftCont>
             <TopCont>
               <Heading className="ubuntu">Chat</Heading>
-              <Icon src="/chat.svg" />
             </TopCont>
 
             <NavCont>
