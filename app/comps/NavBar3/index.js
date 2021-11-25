@@ -35,15 +35,16 @@ const IconCont = styled.div`
 `;
 
 const TopContContainer = styled.div`
-  margin-bottom: 40px;
+  margin-bottom: 130px;
 `;
 const TopCont = styled.div`
-  margin-top: 20px;
+  margin-top: 40px;
   display: ${(props) => props.display};
 `;
 const TopCont2 = styled.div`
   display: ${(props) => props.display};
-  margin-top: 20px;
+  margin-top: 100px;
+  margin-bottom: 200px;
 `;
 const TabCont = styled.div`
   display: flex;
@@ -133,10 +134,12 @@ const Name = styled.p`
   font-weight: 700;
   margin-top: 15px;
   margin-bottom: 15px;
+  text-align:center;
 `;
 const BellIconArea = styled.div`
   position: relative;
   left: 245px;
+  height:30px;
 `;
 const BellIcon = styled.img`
   width: 25px;
@@ -174,7 +177,7 @@ const RoomaLogo = styled.img`
 const NavBar3 = ({
   src = "/upload_pic.png",
   name = "Esther Howard",
-  user_point = "100 pts",
+  user_point = "0 pts",
   Alertdisplay = "block",
   AltNum = "1",
   alignItems = "unset",

@@ -35,7 +35,7 @@ const WeeklyRewards = ({
           <WeeklyUserCont
             src={roomates[i].pfp ? roomates[i].pfp : "/upload_pic.png"}
             user_name={roomates[i].name}
-            user_point={roomates[i].points}
+            user_point={roomates[i].points +" pts"}
           />
         );
       }
