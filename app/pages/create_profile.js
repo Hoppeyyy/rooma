@@ -35,7 +35,9 @@ export default function CreateProfile(props) {
   return (
     <MainCont>
       <LeftCont>
+
         <LogoCont src="/Mainlogo.png" />
+
         <Tutorial
           animation="/create_profile.png"
           chead="Create"

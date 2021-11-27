@@ -153,7 +153,7 @@ export default function Members(props) {
   return (
     <MainCont>
       <NavCont>
-        <NavBar3 onLinkClick={onLinkClick} />
+        <NavBar3 onLinkClick={onLinkClick} color4 = "#8867EB"  src4 = "/Members_Icon_Color.svg"/>
       </NavCont>
 
       {onLinkClicked ? (

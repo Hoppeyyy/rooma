@@ -5,7 +5,7 @@ const NavCont = styled.div`
 display:flex;
 background-color: white;
 width:${props=>props.width};
-height:100%;
+height:100vh;
 box-shadow: 0px 4.427648067474365px 47.59721755981445px 0px #00000017;
 flex-direction: column;
 
@@ -98,8 +98,6 @@ margin-left: 10px;
 const Time = styled.div`
 font-size: 12px;
 color: #838383;
-margin-left: 10px;
-margin-top: 10px;
 `
 
 const Span2 = styled.span`
@@ -139,11 +137,14 @@ const Notification= ({
             <NotiCont>
                 <Avatar src="upload_pic.png"/>
                 <RightCont>
-                <Message><Span>Hailey Kim</Span> finished her Garbage task!</Message>
+                <Message>
+                    <Span>Hailey Kim</Span> 
+                    finished her Garbage task!
+                <Time className="opensans">7 min</Time>
+                </Message>
                 <ButtonCont>
                 <Button1 className="opensans">Accept</Button1>
                 <Button2 className="opensans">Decline</Button2>
-                <Time className="opensans">7 min</Time>
                 </ButtonCont>
                 </RightCont>
             </NotiCont>
