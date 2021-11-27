@@ -21,7 +21,7 @@ const LeftCont = styled.div`
 `;
 const LogoCont = styled.img`
   width: 100px;
-  margin: 20px;
+  margin: 30px 50px;
   position: absolute;
   top: 10px;
 `;
@@ -35,7 +35,9 @@ export default function CreateProfile(props) {
   return (
     <MainCont>
       <LeftCont>
-        <LogoCont src="/Mainlogo.png"/>
+
+        <LogoCont src="/Mainlogo.png" />
+
         <Tutorial
           animation="/create_profile.png"
           chead="Create"
