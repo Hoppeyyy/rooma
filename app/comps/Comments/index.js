@@ -4,13 +4,23 @@ import CommunityPost from '../CommunityPost';
 import UserComment from '../UserComment';
 import CommeentInput from '../CommentInput';
 const CtrlCont = styled.div`
-visibility:${props=>props.visibility};
-display:flex;
+display:${props=>props.display};
+// display:flex;
 flex-direction:column;
 align-items:center;
+width:411px;
 height:100vh;
 box-shadow: 0px 4.0133771896362305px 11.036787033081055px 0px #00000014;
 `
+
+const ArrowCont = styled.div`
+margin-top: 20px;
+width: 257px;
+`
+const ArrowImg = styled.img`
+
+`
+
 const TopCont = styled.div`
 width:100%;
 display:flex;
@@ -36,7 +46,7 @@ const InputArea = styled.div`
 
 `
 const Comments = ({
-visibility="hidden",
+display="none",
 title="Any recommendations on resturaunts in Vancouver?",
 name="Floyd Miles",
 src="/Avatar3.png",
@@ -46,9 +56,13 @@ text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod te
 likeNum="100",
 CommentNum="10",
 })=>{
-  return<CtrlCont visibility={visibility}>
+  return<CtrlCont display={display}>
+  
     <TopCont>
-    {/*needs to show the post clicked by user */}
+    <ArrowCont>
+      <ArrowImg src="/Back-Arrow.svg"></ArrowImg>
+    </ArrowCont>
+
     <CommunityPost
     width="70%"
     margin=""
@@ -63,17 +77,18 @@ CommentNum="10",
     likeNum={likeNum}
     CommentNum={CommentNum}
     />
+ 
   </TopCont>
   <BotCont>
     <CommentArea>
     <UserComment
-      src="Avatar2.png"
+      src="upload_pic.png"
       UserName="Jane Williams"
       MsgTime="1hr"
       Content="Thank you for the info! I’m interested!"
     />
      <UserComment
-      src="Avatar2.png"
+      src="upload_pic.png"
       UserName="Kristine"
       MsgTime="50min"
       Content="This is a private message"

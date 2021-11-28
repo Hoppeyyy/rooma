@@ -11,7 +11,22 @@ justify-content:center;
 `
 const Top = styled.div`
 display:flex;
+flex-direction:column;
 width: 100%;
+`
+const CheckBox = styled.div`
+display:flex;
+flex-direction:row;
+`
+const Check = styled.div`
+display:flex;
+flex-direction:row;
+`
+const Input = styled.input`
+display:flex;
+`
+const Label = styled.label`
+display:flex;
 `
 const Bot = styled.div`
 display:flex;
@@ -33,6 +48,16 @@ const CommentInput = ({
 
     return <Cont>
             <Top>
+            <CheckBox className="opensans">
+              <Check>
+                <Input type="checkbox" name="my-checkbox" id="opt-in"/>
+                <Label>Public</Label>
+              </Check>
+              <Check>
+                <Input type="checkbox" name="my-checkbox" id="opt-in"/>
+                <Label>Private</Label>
+              </Check>
+            </CheckBox>
             <ChatInput type="text" placeholder="Write a comment..."/>
             </Top>  
             <Bot>

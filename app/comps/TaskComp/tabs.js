@@ -35,7 +35,8 @@ height:20px;
 `
 
 const Tabs = ({
-display="flex"
+display="none",
+onTabClick=()=>{},
 })=>{
   return<MainCont display={display}>
 <TabCont>
@@ -64,7 +65,7 @@ display="flex"
     margin="15px"
     />
     <AddBtn>
-    <PlusIcon src="/add.svg"/>
+    <PlusIcon src="/add.svg" onClick={onTabClick}/>
     </AddBtn>
   </TabCont>
 

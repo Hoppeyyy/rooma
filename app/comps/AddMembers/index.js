@@ -44,7 +44,7 @@ width="186px",
 height="50px",
 borderRadius="4.2px",
 onClick=()=>{},
-display="flex"
+display="none"
 })=>{
  
 return<Cont display={display}>
