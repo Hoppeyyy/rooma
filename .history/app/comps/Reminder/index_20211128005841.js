@@ -56,7 +56,7 @@ const DefMessage = styled.p`
 const MoreCont = styled.div`
 display:flex
 width:685px;
-height:30px;
+height:40px;
 text-align:center;
 position:absolute;
 top:${(props) => props.top};

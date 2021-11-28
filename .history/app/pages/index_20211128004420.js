@@ -28,7 +28,6 @@ const MiddleCont = styled.div`
   flex-grow: 8;
   // margin-left: 10px;
   margin-top: 10px;
- 
 `;
 
 const RightCont = styled.div`

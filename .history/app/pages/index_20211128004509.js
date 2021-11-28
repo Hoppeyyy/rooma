@@ -28,13 +28,13 @@ const MiddleCont = styled.div`
   flex-grow: 8;
   // margin-left: 10px;
   margin-top: 10px;
- 
 `;
 
 const RightCont = styled.div`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  flex-wrap: wrap;
   
 `;
 

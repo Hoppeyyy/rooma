@@ -8,9 +8,8 @@ const Cont = styled.div`
   display: flex;
   flex-direction: column;
   min-width: 360px;
-  max-width: 360px;
-  min-height: 370px;
-  max-height: 350px;
+  max-width: 400px;
+  min-height: 300px;
   border-radius: 10px;
   margin-bottom: 10px;
   background-color: white;

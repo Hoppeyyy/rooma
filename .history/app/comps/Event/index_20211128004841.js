@@ -123,7 +123,7 @@ const Event = ({
 
       return listCompo;
     } else {
-      return <p className="opensans"style={{ textAlign: "center", marginTop: "100px", fontSize: "16px"}}>No event for this day</p>;
+      return <p style={{ textAlign: "center", marginTop: "100px" fontSize: "19px"}}>No event for this day</p>;
     }
   };
 

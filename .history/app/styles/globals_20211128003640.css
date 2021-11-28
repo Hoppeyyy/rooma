@@ -44,8 +44,8 @@ a {
 /*----------------Calendar css here ---------------------*/
 
 .react-calendar {
-  width: 330px;
-  height: 290px;
+  width: 20%;
+  height: 30%;
   font-family: "Open Sans", sans-serif;
   border: none;
   display: flex;
@@ -73,7 +73,10 @@ a {
 }
 
 .react-calendar__navigation {
-  margin-top: 5px;
+  display: flex;
+  position: absolute;
+  top: 55px;
+  height: 22px;
 }
 .react-calendar__navigation button {
   min-width: 44px;

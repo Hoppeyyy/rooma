@@ -55,9 +55,7 @@ a {
 }
 
 .react-calendar__month-view {
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 10%;
+  margin: auto;
   width: 80%;
 }
 .react-calendar__year-view,
@@ -73,7 +71,10 @@ a {
 }
 
 .react-calendar__navigation {
-  margin-top: 5px;
+  display: flex;
+  position: absolute;
+  top: 55px;
+  height: 22px;
 }
 .react-calendar__navigation button {
   min-width: 44px;
