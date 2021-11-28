@@ -148,7 +148,6 @@ color: #3E3D3D;
 const CommentCount = styled.p`
 font-size:15px;
 font-weight: 700;
-color: #3E3D3D;
 `
 
 

@@ -69,7 +69,7 @@ const LeaderBoard = ({
           <SmallMembersProfile name="Chisaki Nakamura" points="300 pts" avatar="/Avatar.png"/>
       </ProfileCont>
       <ProfileCont >
-          <SmallMembersProfile name="Maria Monay" points="200 pts"avatar="/Avatar50.png"/>
+          <SmallMembersProfile name="Maria Monay" points="200 pts"avatar="/avatar5.png"/>
       </ProfileCont>
       <ProfileCont>
           <SmallMembersProfile name="Leah Ma" points="150 pts" avatar="/Avatar4.png"/>

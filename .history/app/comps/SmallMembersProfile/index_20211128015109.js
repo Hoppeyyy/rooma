@@ -38,7 +38,7 @@ const Name = styled.div`
 const Phone = styled.div`
   font-size: 18px;
   color: #7e7e7e;
-  margin-bottom: 12px;
+ 
 `;
 
 const ButtonCont = styled.div`
