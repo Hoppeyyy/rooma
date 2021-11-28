@@ -2,7 +2,6 @@ import { useContext, useState, useEffect } from "react";
 import * as React from "react";
 import styled from "styled-components";
 import Button from "../Button";
-
 import { useRouter } from "next/router";
 import { updateProfile, getRetrieveUrl } from "../../api/profile.api";
 import { createRoom } from "../../api/room.api";
@@ -18,6 +17,7 @@ const Main = styled.div`
   flex-direction: column;
   width: 100%;
   height: 100%;
+  justify-content:center;
 `;
 
 const Cont = styled.div`
@@ -25,13 +25,13 @@ const Cont = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 50px;
+  
 `;
 
 const Heading = styled.div`
   font-size: 27px;
   font-weight: 700;
-  margin-bottom: 25px;
+  margin-bottom: 10px;
 `;
 const PicUpload = styled.img`
   border-radius: 50%;
@@ -59,7 +59,12 @@ const Input = styled.input`
   font-weight: 400;
 `;
 const Btnarea = styled.div`
-  margin-left: auto;
+  width:100%;
+  display:flex;
+  justify-content:flex-end;
+  margin-top: 20px;
+  margin-right:50px;
+
 `;
 
 const AgeInput = styled.div`
@@ -69,16 +74,16 @@ const AgeInput = styled.div`
   padding: 20px;
 `;
 
-const PreferencesDiv = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
 const Select = styled.select`
-  height: 20px;
+  height: 50px;
+  width: 70px;
   margin-right: 0.5em;
-  border: none;
   font-size: 18px;
+  border:none;
+  background:#F2EFFD;
+  padding:10px;
+  color:#724FE9;
+  border-radius: 5px;
 `;
 
 const Profileinput = styled.div`
@@ -86,10 +91,14 @@ const Profileinput = styled.div`
   align-items: center;
   width: 100%;
   border: #c8c8c8 1px solid;
+  border-left:none;
+  border-right:none;
+  border-bottom:${(props) => props.borderbtm};
 `;
 const InputLabel = styled.div`
   width: 100px;
   margin-left: 20px;
+  color:#747474;
 `;
 
 const EditProfile = ({
@@ -248,7 +257,7 @@ const EditProfile = ({
           title="Upload Picture"
           width="150px"
           height="50px"
-          margin="10px 0px 25px 0px"
+          margin="20px 0px 30px 0px"
           borderRadius="10px"
           border="none"
           bgcolor="#F2F2F2"
@@ -268,7 +277,7 @@ const EditProfile = ({
           onChange={(e) => getImg(e)}
         ></input>
         {/* user input */}
-        <Profileinput>
+        <Profileinput borderbtm="none">
           <InputLabel>Name</InputLabel>
           <Input
             borderbtm="none"
@@ -282,14 +291,14 @@ const EditProfile = ({
               onFormChange(e);
             }}
           ></Input>
-        </Profileinput>
+        </Profileinput >
         {/* <Input
           borderbtm="none"
           className="opensans"
           type="password"
           placeholder="Age"
         ></Input> */}
-        <Profileinput>
+        <Profileinput borderbtm="none">
           <InputLabel>Age</InputLabel>
           <AgeInput name="age">
             <Select
@@ -304,7 +313,7 @@ const EditProfile = ({
             </Select>
           </AgeInput>
         </Profileinput>
-        <Profileinput>
+        <Profileinput borderbtm="none">
           <InputLabel>Phone</InputLabel>
           <Input
             name="phone"
@@ -320,7 +329,7 @@ const EditProfile = ({
           ></Input>
         </Profileinput>
 
-        <Profileinput>
+        <Profileinput borderbtm="none">
           <InputLabel>Pronouns</InputLabel>
           <Input
             name="pronouns"
@@ -336,7 +345,7 @@ const EditProfile = ({
           ></Input>
         </Profileinput>
 
-        <Profileinput>
+        <Profileinput borderbtm="none">
           <InputLabel>Occupation</InputLabel>
           <Input
             name="occupation"
@@ -351,7 +360,7 @@ const EditProfile = ({
           ></Input>
         </Profileinput>
 
-        <Profileinput>
+        <Profileinput borderbtm="none">
           <InputLabel>School</InputLabel>
           <Input
             name="school"
@@ -375,7 +384,7 @@ const EditProfile = ({
             onFormChange(e);
           }}
         ></Input> */}
-        <Profileinput>
+        <Profileinput borderbtm="none">
           <InputLabel>Preferences</InputLabel>
 
           <Button
@@ -460,7 +469,7 @@ const EditProfile = ({
         <Profileinput>
           <InputLabel>About&nbsp;Me</InputLabel>
           <Input
-            borderbtm="solid"
+            borderbtm="none"
             className="opensans"
             type="text"
             maxLength="100"
