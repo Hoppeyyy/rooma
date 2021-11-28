@@ -121,11 +121,9 @@ const Invite = ({
         <Text className="opensans">
           Invite a member to join your team by sending a code.
         </Text>
-        <Copy>
+        <Copy onClick={() => onGetCode()}>
           <Img src="/Code.svg"></Img>
-          <ButtonTxt className="opensans" onClick={() => onGetCode()}>
-            Get Code
-          </ButtonTxt>
+          <ButtonTxt className="opensans">Get Code</ButtonTxt>
         </Copy>
         {InvCode && (
           <Success>

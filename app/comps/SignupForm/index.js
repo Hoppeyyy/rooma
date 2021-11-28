@@ -214,7 +214,7 @@ const LoginForm = ({
             type="text"
             placeholder="Email"
             name="email"
-            maxLength="40"
+            maxLength="50"
             onChange={onFormChange}
             required
           ></Input>
@@ -228,7 +228,7 @@ const LoginForm = ({
             type="password"
             placeholder="Password"
             name="password"
-            maxLength="30"
+            maxLength="50"
             onChange={onFormChange}
             required
           ></Input>

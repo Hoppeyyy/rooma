@@ -212,7 +212,7 @@ const LoginForm = ({
             placeholder="Email"
             name="email"
             onChange={onFormChange}
-            maxLength="40"
+            maxLength="50"
             required
           ></Input>
         </Label>
@@ -225,7 +225,7 @@ const LoginForm = ({
             placeholder="Password"
             name="password"
             onChange={onFormChange}
-            maxLength="30"
+            maxLength="50"
             required
           ></Input>
         </Label>
