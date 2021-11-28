@@ -147,7 +147,7 @@ export default function Home(props) {
   return (
     <Cont>
       <NavCont>
-        <NavBar3 onLinkClick={onLinkClick} />
+        <NavBar3 onLinkClick={onLinkClick} color6 = "#8867EB"  src6 = "/Settings_Icon_Color.svg"/>
       </NavCont>
 
       {onLinkClicked ? (

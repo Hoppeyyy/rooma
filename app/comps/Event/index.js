@@ -53,7 +53,7 @@ const DefMessage = styled.p`
 
 const Event = ({
   day = "",
-  // week = "Select date above to view events",
+  // week = "Select date above to view events -> Add Events",
   bgcolor = "rgba(240,199,137,30%)",
   visibility = "visible",
   task_name = "Event Name",
@@ -133,7 +133,7 @@ const Event = ({
         <TopCont>
           <Heading className="ubuntu">
             {/* {day} , <Span>{week}</Span> */}
-            {day ? day : "Select date above to view events"}
+            {day ? day : "Add Events"}
           </Heading>
           <Icon src={src} onClick={onClick} />
         </TopCont>

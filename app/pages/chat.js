@@ -167,7 +167,7 @@ export default function Chat(props) {
 
   return (
     <MainCont>
-      <NavBar3 onLinkClick={onLinkClick} />
+      <NavBar3 onLinkClick={onLinkClick} color3 = "#8867EB"  src3 = "/Chat_Icon_Color.svg"/>
 
       {onLinkClicked ? (
         <LoadingSpinner />
@@ -176,7 +176,6 @@ export default function Chat(props) {
           <LeftCont>
             <TopCont>
               <Heading className="ubuntu">Chat</Heading>
-              <Icon src="/chat.svg" />
             </TopCont>
 
             <NavCont>

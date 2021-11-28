@@ -33,6 +33,7 @@ const RightCont = styled.div`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  
 `;
 
 export default function Home(props) {
@@ -104,7 +105,7 @@ export default function Home(props) {
   return (
     <MainCont>
       <LeftCont>
-        <NavBar3 onLinkClick={onLinkClick} />
+        <NavBar3 onLinkClick={onLinkClick} color1 = "#8867EB"  src1 = "/Home_Icon_Color.svg"/>
       </LeftCont>
       {onLinkClicked ? (
         <LoadingSpinner />

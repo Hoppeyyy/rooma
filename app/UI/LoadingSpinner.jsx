@@ -2,21 +2,24 @@ import React from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
-  display: flex;
-  position: absolute;
-  margin-left: 288px;
-  top: 100px;
-  right: 400px;
+display: flex;
+ justify-content: center;
+ align-items:center;
+ width: 100vw;
+ height: 100vh;
 `;
 
 const Image = styled.img`
-  width: 300px;
+  width: 200px;
+  height: 200px;
+  justify-content: center;
+  align-items:center;
 `;
 
 function LoadingSpinner() {
   return (
     <Container>
-      <Image src="/loader.gif" alt="" srcset="" />
+      <Image src="/purpleload.gif" alt="" srcset="" />
     </Container>
   );
 }

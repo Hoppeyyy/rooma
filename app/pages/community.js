@@ -315,7 +315,7 @@ export default function Community() {
   return (
     <Cont>
       <GlbNav>
-        <NavBar3 onLinkClick={onLinkClick} />
+        <NavBar3 onLinkClick={onLinkClick} color5 = "#8867EB"  src5 = "/search_Color.svg"/>
       </GlbNav>
 
       {onLinkClicked ? (
