@@ -99,7 +99,6 @@ const MainIcons = styled.div`
   justify-content: space-between;
   align-items: ${(props) => props.alignItems};
   position: relative;
-  bottom: 60px;
 `;
 /*
 open nav bar:
@@ -141,7 +140,6 @@ const BellIconArea = styled.div`
   position: relative;
   left: 245px;
   height:30px;
-
 `;
 const BellIcon = styled.img`
   width: 25px;
@@ -166,7 +164,7 @@ const Num = styled.p`
   position: relative;
   color: #ffffff;
   font-size: 9px;
-  top: 1px;
+  top: 3px;
   margin-top: 0;
 `;
 const RoomaLogo = styled.img`

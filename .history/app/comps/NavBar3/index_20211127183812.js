@@ -141,7 +141,7 @@ const BellIconArea = styled.div`
   position: relative;
   left: 245px;
   height:30px;
-
+  margin-right: 10px;
 `;
 const BellIcon = styled.img`
   width: 25px;
