@@ -434,7 +434,7 @@ export default function Community() {
                 }}
               />
               <CommunityPost
-                title="Furniture Sale"
+                title="Furniture Sale on December 20 to 23"
                 name="Hannah M"
                 src="/Avatar3.png"
                 button_title="Event"
@@ -452,7 +452,7 @@ export default function Community() {
             </PostArea1>
             <PostArea2>
               <CommunityPost
-                title="Need Roommates!"
+                title="I Need Roommates by December 15!"
                 name="Jo K"
                 src="/Avatar3.png"
                 button_title="roommates"
@@ -487,7 +487,7 @@ export default function Community() {
             </PostArea2>
             <PostArea2>
               <CommunityPost
-                title="Need Roommates!"
+                title="Need Roommates as soon as possible!"
                 name="Jo K"
                 src="/Avatar3.png"
                 button_title="roommates"
