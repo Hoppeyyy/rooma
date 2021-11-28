@@ -115,7 +115,7 @@ export default function Home(props) {
         <>
           <MiddleCont>
             <Greeting
-              width="250px"
+              width="500px"
               height="100px"
               heading="Hello"
               // User should be connected with the users' name
