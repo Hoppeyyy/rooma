@@ -2,15 +2,17 @@ import React from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
+  width:100vw;
   display: flex;
-  position: absolute;
-  margin-left: 288px;
-  top: 100px;
-  right: 400px;
+  align-items:center;
+  justify-content:center;
 `;
 
 const Image = styled.img`
   width: 300px;
+  align-items:center;
+  text-align:center;
+  justify-content:center;
 `;
 
 function LoadingSpinner() {
