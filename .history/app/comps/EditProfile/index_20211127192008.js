@@ -78,7 +78,7 @@ const Select = styled.select`
   height: 20px;
   margin-right: 0.5em;
   border: none;
-  font-size: 18px;
+  font-size: 20px;
 `;
 
 const Profileinput = styled.div`

@@ -95,7 +95,7 @@ const MainIcons = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  height: 40%;
+  height: 45%;
   justify-content: space-between;
   align-items: ${(props) => props.alignItems};
   position: relative;
@@ -141,7 +141,6 @@ const BellIconArea = styled.div`
   position: relative;
   left: 245px;
   height:30px;
-
 `;
 const BellIcon = styled.img`
   width: 25px;
@@ -166,7 +165,7 @@ const Num = styled.p`
   position: relative;
   color: #ffffff;
   font-size: 9px;
-  top: 1px;
+  top: 3px;
   margin-top: 0;
 `;
 const RoomaLogo = styled.img`

@@ -141,32 +141,31 @@ const BellIconArea = styled.div`
   position: relative;
   left: 245px;
   height:30px;
-
 `;
 const BellIcon = styled.img`
   width: 25px;
   height: 30px;
 `;
-const Alert = styled.div`
-  display: ${(props) => props.display};
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-  background-color: #5950e0;
-  top: -45px;
-  left: 10px;
-  position: absolute;
-  top: -5px;
-  left: 15px;
-`;
+// const Alert = styled.div`
+//   display: ${(props) => props.display};
+//   width: 16px;
+//   height: 16px;
+//   border-radius: 50%;
+//   text-align: center;
+//   align-items: center;
+//   justify-content: center;
+//   background-color: #5950e0;
+//   top: -45px;
+//   left: 10px;
+//   position: absolute;
+//   top: -5px;
+//   left: 15px;
+// `;
 const Num = styled.p`
   position: relative;
   color: #ffffff;
   font-size: 9px;
-  top: 1px;
+  top: 3px;
   margin-top: 0;
 `;
 const RoomaLogo = styled.img`

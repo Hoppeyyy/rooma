@@ -85,7 +85,7 @@ const Profileinput = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  border: #c8c8c8 1px solid;
+
 `;
 const InputLabel = styled.div`
   width: 100px;
