@@ -36,17 +36,28 @@ const DescriptionInput = styled.input`
   margin-bottom: 30px;
 `;
 
-const AddEvent = ({ visibility2 = "visible", onEventSubmitClick }) => {
+const AddEvent = ({
+  visibility2 = "visible",
+  onEventSubmitClick,
+  calSelecteDate,
+}) => {
   const [EventData, setEventData] = useState({
     title: "",
     description: "",
   });
 
+  let today;
+  if (calSelecteDate) {
+    today = new Date(calSelecteDate);
+  } else {
+    today = new Date();
+  }
+
   const [PickerDate, setPickerDate] = useState({
     start: {
-      year: "2021",
-      month: "11",
-      day: "1",
+      year: today.getFullYear().toString(),
+      month: (today.getMonth() + 1).toString(),
+      day: today.getDate().toString(),
     },
     end: {
       year: "2021",
@@ -63,11 +74,12 @@ const AddEvent = ({ visibility2 = "visible", onEventSubmitClick }) => {
       `${PickerDate.end.year}-${PickerDate.end.month}-${PickerDate.end.day}`
     );
 
-    const startDateISO =
-    startDate.toISOString();
+    const startDateISO = startDate.toISOString();
     const startDateISOFlat =
       startDate.toISOString().replace(/T.*$/, "") + "T00:00:00.000Z";
-    console.log(startDateISO + " 11111startDateISOstartDateISO: " + startDateISOFlat);
+    console.log(
+      startDateISO + " 11111startDateISOstartDateISO: " + startDateISOFlat
+    );
   });
 
   const onDateChange = (e, start) => {
@@ -110,9 +122,13 @@ const AddEvent = ({ visibility2 = "visible", onEventSubmitClick }) => {
   };
 
   const onAddEvent = () => {
-    console.log("444444444444444444");
+    let startYear = PickerDate.start.year;
+
+    if (+PickerDate.start.year < 2021) {
+      startYear = "2021";
+    }
     const startDate = new Date(
-      `${PickerDate.start.year}-${PickerDate.start.month}-${PickerDate.start.day}`
+      `${startYear}-${PickerDate.start.month}-${PickerDate.start.day}`
     );
     const endDate = new Date(
       `${PickerDate.end.year}-${PickerDate.end.month}-${PickerDate.end.day}`
@@ -120,7 +136,6 @@ const AddEvent = ({ visibility2 = "visible", onEventSubmitClick }) => {
 
     const startDateISO =
       startDate.toISOString().replace(/T.*$/, "") + "T00:00:00.000Z";
-    console.log("11111startDateISOstartDateISO: " + startDateISO);
     const endDateISO = endDate.toISOString();
 
     const event_obj = {
@@ -130,8 +145,8 @@ const AddEvent = ({ visibility2 = "visible", onEventSubmitClick }) => {
       endAt: startDateISO,
     };
 
-    // if (startDate.getTime() > endDate.getTime()) {
-    //   window.alert("End date cannot be earlier than start date");
+    // if (startDate.getTime() < new Date().getTime()) {
+    //   window.alert("Sorry cannot add a past dated event!");
     // } else {
     createEvent(event_obj, (err) => {
       if (err) {

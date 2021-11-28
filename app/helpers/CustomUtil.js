@@ -46,7 +46,7 @@ class CustomUtil {
           // console.log("444444444444444444");
           // console.log(date.parentNode);
           // date.parentNode.style.backgroundColor = "rgba(240,199,137,30%)";
-          date.parentNode.style.backgroundColor = event.color;
+          date.parentNode.style.backgroundColor = event.color + 70;
         }
       });
     });

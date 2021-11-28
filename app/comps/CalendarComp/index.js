@@ -100,8 +100,6 @@ const CalendarComp = ({ onDateSelect, calTrigger }) => {
         //   console.log(view);
         // }}
         onClickDay={(value, event) => {
-          console.log("eeeeeeeeeeeeeeeeeeeeee");
-          console.log(value); // Tue Dec 28 2021 00:00:00 GMT-0800 (Pacific Standard Time)
           handleDateSelect(value);
         }}
         onActiveStartDateChange={({ action, activeStartDate, value, view }) => {

@@ -48,7 +48,6 @@ const Span = styled.span`
 const DefMessage = styled.p`
   visibility: ${(props) => props.visibility};
   text-align: center;
-  
 `;
 
 const Event = ({
@@ -98,8 +97,6 @@ const Event = ({
   };
 
   const displayEvents = () => {
-    console.log("displayEvents at Event");
-    console.log(Events);
     if (Events.length) {
       const listCompo = Events.map((event) => {
         // const duration = `${new Date(
@@ -108,7 +105,7 @@ const Event = ({
         const duration = event.startAt;
         return (
           <RemindContent
-            bgcolor={event.color}
+            bgcolor={event.color + "70"}
             // visibility={visibility}
             task_name={event.title}
             vlcolor={vlcolor}
@@ -123,7 +120,14 @@ const Event = ({
 
       return listCompo;
     } else {
-      return <p className="opensans"style={{ textAlign: "center", marginTop: "100px", fontSize: "16px"}}>No event for this day</p>;
+      return (
+        <p
+          className="opensans"
+          style={{ textAlign: "center", marginTop: "100px", fontSize: "16px" }}
+        >
+          No event for this day
+        </p>
+      );
     }
   };
 
@@ -142,23 +146,11 @@ const Event = ({
             <AddEvent
               // visibility2={visibility2}
               onEventSubmitClick={handleEventSubmitClick}
+              calSelecteDate={day}
             />
           ) : (
             displayEvents()
           )}
-          {/* {Events && displayEvents()}
-          <RemindContent
-            bgcolor={bgcolor}
-            visibility={visibility}
-            task_name={task_name}
-            vlcolor={vlcolor}
-            name={name}
-            date={date}
-          /> */}
-          {/* <AddEvent
-            visibility2={visibility2}
-            onEventSubmitClick={handleEventSubmitClick}
-          /> */}
         </BotCont>
       </CardCont>
     </Cont>
