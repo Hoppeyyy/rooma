@@ -13,7 +13,7 @@ const Cont = styled.div`
   flex-direction: column;
   margin-top: 20px;
   height: 100vh;
-
+  
 `;
 const CardCont = styled.div`
 width:700px;
@@ -56,7 +56,7 @@ const DefMessage = styled.p`
 const MoreCont = styled.div`
 display:flex
 width:685px;
-height:30px;
+height:45px;
 text-align:center;
 position:absolute;
 top:${(props) => props.top};

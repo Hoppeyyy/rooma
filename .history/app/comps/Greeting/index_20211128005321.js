@@ -8,7 +8,7 @@ width:${props=>props.width};
 height:${props=>props.height};
 margin-top: 5px;
 margin-left: 15px;
-
+margin-bottom: 10px;
 `
 const Heading = styled.h3`
 font-size: 34px;

@@ -119,7 +119,7 @@ export default function Home(props) {
               height="100px"
               heading="Hello"
               // User should be connected with the users' name
-              User={props.auth.user ? props.auth.user.name : "user!"}
+              User={props.auth.user ? props.auth.user.name : "user :)"}
               ps="Here’s your schedule this week"
               visibility="visible"
             />

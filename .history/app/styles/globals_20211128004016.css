@@ -73,7 +73,7 @@ a {
 }
 
 .react-calendar__navigation {
-  margin-top: 5px;
+  display: flex;
 }
 .react-calendar__navigation button {
   min-width: 44px;

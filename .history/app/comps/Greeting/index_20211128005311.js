@@ -8,7 +8,6 @@ width:${props=>props.width};
 height:${props=>props.height};
 margin-top: 5px;
 margin-left: 15px;
-
 `
 const Heading = styled.h3`
 font-size: 34px;
@@ -22,6 +21,7 @@ visibility:${props=>props.visibility};
 margin:0;
 margin-top:5px;
 font-size: 17px;
+margin-bottom: 10px;
 `
 const Greeting = ({
 width="200px",

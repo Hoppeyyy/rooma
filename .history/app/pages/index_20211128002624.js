@@ -14,7 +14,7 @@ const MainCont = styled.div`
   flex-direction: row;
   width: 100vw;
   height: 100vh;
-  
+  flex-wrap: wrap;
 `;
 const LeftCont = styled.div`
   display: flex;
@@ -28,7 +28,6 @@ const MiddleCont = styled.div`
   flex-grow: 8;
   // margin-left: 10px;
   margin-top: 10px;
- 
 `;
 
 const RightCont = styled.div`
