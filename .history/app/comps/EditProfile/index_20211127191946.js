@@ -66,7 +66,7 @@ const AgeInput = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  padding: 20px;
+  padding: 10px;
 `;
 
 const PreferencesDiv = styled.div`
@@ -77,8 +77,6 @@ const PreferencesDiv = styled.div`
 const Select = styled.select`
   height: 20px;
   margin-right: 0.5em;
-  border: none;
-  font-size: 18px;
 `;
 
 const Profileinput = styled.div`

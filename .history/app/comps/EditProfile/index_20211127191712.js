@@ -66,7 +66,6 @@ const AgeInput = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  padding: 20px;
 `;
 
 const PreferencesDiv = styled.div`
@@ -77,8 +76,6 @@ const PreferencesDiv = styled.div`
 const Select = styled.select`
   height: 20px;
   margin-right: 0.5em;
-  border: none;
-  font-size: 18px;
 `;
 
 const Profileinput = styled.div`
@@ -248,7 +245,7 @@ const EditProfile = ({
           title="Upload Picture"
           width="150px"
           height="50px"
-          margin="10px 0px 25px 0px"
+          margin="10px"
           borderRadius="10px"
           border="none"
           bgcolor="#F2F2F2"
@@ -486,7 +483,6 @@ const EditProfile = ({
             fontcolor="white"
             fontSize="20px"
             fontWeight="700"
-            margin="20px 25px 0px 0px"
             onClick={(e) => {
               if (!UserData && !File) {
                 postSubmit(e, true);

@@ -35,8 +35,8 @@ const Heading = styled.div`
 `;
 const PicUpload = styled.img`
   border-radius: 50%;
-  width: 150px;
-  height: 150px;
+  width: 100px;
+  height: 100px;
   image-rendering: -moz-crisp-edges; /* Firefox */
   image-rendering: -o-crisp-edges; /* Opera */
   image-rendering: -webkit-optimize-contrast; /* Webkit (non-standard naming) */
@@ -66,7 +66,6 @@ const AgeInput = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
-  padding: 20px;
 `;
 
 const PreferencesDiv = styled.div`
@@ -77,8 +76,6 @@ const PreferencesDiv = styled.div`
 const Select = styled.select`
   height: 20px;
   margin-right: 0.5em;
-  border: none;
-  font-size: 18px;
 `;
 
 const Profileinput = styled.div`
@@ -246,14 +243,14 @@ const EditProfile = ({
         <PicUpload src={getPicUpload()}></PicUpload>
         <Button
           title="Upload Picture"
-          width="150px"
+          width="200px"
           height="50px"
-          margin="10px 0px 25px 0px"
+          margin="10px"
           borderRadius="10px"
           border="none"
-          bgcolor="#F2F2F2"
-          fontcolor="#747474"
-          fontSize="16px"
+          bgcolor="#714FE9"
+          fontcolor="white"
+          fontSize="20px"
           fontWeight="700"
           onClick={() => {
             document.getElementById("getFile").click();
@@ -486,7 +483,6 @@ const EditProfile = ({
             fontcolor="white"
             fontSize="20px"
             fontWeight="700"
-            margin="20px 25px 0px 0px"
             onClick={(e) => {
               if (!UserData && !File) {
                 postSubmit(e, true);
