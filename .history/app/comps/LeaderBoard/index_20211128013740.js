@@ -38,12 +38,12 @@ const Header2 = styled.p`
 font-size: 17.69px;
 font-weight: 700;
 color:#554FDE;
-margin-left:10px;
+
 margin-top:-15px;
 `
 
 const ProfileCont = styled.div`
-margin-top: 20px;
+margin-top: 25px;
 
 `
 
@@ -63,19 +63,19 @@ const LeaderBoard = ({
       </TopCont>
       
       <ProfileCont >
-          <SmallMembersProfile name="Hailey Kim" points="500 pts"/>
+          <SmallMembersProfile/>
       </ProfileCont >
       <ProfileCont >
-          <SmallMembersProfile name="Chisaki Nakamura" points="300 pts" avatar="/Avatar.png"/>
+          <SmallMembersProfile/>
       </ProfileCont>
       <ProfileCont >
-          <SmallMembersProfile name="Maria Monay" points="200 pts"avatar="/Avatar50.png"/>
+          <SmallMembersProfile/>
       </ProfileCont>
       <ProfileCont>
-          <SmallMembersProfile name="Leah Ma" points="150 pts" avatar="/Avatar4.png"/>
+          <SmallMembersProfile/>
       </ProfileCont >
       <ProfileCont>
-          <SmallMembersProfile name="Sean Luo" points="50 pts"avatar="/Avatar6.png"/>
+          <SmallMembersProfile/>
       </ProfileCont>
       
    

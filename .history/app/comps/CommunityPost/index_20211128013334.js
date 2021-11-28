@@ -106,10 +106,8 @@ color: #181135;
 
 const Name = styled.p`
 font-size:12px;
-font-weight: 600;
+font-weight: 500;
 margin:-2px;
-color: #3E3D3D;
-
 `
 const Time = styled.p`
 font-size:9px;
@@ -135,20 +133,17 @@ line-height:32px;
 const Icon = styled.img`
 width: 18px;
 height:18px;
-margin-right: 5px;
 
 ` 
 const LikeCount = styled.p`
 font-size:15px;
 font-weight: 700;
-color: #3E3D3D;
 
 
 `
 const CommentCount = styled.p`
 font-size:15px;
 font-weight: 700;
-color: #3E3D3D;
 `
 
 

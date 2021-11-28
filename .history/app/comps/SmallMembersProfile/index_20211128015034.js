@@ -33,12 +33,12 @@ const Name = styled.div`
   font-size: 17.71px;
   font-weight: 700;
   color: #181135;
-  
+  margin-bottom: 2px;
 `;
 const Phone = styled.div`
   font-size: 18px;
   color: #7e7e7e;
-  margin-bottom: 12px;
+  margin-bottom: 15px;
 `;
 
 const ButtonCont = styled.div`

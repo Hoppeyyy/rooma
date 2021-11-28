@@ -33,12 +33,12 @@ const Name = styled.div`
   font-size: 17.71px;
   font-weight: 700;
   color: #181135;
-  
+  margin-bottom: 2px;
 `;
 const Phone = styled.div`
   font-size: 18px;
   color: #7e7e7e;
-  margin-bottom: 12px;
+  margin-bottom: 15px;
 `;
 
 const ButtonCont = styled.div`
@@ -50,13 +50,13 @@ const Point = styled.div`
   justify-content: center;
   align-items: center;
   border-radius: 28.8985px;
-  width: 70px;
-  height: 30px;
+  width: 69.44px;
+  height: 24.69px;
   background: linear-gradient(90deg, #9351e8 0%, #6853e9 51.56%, #504edb 100%);
   font-size: 16px;
   color: white;
   font-weight: 600;
-  font-size: 13px;
+  font-size: 10.61px;
   margin-right: 10px;
 `;
 
@@ -67,11 +67,11 @@ const Message = styled.button`
   border-radius: 28.8985px;
   background-color: transparent;
   font-size: 16px;
-  width: 70px;
-  height: 30px;
+  width: 57px;
+  height: 25.58px;
   border: 1px solid #7751e8;
   color: #7751e8;px;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
 `;
 
