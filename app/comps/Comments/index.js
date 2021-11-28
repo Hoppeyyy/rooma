@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import CommunityPost from '../CommunityPost';
 import UserComment from '../UserComment';
 import CommeentInput from '../CommentInput';
+
 const CtrlCont = styled.div`
 display:${props=>props.display};
 // display:flex;
@@ -55,12 +56,13 @@ time="6h ago",
 text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ",
 likeNum="100",
 CommentNum="10",
+onBackArrowClick=()=>{},
 })=>{
   return<CtrlCont display={display}>
   
     <TopCont>
     <ArrowCont>
-      <ArrowImg src="/Back-Arrow.svg"></ArrowImg>
+      <ArrowImg src="/Back-Arrow.svg" onClick={onBackArrowClick}></ArrowImg>
     </ArrowCont>
 
     <CommunityPost

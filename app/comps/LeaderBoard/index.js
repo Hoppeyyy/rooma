@@ -5,7 +5,6 @@ import SmallMembersProfile from '../SmallMembersProfile';
 
 const CtrlCont = styled.div`
 display:${props=>props.display};
-// display:flex;
 flex-direction:column;
 align-items:center;
 width:411px;
@@ -49,37 +48,37 @@ margin-top: 25px;
 `
 
 const LeaderBoard = ({
+
     display="flex",
-    onProfileClick=()=>{},
-    onBackArrowClick=()=>{},
+    
 })=>{
   return<CtrlCont display={display}>
-
+      
       <TopCont>
           <Title className="ubuntu">LeaderBoard</Title>
           <InnerCont>
-              <Star src="/Purple_Star.svg" onClick={onBackArrowClick}></Star>
+              <Star src="/Purple_Star.svg" ></Star>
               <Header2 className="opensans"> Weekly Top 5 Users</Header2>
           </InnerCont>
       </TopCont>
       
-      <ProfileCont onClick={onProfileClick}>
+      <ProfileCont >
           <SmallMembersProfile/>
       </ProfileCont >
-      <ProfileCont onClick={onProfileClick}>
+      <ProfileCont >
           <SmallMembersProfile/>
       </ProfileCont>
-      <ProfileCont onClick={onProfileClick}>
+      <ProfileCont >
           <SmallMembersProfile/>
       </ProfileCont>
-      <ProfileCont onClick={onProfileClick}>
+      <ProfileCont>
           <SmallMembersProfile/>
       </ProfileCont >
-      <ProfileCont onClick={onProfileClick}>
+      <ProfileCont>
           <SmallMembersProfile/>
       </ProfileCont>
       
-
+   
   </CtrlCont>
 }
 export default LeaderBoard;

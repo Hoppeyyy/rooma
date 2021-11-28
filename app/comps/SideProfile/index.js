@@ -161,10 +161,11 @@ margin-bottom: 40px;
 
 const SideProfile = ({
     display="none",
+    onBackArrowClick=()=>{},
 })=>{
   return<CtrlCont display={display}>
       <ArrowCont>
-          <ArrowImg src="/Back-Arrow.svg"></ArrowImg>
+          <ArrowImg src="/Back-Arrow.svg" onClick={onBackArrowClick} ></ArrowImg>
       </ArrowCont>
       <MidCont>
           <Img src="/Avatar2.png"></Img>
