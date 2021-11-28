@@ -2,7 +2,8 @@ import Head from 'next/head'
 import styled from 'styled-components';
 import * as React from 'react';
 import Button from '../Button';
-
+import {useState} from "react";
+import SideProfile from '../SideProfile';
 
 const MainCont = styled.div`
 display: flex;
@@ -146,6 +147,8 @@ font-weight: 700;
 
 
 
+
+
 const CommunityPost = ({
     boxShadow="0px 4.0133771896362305px 11.036787033081055px 0px #00000014",
     margin="20px",
@@ -160,14 +163,17 @@ const CommunityPost = ({
     likeNum="100",
     CommentNum="10",
     onPostClick=()=>{},
+    onProfileClick=()=>{},
 
 }) => {
+   
     return <MainCont boxShadow={boxShadow} margin={margin} padding={padding} width={width} onClick={onPostClick}>
                 <TitleCont>
                     <Title className="ubuntu">{title}</Title>
                 </TitleCont>
                 <ProfileFilterCont>
-                    <ProfileCont>
+                    <ProfileCont 
+                    onClick={onProfileClick}>
                         <Image src={src}></Image>
                         <SmallProfileCont>
                             <Name className="opensans">{name}</Name>
