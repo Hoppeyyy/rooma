@@ -10,6 +10,10 @@ import Comments from "../comps/Comments";
 import FilterOptionsButton from "../comps/FilterOptionsButton";
 import AddFilter from "../comps/AddFilter";
 import LoadingSpinner from "../UI/LoadingSpinner";
+import SmallMembersProfile from "../comps/SmallMembersProfile";
+import LeaderBoard from "../comps/LeaderBoard";
+import SideProfile from "../comps/SideProfile";
+
 
 const Cont = styled.div`
   display: flex;
@@ -29,6 +33,7 @@ const MainCont = styled.div`
   align-items: center;
   flex-grow: 3;
   margin-left: 300px;
+  margin-right: 410px;
 `;
 const PostArea1 = styled.div`
   display: flex;
@@ -46,8 +51,12 @@ const PostArea2 = styled.div`
 `;
 const RightCont = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   flex-grow: 1;
+  justify-content: flex-end;
+  position: fixed;
+  right: 0px;
+  
 `;
 
 const FilterButtonDiv = styled.div`
@@ -68,6 +77,8 @@ export default function Community() {
   const [buttonstate5, setButtonState5] = useState(0);
   const [buttonstate2, setButtonState2] = useState(0);
   const [onPostClick, setPostClick] = useState(0);
+  const [onProfileClick, setProfileClick] = useState(0);
+  const [onBackArrowClick, setBackArrowClick] = useState(0);
   // ADD POST: useState Function
   const [buttonstate6, setButtonState6] = useState(0);
   const [buttonstate7, setButtonState7] = useState(0);
@@ -140,6 +151,25 @@ export default function Community() {
       setPostClick(0);
     }
   };
+
+  //SmallProfileCLick
+  const ProfileClick = () => {
+    if (onProfileClick === 0) {
+      setProfileClick(2);
+    } else {
+      setProfileClick(0);
+    }
+  };
+
+  //OnBackArrowClick
+  const BackArrowClick = () => {
+    if (onPBackArrowClick === 0) {
+      setBackArrowClick(1);
+    } else {
+      setBackArrowClick(0);
+    }
+  };
+
   // ADD POST: Btn options handling from here
   const Btn1 = () => {
     if (buttonstate6 === 0) {
@@ -494,8 +524,18 @@ export default function Community() {
             </PostArea2>
           </MainCont>
           <RightCont>
+            <LeaderBoard
+              display={onPostClick === 1 ? "none" : "flex"}
+              display={onProfileClick === 2 ? "none" : "flex"}
+              onProfileClick={() => {
+                ProfileClick();
+              }}
+            
+            ></LeaderBoard>
+            
             <Comments
-              visibility={onPostClick === 1 ? "visible" : "hidden"}
+              display={onPostClick === 1 ? "block" : "none"}
+        
               title="Any recommendations on resturaunts in Vancouver?"
               name="Floyd Miles"
               src="/Avatar3.png"
@@ -505,6 +545,11 @@ export default function Community() {
               likeNum="100"
               CommentNum="10"
             />
+
+            <SideProfile
+              display={onProfileClick === 2 ? "flex" : "none"}
+              // display={onBackArrowClick === 1 ?"flex" : "none"}
+            ></SideProfile>
           </RightCont>
         </>
       )}
