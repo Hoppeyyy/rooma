@@ -118,9 +118,10 @@ export default function Members(props) {
   };
 
   const getPreferences = () => {
-    const user_list = DisplayedUser.preference.map((pref) => {
+    const user_list = DisplayedUser?.preference.map((pref, index) => {
       return (
         <Button
+          key={index}
           width="125px"
           height="40px"
           bgcolor="#F2EFFD"
@@ -168,7 +169,7 @@ export default function Members(props) {
   return (
     <MainCont>
       <NavCont>
-        <NavBar3 onLinkClick={onLinkClick} color4 = "#8867EB"  src4 = "/Members_Icon_Color.svg"/>
+        <NavBar3 onLinkClick={onLinkClick} color4="#8867EB" src4="/Members_Icon_Color.svg" />
       </NavCont>
 
       {onLinkClicked ? (
