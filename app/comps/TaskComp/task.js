@@ -123,7 +123,7 @@ const ButCont = styled.div`
   justify-content: flex-end;
 `;
 
-const TaskComp = ({ display = "none", onClick = () => {} }) => {
+const TaskComp = ({ display = "", onClick = () => {} }) => {
   const { register, handleSubmit } = useForm({
     shouldUseNativeValidation: true,
   });
