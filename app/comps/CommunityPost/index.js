@@ -62,7 +62,7 @@ display: flex;
 flex-direction: row;
 justify-content: space-between;
 align-items:center;
-
+text-align:center;
 margin-left:15px;
 padding-bottom:15px;
 `
@@ -206,11 +206,11 @@ const CommunityPost = ({
                 <BotCont>
                     <LikeCommentCont>
                         <LikeCont>
-                            <Icon src="/ThumbsUp_icon.svg"></Icon>
+                            <Icon src="/ThumbsUp_Icon.svg"></Icon>
                             <LikeCount className="opensans">{likeNum}</LikeCount>
                         </LikeCont>
                         <CommentCont>
-                            <Icon src="/Chat_icon.svg"></Icon>
+                            <Icon src="/Chat_Icon.svg"></Icon>
                             <CommentCount className="opensans">{CommentNum}</CommentCount>
                         </CommentCont>
                     </LikeCommentCont>

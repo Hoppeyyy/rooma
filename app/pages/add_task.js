@@ -143,11 +143,7 @@ export default function Add_task() {
   return (
     <MainCont>
       <LeftCont>
-        <NavBar3
-          onLinkClick={onLinkClick}
-          color2="#8867EB"
-          src2="/Task_Icon_color.svg"
-        />
+        <NavBar3 onLinkClick={onLinkClick} color2 = "#8867EB"  src2 = "/Task_Icon_color.svg"/>
       </LeftCont>
       {onLinkClicked ? (
         <LoadingSpinner />

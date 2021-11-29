@@ -12,14 +12,14 @@ import LoadingSpinner from "../UI/LoadingSpinner";
 const MainCont = styled.div`
   display: flex;
   flex-direction: row;
-  width: 100vw;
-  height: 100vh;
+  width:100vw;
+  height:100vh;
   
 `;
 const LeftCont = styled.div`
   display: flex;
   flex-grow: 1;
-  // position: fixed;
+  
 `;
 
 const MiddleCont = styled.div`
@@ -35,7 +35,8 @@ const RightCont = styled.div`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  
+  position: fixed;
+  right:20px;
 `;
 
 export default function Home(props) {
@@ -107,7 +108,7 @@ export default function Home(props) {
   return (
     <MainCont>
       <LeftCont>
-        <NavBar3 onLinkClick={onLinkClick} color1 = "#8867EB"  src1 = "/Home_Icon_Color.svg"/>
+        <NavBar3 onLinkClick={onLinkClick} color1 = "#8867EB"  src1 = "/Home_Icon_color.svg"/>
       </LeftCont>
       {onLinkClicked ? (
         <LoadingSpinner />
