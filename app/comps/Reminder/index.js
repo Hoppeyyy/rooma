@@ -15,15 +15,18 @@ const Cont = styled.div`
   flex-direction: column;
   margin-top: 20px;
   height: 100vh;
+
 `;
 const CardCont = styled.div`
-  width: 700px;
-  min-height: ${(props) => props.height};
-  background-color: white;
-  box-shadow: 0px 4.014px 47.8px 0px #0000001c;
-  border-radius: 22px;
-  margin-top: 5px;
-`;
+width:700px;
+min-height:${props=>props.height};
+max-height:100px;
+background-color:white;
+box-shadow: 0px 4.014px 47.8px 0px #0000001C;
+border-radius:22px;
+margin-top: 5px;
+overflow-y:auto;
+`
 const TopCont = styled.div`
   display: flex;
   flex-direction: column;
@@ -55,7 +58,7 @@ const DefMessage = styled.p`
 const MoreCont = styled.div`
 display:flex
 width:685px;
-height:45px;
+height:30px;
 text-align:center;
 position:absolute;
 top:${(props) => props.top};

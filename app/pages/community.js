@@ -10,6 +10,10 @@ import Comments from "../comps/Comments";
 import FilterOptionsButton from "../comps/FilterOptionsButton";
 import AddFilter from "../comps/AddFilter";
 import LoadingSpinner from "../UI/LoadingSpinner";
+import SmallMembersProfile from "../comps/SmallMembersProfile";
+import LeaderBoard from "../comps/LeaderBoard";
+import SideProfile from "../comps/SideProfile";
+
 
 const Cont = styled.div`
   display: flex;
@@ -29,6 +33,7 @@ const MainCont = styled.div`
   align-items: center;
   flex-grow: 3;
   margin-left: 300px;
+  margin-right: 410px;
 `;
 const PostArea1 = styled.div`
   display: flex;
@@ -46,8 +51,12 @@ const PostArea2 = styled.div`
 `;
 const RightCont = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction:column;
   flex-grow: 1;
+  justify-content: flex-end;
+  position: fixed;
+  right: 0px;
+  
 `;
 
 const FilterButtonDiv = styled.div`
@@ -67,7 +76,7 @@ export default function Community() {
   const [buttonstate1, setButtonState1] = useState(0);
   const [buttonstate5, setButtonState5] = useState(0);
   const [buttonstate2, setButtonState2] = useState(0);
-  const [onPostClick, setPostClick] = useState(0);
+ 
   // ADD POST: useState Function
   const [buttonstate6, setButtonState6] = useState(0);
   const [buttonstate7, setButtonState7] = useState(0);
@@ -120,26 +129,48 @@ export default function Community() {
       setButtonState2(0);
     }
   };
-  // global nav click
-  const GlobalNavClick = () => {
-    if (buttonstate5 === 0) {
-      setButtonState5(1);
-    } else {
-      setButtonState5(0);
-    }
-  };
+
 
   // Post clikced
   // needs to increase the number of useState depending on the post number.
   // post content in comment comp will change depending on the post the user's clicked
   // now is static since hard to imagine how many posts will be there...
+  const [onPostClick, setPostClick] = useState(0);
+  const [onProfileClick, setProfileClick] = useState(0);
   const PostClick = () => {
     if (onPostClick === 0) {
       setPostClick(1);
-    } else {
+      setProfileClick(0);
+    } 
+    else {
       setPostClick(0);
+     
     }
   };
+
+  //SmallProfileCLick
+  
+  const ProfileClick = () => {
+    if (onProfileClick === 0) {
+      setProfileClick(1);
+      setPostClick(0);
+
+    } else {
+      setProfileClick(0);
+     
+    }
+  };
+
+  //Back to LeaderBoard
+  const [Backstate, setBackstate] = useState(0);
+  const BackClick = () =>{
+      if (Backstate===0){ 
+        setPostClick(0);
+        setProfileClick(0);
+     
+    }
+    }
+
   // ADD POST: Btn options handling from here
   const Btn1 = () => {
     if (buttonstate6 === 0) {
@@ -256,36 +287,13 @@ export default function Community() {
     }
   };
 
-  // navbar notification
-  const [buttonstate22, setButtonState22] = useState(0);
-  const NotificationClick = () => {
-    if (buttonstate22 === 0) {
-      setButtonState22(1);
-      setButtonState23(0);
-    } else {
-      setButtonState22(0);
-      setButtonState23(1);
-    }
-  };
-
-  const [buttonstate23, setButtonState23] = useState(0);
-  const BackClick = () => {
-    if (buttonstate23 === 0) {
-      setButtonState23(1);
-      setButtonState22(0);
-    } else {
-      setButtonState23(0);
-      setButtonState22(1);
-    }
-  };
-
   const onLinkClick = () => {
     setOnLinkClicked(true);
   };
   return (
     <Cont>
       <GlbNav>
-        <NavBar3 onLinkClick={onLinkClick} />
+        <NavBar3 onLinkClick={onLinkClick} color5 = "#8867EB"  src5 = "/search_Color.svg"/>
       </GlbNav>
 
       {onLinkClicked ? (
@@ -421,9 +429,12 @@ export default function Community() {
                 onPostClick={() => {
                   PostClick();
                 }}
+                onProfileClick={() => {
+                  ProfileClick();
+                }}
               />
               <CommunityPost
-                title="Furniture Sale"
+                title="Furniture Sale on December 20 to 23"
                 name="Hannah M"
                 src="/Avatar3.png"
                 button_title="Event"
@@ -434,11 +445,14 @@ export default function Community() {
                 onPostClick={() => {
                   PostClick();
                 }}
+                onProfileClick={() => {
+                  ProfileClick();
+                }}
               />
             </PostArea1>
             <PostArea2>
               <CommunityPost
-                title="Need Roommates!"
+                title="I Need Roommates by December 15!"
                 name="Jo K"
                 src="/Avatar3.png"
                 button_title="roommates"
@@ -449,6 +463,10 @@ export default function Community() {
                 onPostClick={() => {
                   PostClick();
                 }}
+                onProfileClick={() => {
+                  ProfileClick();
+                }}
+                
               />
               <CommunityPost
                 title="Music Festival on Queen Park!"
@@ -461,12 +479,15 @@ export default function Community() {
                 CommentNum="30"
                 onPostClick={() => {
                   PostClick();
+                }}
+                onProfileClick={() => {
+                  ProfileClick();
                 }}
               />
             </PostArea2>
             <PostArea2>
               <CommunityPost
-                title="Need Roommates!"
+                title="Need Roommates as soon as possible!"
                 name="Jo K"
                 src="/Avatar3.png"
                 button_title="roommates"
@@ -476,6 +497,9 @@ export default function Community() {
                 CommentNum="15"
                 onPostClick={() => {
                   PostClick();
+                }}
+                onProfileClick={() => {
+                  ProfileClick();
                 }}
               />
               <CommunityPost
@@ -489,13 +513,18 @@ export default function Community() {
                 CommentNum="30"
                 onPostClick={() => {
                   PostClick();
+                }}
+                onProfileClick={() => {
+                  ProfileClick();
                 }}
               />
             </PostArea2>
           </MainCont>
           <RightCont>
+            <LeaderBoard
+              display={onPostClick||onProfileClick === 1 ? "none" : "flex" || onPostClick||onProfileClick  === 0 ? "flex":""}
+            ></LeaderBoard>
             <Comments
-              visibility={onPostClick === 1 ? "visible" : "hidden"}
               title="Any recommendations on resturaunts in Vancouver?"
               name="Floyd Miles"
               src="/Avatar3.png"
@@ -504,7 +533,19 @@ export default function Community() {
               text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
               likeNum="100"
               CommentNum="10"
+              onBackArrowClick={()=>{
+                BackClick();
+              }}
+              display={onPostClick === 1 ? "block" : "none"}
             />
+
+            <SideProfile
+              display={onProfileClick === 1 ? "flex":"none"}
+              onBackArrowClick={()=>{
+                BackClick();
+              }}
+              
+            ></SideProfile>
           </RightCont>
         </>
       )}

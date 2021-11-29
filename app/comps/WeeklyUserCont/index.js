@@ -9,7 +9,6 @@ const Cont = styled.div`
   height: 125px;
   background-color: white;
   box-shadow: 0px 4.353448867797852px 27.20905303955078px 0px #0000001f;
-
   border-radius: 11px;
   margin-right: 10px;
 `;
@@ -25,14 +24,17 @@ const UserInfoBox = styled.div`
   display: flex;
   flex-direction: column;
   margin-left: 20px;
+  margin-right:20px;
+  align-items:center;
 `;
 const Heading = styled.h3`
-  font-size: 21px;
+  font-size: 18px;
   font-weight: 700;
   color: #181135;
   margin: 0;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 25px;
+  margin-bottom:5px;
+  text-align:center;
 `;
 
 const WeeklyUserCont = ({
@@ -45,7 +47,7 @@ const WeeklyUserCont = ({
       <Avatar src={src} />
       <UserInfoBox>
         <Heading className="opensans">{user_name}</Heading>
-        <PointCont width="100px" height="35px" user_point={user_point} />
+        <PointCont width="90px" height="40px" user_point={user_point} />
       </UserInfoBox>
     </Cont>
   );

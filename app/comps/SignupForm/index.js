@@ -12,7 +12,11 @@ const Main = styled.div`
   width: 100%;
   height: 100%;
 `;
-
+const Error = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+`;
 const Cont = styled.div`
   display: flex;
   flex-direction: column;
@@ -183,9 +187,11 @@ const LoginForm = ({
   return (
     <Main>
       <Cont>
-        {currentError && <ErrorMsg errmsg={currentError}></ErrorMsg>}
         {/* <form> */}
         <Heading className="ubuntu">Sign Up</Heading>
+        <Error>
+          {currentError && <ErrorMsg errmsg={currentError}></ErrorMsg>}
+        </Error>
         {/* user input */}
         <Label className="opensans">
           Name*
@@ -208,7 +214,7 @@ const LoginForm = ({
             type="text"
             placeholder="Email"
             name="email"
-            maxLength="20"
+            maxLength="50"
             onChange={onFormChange}
             required
           ></Input>
@@ -222,7 +228,7 @@ const LoginForm = ({
             type="password"
             placeholder="Password"
             name="password"
-            maxLength="30"
+            maxLength="50"
             onChange={onFormChange}
             required
           ></Input>

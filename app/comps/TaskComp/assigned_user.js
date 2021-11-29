@@ -22,15 +22,19 @@ const Order = styled.div`
 `;
 
 const UserCont = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-top: 30px;
-  margin-left: 50px;
-`;
-const Wrap = styled.div`
-  display: flex;
-  align-items: center;
-`;
+display:flex;
+flex-direction: column;
+position:relative;
+margin-top: 30px;
+margin-left: 50px;
+
+`
+const Wrap=styled.div`
+display:flex;
+align-items:center;
+
+
+`
 const Users = styled.div`
   font-size: 16px;
   color: #3e3d3d;

@@ -19,25 +19,39 @@ const Cont = styled.div`
   min-height: 300px;
   box-shadow: 0px 4.0061163902282715px 47.07186508178711px 0px #0000001c;
   border-radius: 20px;
+  margin-top:25px;
+  
 `;
 
 const TopCont = styled.div`
   display: flex;
   width: 100%;
-  margin: 25px 30px 0px 30px;
   align-items: center;
+  justify-content:space-between;
 `;
-const Title = styled.div`
+const Title = styled.h3`
   font-size: 20px;
   font-weight: 700;
   color: #181135;
+  margin:0;
+  margin-left:20px;
   margin-right: 30px;
+  text-align:center;
 `;
 
-const Week = styled.div`
+const TitleCont = styled.div`
+ display:flex;
+ flex-direction:row;
+ align-items:center;
+ justify-content:center;
+ margin-top:10px;
+`;
+
+const Week = styled.p`
   font-size: 15px;
   color: #3e3d3d;
   font-weight: 700;
+  margin:0;
 `;
 
 const Time = styled.span`
@@ -56,8 +70,9 @@ const Point = styled.div`
   font-size: 16px;
   color: white;
   font-weight: 700;
-
-  margin-left: 300px;
+  margin-top:20px;
+  margin-left: 280px;
+  margin-right:10px;
 `;
 
 const BottomCont = styled.div`
@@ -136,11 +151,13 @@ const Assigned = () => {
         <MainCont>
           <Cont>
             <TopCont>
+              <TitleCont>
               <Title className="opensans">{todo.title}</Title>
               <Week key={todo.id} className="opensans">
                 {titleCase(todo.days)}
                 {/* <Time className="opensans">11:00 AM</Time> */}
               </Week>
+              </TitleCont>
               <Point className="opensans">{todo.points} pts</Point>
             </TopCont>
             <BottomCont>
