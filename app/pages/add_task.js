@@ -13,6 +13,7 @@ import Assigned from "../comps/TaskComp/assigned";
 import CalEventMerged from "../comps/CalEventMerged";
 import { globalContext } from "../store/globalContext";
 import LoadingSpinner from "../UI/LoadingSpinner";
+import axiosInstance from "./api/axiosInstance";
 
 const MainCont = styled.div`
   display: flex;
@@ -143,7 +144,11 @@ export default function Add_task() {
   return (
     <MainCont>
       <LeftCont>
-        <NavBar3 onLinkClick={onLinkClick} color2 = "#8867EB"  src2 = "/Task_Icon_color.svg"/>
+        <NavBar3
+          onLinkClick={onLinkClick}
+          color2="#8867EB"
+          src2="/Task_Icon_color.svg"
+        />
       </LeftCont>
       {onLinkClicked ? (
         <LoadingSpinner />
@@ -187,7 +192,7 @@ export default function Add_task() {
                             }
                           />
                         ) : (
-                          <Assigned/>
+                          <Assigned />
                         )}
                       </div>
                     );

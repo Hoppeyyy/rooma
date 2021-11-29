@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import axiosInstance from "../../pages/api/axiosInstance";
 import { TimePicker } from "antd";
 import "antd/dist/antd.css";
+import { useRouter } from "next/router";
 
 const MainCont = styled.div`
   display: ${(props) => props.display};
@@ -155,8 +156,6 @@ const TaskComp = ({ display = "", onClick = () => {} }) => {
         setOriginalRoom(roommate.data.roommates);
         setRoommates(roommate.data.roommates);
         console.log("real roomm", roommates);
-
-        console.log(addTodo);
       } catch (error) {
         console.log(error.message);
       }
@@ -207,10 +206,11 @@ const TaskComp = ({ display = "", onClick = () => {} }) => {
     });
     setRoommates(roommateState);
   }
-
+  const router = useRouter();
   //when user submit the form
   const submitForm = async (data, e) => {
     try {
+      e.preventDefault();
       const days = weekButtons
         .filter((res) => res.clicked)
         .map((ele) => ele.id);
@@ -233,6 +233,7 @@ const TaskComp = ({ display = "", onClick = () => {} }) => {
       setWeekButtons(weekends);
       setPointButtons(points);
       setRoommates(originalRoom);
+      location.reload();
       //clear fields after submit
     } catch (err) {
       console.log(err.message);
@@ -295,7 +296,10 @@ const TaskComp = ({ display = "", onClick = () => {} }) => {
                   onClick={() => handlePointsClick(points.id)}
                   className={points.clicked ? "activeButton" : null}
                 >
-                  {points.id} <Span className={points.clicked ? "activeButton" : null} >Points</Span>
+                  {points.id}{" "}
+                  <Span className={points.clicked ? "activeButton" : null}>
+                    Points
+                  </Span>
                 </PtsButton>
               ))}
             </ButtonCont>
@@ -326,7 +330,6 @@ const TaskComp = ({ display = "", onClick = () => {} }) => {
               title="Add"
               width="122px"
               margin="0px 40px 40px 0px"
-              onClick={onClick}
               type="submit"
             />
           </ButCont>
