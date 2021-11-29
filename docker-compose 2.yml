@@ -1,0 +1,34 @@
+version: '3'
+
+services:
+  gateway:
+    image: dangopl/gateway:latest
+    restart: always
+    container_name: gateway
+    ports: 
+      - 8080:8080
+    environment:
+      - DEV=true
+    networks:
+      - new_bridge
+
+  room:
+    image: dangopl/room:latest
+    restart: always
+    container_name: room
+    ports: 
+      - 5100:5100
+    networks:
+      - new_bridge
+
+  Schedule:
+    image: dangopl/schedule:latest
+    restart: always
+    container_name: schedule
+    ports:
+      - 5200:5200
+    networks:
+      - new_bridge
+
+networks:
+  new_bridge: {}
