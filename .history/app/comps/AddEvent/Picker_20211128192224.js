@@ -25,8 +25,7 @@ const Select = styled.select`
   height: 20px;
   margin-right: 0.5em;
   border: none;
-  border-radius: 2px;
-  font-size: 15px;
+  color: purple;
 `;
 
 const month31 = ["1", "3", "5", "7", "8", "10", "12"];
