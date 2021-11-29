@@ -108,7 +108,7 @@ export default function Home(props) {
   return (
     <MainCont>
       <LeftCont>
-        <NavBar3 onLinkClick={onLinkClick} color1 = "#8867EB"  src1 = "/Home_Icon_Color.svg"/>
+        <NavBar3 onLinkClick={onLinkClick} color1 = "#8867EB"  src1 = "/Home_Icon_color.svg"/>
       </LeftCont>
       {onLinkClicked ? (
         <LoadingSpinner />
