@@ -69,6 +69,7 @@ const Assigned = () => {
   const [todos, setTodos] = useState([]);
   const [roommates, setRoommates] = useState([]);
   const [todoCards, setTodoCards] = useState([]);
+  const [returnUser, setReturnUsers] = useState([]);
 
   function titleCase(string) {
     return string.toString().toUpperCase();
@@ -78,8 +79,16 @@ const Assigned = () => {
       try {
         console.log("sending request");
         const roommate = await axiosInstance.get("/user/roommates ", {});
-        // console.log("hey", roommate.data);
+        console.log("hey", roommate.data);
         setRoommates(roommate.data.roommates);
+
+        // todos.forEach(function (e) {
+        //   if (e.color == "") {
+        //     const user = roommates.find((o) => o.id === e.userId);
+        //     e.color = user.color;
+        //     e.name = user.name;
+        //   }
+        // });
 
         const assignedUsers = roommates
           .filter((res) => res.clicked === true)
@@ -88,17 +97,20 @@ const Assigned = () => {
         const newcards = await (
           await axiosInstance.get("/task/schedule", {})
         ).data.schedules;
-        console.log(newcards);
-
-        //      const addTodo = await axiosInstance.post("/task/create", {
-        //   title: data.title,
-        //   points: pts,
-        //   assignedUsers: assignedUsers,
-        //   days: days,
-        //   startAt: date,
-        // });
+        // console.log(newcards);
 
         setTodoCards(newcards);
+
+        // todoCards.forEach(function (e) {
+        //   const users = e.assignedUsers;
+
+        //   users.forEach(function (e) {
+        //     const user = roommates.find((o) => o.id === e);
+        //     console.log("hi", user.name);
+        //     user.name;
+        //   });
+        // });
+
         console.log("card", todoCards);
       } catch (err) {
         console.log(err.message);
@@ -106,9 +118,21 @@ const Assigned = () => {
     })();
   }, []);
 
+  function namefind(name) {
+    const nameArray = [];
+    name.forEach(function (e) {
+      const user = roommates.find((o) => o.id === e);
+      nameArray.push(user);
+    });
+    // console.log(nameArray);
+    const returnValue = nameArray.map((o) => ({ name: o.name, image: o.pfp }));
+    // console.log(returnValue);
+    return returnValue;
+  }
+
   return (
     <div>
-      {todoCards.map((todo) => (
+      {todoCards.map((todo, index) => (
         <MainCont>
           <Cont>
             <TopCont>
@@ -120,10 +144,14 @@ const Assigned = () => {
               <Point className="opensans">{todo.points} pts</Point>
             </TopCont>
             <BottomCont>
-              <Assigned_User />
-              <Assigned_User src="Avatar2.png" name={todo.assignedUsers}order="Order 2" />
-              <Assigned_User src="Avatar3.png" name="Hailey" order="Order 3" />
-              <Assigned_User order="Order 4" marginbottom="30px;" />
+              {namefind(todo.assignedUsers).map((object, i) => (
+                <Assigned_User
+                  name={object.name}
+                  key={i}
+                  order={i + 1}
+                  src={object.image}
+                />
+              ))}
             </BottomCont>
           </Cont>
         </MainCont>

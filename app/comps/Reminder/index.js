@@ -7,6 +7,8 @@ import WeeklyRewards from "../WeeklyRewards";
 import { useEffect, useState } from "react";
 import axiosInstance from "../../pages/api/axiosInstance";
 import dayjs from "dayjs";
+import { confirmAlert } from "react-confirm-alert"; // Import
+import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
 
 const Cont = styled.div`
   display: flex;
@@ -118,7 +120,7 @@ const Reminder = ({
         const newTodoResTask = todoResTask.map((file) => {
           return { ...file, color: "", name: "" };
         });
-        console.log("11111111", newTodoResTask);
+        // console.log("11111111", newTodoResTask);
         setTodos(newTodoResTask);
       } catch (err) {
         console.log(err.message);
@@ -168,20 +170,45 @@ const Reminder = ({
     })();
   }, [todos]);
 
-  function handleButtonClick(todoId) {
-    alert("hey");
-    todos.forEach(function (e) {
-      if (e.date == todoId) {
-        if (e.status == "complete") {
-          e.status = "incomplete";
-        } else {
-          e.status = "complete";
-        }
-      }
-    });
-    console.log(todos);
-  }
+  // function handleButtonClick(todoId) {
+  //   alert("hey");
+  //   todos.forEach(function (e) {
+  //     if (e.date == todoId) {
+  //       if (e.status == "complete") {
+  //         e.status = "incomplete";
+  //       } else {
+  //         e.status = "complete";
+  //       }
+  //     }
+  //   });
+  //   console.log(todos)
+  // }
 
+  const handleButtonClick = (todoId) => {
+    confirmAlert({
+      title: "Confirm to get point",
+      message: "Are you sure to do this.",
+      buttons: [
+        {
+          label: "Yes",
+          onClick: () => {
+            todos.forEach(function (e) {
+              if (e.date == todoId) {
+                if (e.status == "incomplete") {
+                  e.status = "complete";
+                }
+              }
+            });
+          },
+        },
+        {
+          label: "No",
+          onClick: () => alert("Click No"),
+        },
+      ],
+    });
+    console.log(todos)
+  };
   return (
     <Cont>
       <TopCont>
@@ -290,4 +317,3 @@ const Reminder = ({
   );
 };
 export default Reminder;
-

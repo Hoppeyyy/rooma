@@ -71,15 +71,7 @@ const RemindContent = ({
   margintop = "20px",
   onclickfunction = null,
 }) => {
-  // function handleButtonClick(todoId) {
-  //   console.log("Ew");
-  //   const nextState = todos.map((todo) => {
-  //     if (todo.id !== todoId) {
-  //       return todo;
-  //     }
-  //     todo.status == true;
-  //   });
-  // }
+
 
   return (
     <Cont display={display}>
