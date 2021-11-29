@@ -118,7 +118,7 @@ export default function Members(props) {
   };
 
   const getPreferences = () => {
-    const user_list = DisplayedUser?.preference.map((pref, index) => {
+    const user_list = DisplayedUser.preference?.map((pref, index) => {
       return (
         <Button
           key={index}
