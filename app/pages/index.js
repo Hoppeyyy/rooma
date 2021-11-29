@@ -12,14 +12,14 @@ import LoadingSpinner from "../UI/LoadingSpinner";
 const MainCont = styled.div`
   display: flex;
   flex-direction: row;
-  width: 100vw;
-  height: 100vh;
+  width:100vw;
+  height:100vh;
   
 `;
 const LeftCont = styled.div`
   display: flex;
   flex-grow: 1;
-  // position: fixed;
+  
 `;
 
 const MiddleCont = styled.div`
@@ -35,7 +35,8 @@ const RightCont = styled.div`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  
+  position: fixed;
+  right:20px;
 `;
 
 export default function Home(props) {

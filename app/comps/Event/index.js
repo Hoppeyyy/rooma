@@ -11,7 +11,7 @@ const Cont = styled.div`
 `;
 const CardCont = styled.div`
   min-width: 360px;
-  min-height: 580px;
+  min-height: 520px;
   background-color: white;
   box-shadow: 0px 4.353448867797852px 51.15302276611328px 0px #0000001c;
   border-radius: 22px;
