@@ -7,8 +7,8 @@ import CustomUtil from "../../helpers/CustomUtil";
 const Cont = styled.div`
   display: flex;
   flex-direction: column;
-  min-width: 360px;
-  max-width: 326px;
+  min-width: 326px;
+  max-width: 360px;
   min-height: 370px;
   max-height: 350px;
   border-radius: 10px;
