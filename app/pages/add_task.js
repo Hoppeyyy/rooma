@@ -42,7 +42,7 @@ const RightCont = styled.div`
 const AddTaskCont = styled.div`
   display: flex;
   flex-direction: column;
-  align-items:center;
+  align-items: center;
 `;
 
 export default function Add_task() {
@@ -57,6 +57,21 @@ export default function Add_task() {
     loadingSpinner,
   } = useContext(globalContext);
   const [onLinkClicked, setOnLinkClicked] = useState(false);
+  const [todoCards, setTodoCards] = useState([]);
+  const [addTask, setAddTask] = useState(false);
+
+  useEffect(() => {
+    (async (data) => {
+      try {
+        const newcards = await (
+          await axiosInstance.get("/task/schedule", {})
+        ).data.schedules;
+        setTodoCards(newcards);
+      } catch (err) {
+        console.log(err.message);
+      }
+    })();
+  }, []);
 
   useEffect(() => {
     if (loadingSpinner) {
@@ -102,6 +117,7 @@ export default function Add_task() {
   const [buttonstate9, setButtonState9] = useState(0);
   const HandleClickTaskComp2 = () => {
     if (buttonstate9 === 0) {
+      setAddTask(false);
       setButtonState9(1);
       setButtonState8(0);
       setButtonState10(0);
@@ -109,6 +125,7 @@ export default function Add_task() {
   };
   const [buttonstate10, setButtonState10] = useState(0);
   const HandleClickTaskComp3 = () => {
+    setAddTask(true);
     if (buttonstate10 === 0) {
       setButtonState10(1);
       setButtonState9(0);
@@ -142,7 +159,64 @@ export default function Add_task() {
               visibility="visible"
             />
             <AddTaskCont>
-              <AddMembers
+              <div>
+                {(() => {
+                  if (todoCards) {
+                    return (
+                      <div>
+                        <Tab
+                          display={
+                            buttonstate9 || buttonstate10 === 1 ? "flex" : ""
+                          }
+                          onTabClick={() => {
+                            HandleClickTaskComp3();
+                          }}
+                        />
+
+                        {addTask ? (
+                          <TaskComp
+                            onClick={() => {
+                              HandleClickTaskComp2();
+                            }}
+                            display={
+                              buttonstate8 || buttonstate10 === 1
+                                ? "flex"
+                                : "none" || buttonstate9 === 1
+                                ? "none"
+                                : "flex"
+                            }
+                          />
+                        ) : (
+                          <Assigned/>
+                        )}
+                      </div>
+                    );
+                  } else {
+                    return (
+                      <div>
+                        <AddMembers
+                          heading="Add Task"
+                          ps="Start by adding a task"
+                          title="Add Task"
+                          width="132px"
+                          height="50px"
+                          borderRadius="4.2px"
+                          onClick={() => {
+                            HandleClickTaskComp1();
+                          }}
+                          display={
+                            buttonstate8 || buttonstate9 || buttonstate10 === 1
+                              ? "none"
+                              : "flex"
+                          }
+                        />
+                      </div>
+                    );
+                  }
+                })()}
+              </div>
+
+              {/* <AddMembers
                 heading="Add Task"
                 ps="Start by adding a task"
                 title="Add Task"
@@ -184,7 +258,7 @@ export default function Add_task() {
                     ? "none"
                     : "flex"
                 }
-              />
+              /> */}
             </AddTaskCont>
           </MiddleCont>
           <RightCont>

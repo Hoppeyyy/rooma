@@ -123,7 +123,7 @@ const ButCont = styled.div`
   justify-content: flex-end;
 `;
 
-const TaskComp = ({ display = "none", onClick = () => {} }) => {
+const TaskComp = ({ display = "", onClick = () => {} }) => {
   const { register, handleSubmit } = useForm({
     shouldUseNativeValidation: true,
   });
@@ -155,6 +155,8 @@ const TaskComp = ({ display = "none", onClick = () => {} }) => {
         setOriginalRoom(roommate.data.roommates);
         setRoommates(roommate.data.roommates);
         console.log("real roomm", roommates);
+
+        console.log(addTodo);
       } catch (error) {
         console.log(error.message);
       }
@@ -232,9 +234,6 @@ const TaskComp = ({ display = "none", onClick = () => {} }) => {
       setPointButtons(points);
       setRoommates(originalRoom);
       //clear fields after submit
-
-
-      console.log(addTodo);
     } catch (err) {
       console.log(err.message);
     }
@@ -311,7 +310,7 @@ const TaskComp = ({ display = "none", onClick = () => {} }) => {
                     key={roommate.id}
                     onClick={() => handleRoommatesClick(roommate.id)}
                     className={roommate.clicked ? "memberBorder" : null}
-                    src="/upload_pic.png"
+                    src={roommate.pfp}
                   />
                   <Name className="opensans">{roommate.name}</Name>
                 </MemCont>

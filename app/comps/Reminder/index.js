@@ -7,6 +7,8 @@ import WeeklyRewards from "../WeeklyRewards";
 import { useEffect, useState } from "react";
 import axiosInstance from "../../pages/api/axiosInstance";
 import dayjs from "dayjs";
+import { confirmAlert } from "react-confirm-alert"; // Import
+import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
 
 const Cont = styled.div`
   display: flex;
@@ -95,7 +97,6 @@ const Reminder = ({
   title_complete = "Completed ",
   title_more = "More ",
   rewards_display = "block",
-  checked = "checked",
   onMoreClick = () => {},
   onCompleteClick = () => {},
   /* After expanding completed button on the top */
@@ -108,9 +109,27 @@ const Reminder = ({
   const [todotmw, setTodoTmw] = useState([]);
 
   const backgroundColor = (e) => {
-    console.log(e);
+    // console.log(e);
     return e + "70";
   };
+  useEffect(() => {
+    (async () => {
+      try {
+        console.log("sending request");
+
+        const todoRes = await axiosInstance.get("/task/list", {});
+
+        const todoResTask = todoRes.data.tasks;
+        const newTodoResTask = todoResTask.map((file) => {
+          return { ...file, color: "", name: "" };
+        });
+        // console.log("11111111", newTodoResTask);
+        setTodos(newTodoResTask);
+      } catch (err) {
+        console.log(err.message);
+      }
+    })();
+  }, []);
 
   useEffect(() => {
     (async () => {
@@ -136,7 +155,7 @@ const Reminder = ({
             e.name = user.name;
           }
         });
-        // console.log("heheheh", todos);
+        console.log("heheheh", todos);
 
         const todayTodos = todos.filter(
           (o) => dayjs(o.date).format("MM-DD-YY") === today
@@ -154,25 +173,45 @@ const Reminder = ({
     })();
   }, [todos]);
 
-  useEffect(() => {
-    (async () => {
-      try {
-        console.log("sending request");
+  // function handleButtonClick(todoId) {
+  //   alert("hey");
+  //   todos.forEach(function (e) {
+  //     if (e.date == todoId) {
+  //       if (e.status == "complete") {
+  //         e.status = "incomplete";
+  //       } else {
+  //         e.status = "complete";
+  //       }
+  //     }
+  //   });
+  //   console.log(todos)
+  // }
 
-        const todoRes = await axiosInstance.get("/task/list", {});
-
-        const todoResTask = todoRes.data.tasks;
-        const newTodoResTask = todoResTask.map((file) => {
-          return { ...file, color: "", name: "" };
-        });
-        console.log("11111111", newTodoResTask);
-        setTodos(newTodoResTask);
-      } catch (err) {
-        console.log(err.message);
-      }
-    })();
-  }, []);
-
+  const handleButtonClick = (todoId) => {
+    confirmAlert({
+      title: "Confirm to get point",
+      message: "Are you sure to do this.",
+      buttons: [
+        {
+          label: "Yes",
+          onClick: () => {
+            todos.forEach(function (e) {
+              if (e.date == todoId) {
+                if (e.status == "incomplete") {
+                  e.status = "complete";
+                }
+              }
+            });
+          },
+        },
+        {
+          label: "No",
+          onClick: () => alert("Click No"),
+        },
+      ],
+    });
+    console.log(todos)
+  };
   return (
     <Cont>
       <TopCont>
@@ -203,6 +242,7 @@ const Reminder = ({
                   name={todo.name}
                   date="5:00-7:00PM"
                   margintop="0px;"
+                  onclickfunction={(event) => handleButtonClick(todo.date)}
                 />
               ))
             )}
@@ -222,6 +262,7 @@ const Reminder = ({
                   name={todo.name}
                   date="5:00-7:00PM"
                   margintop="0px;"
+                  onclickfunction={(event) => handleButtonClick(todo.date)}
                 />
               ))
             )}
