@@ -16,17 +16,13 @@ const Container = styled.div`
 
 const Title = styled.p`
   margin-right: 1.5em;
-  margin-top: 1em;
-  color: grey;
+  margin-top: 1.5em;
   
 `;
 
 const Select = styled.select`
   height: 20px;
   margin-right: 0.5em;
-  border: none;
-  border-radius: 2px;
-  font-size: 15px;
 `;
 
 const month31 = ["1", "3", "5", "7", "8", "10", "12"];
@@ -146,7 +142,7 @@ function Picker({ onDateChange, PickerDate, title, type }) {
 
   return (
     <Container>
-      <Title className="opensans">{title}</Title>
+      <Title>{title}</Title>
       <Select name="year" id="year" onChange={onDateChange}>
         {/* <option value="2021" selected>
           2021
