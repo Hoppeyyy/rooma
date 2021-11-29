@@ -34,6 +34,7 @@ const MainCont = styled.div`
   flex-grow: 3;
   margin-left: 300px;
   margin-right: 410px;
+  
 `;
 const PostArea1 = styled.div`
   display: flex;

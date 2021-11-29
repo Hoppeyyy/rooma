@@ -296,7 +296,7 @@ const TaskComp = ({ display = "none", onClick = () => {} }) => {
                   onClick={() => handlePointsClick(points.id)}
                   className={points.clicked ? "activeButton" : null}
                 >
-                  {points.id} <Span>Points</Span>
+                  {points.id} <Span className={points.clicked ? "activeButton" : null} >Points</Span>
                 </PtsButton>
               ))}
             </ButtonCont>
