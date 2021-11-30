@@ -169,8 +169,8 @@ const SideProfile = ({
       </ArrowCont>
       <MidCont>
           <Img src="/Avatar2.png"></Img>
-          <Name>Floyd Miles</Name>
-          <Point> 100 pts</Point>
+          <Name>Hailey Kim</Name>
+          <Point> 500 pts</Point>
       </MidCont>
       <BotCont>
           <ProfileText> Profile</ProfileText>

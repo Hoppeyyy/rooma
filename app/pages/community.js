@@ -34,6 +34,7 @@ const MainCont = styled.div`
   flex-grow: 3;
   margin-left: 300px;
   margin-right: 410px;
+  
 `;
 const PostArea1 = styled.div`
   display: flex;
@@ -419,8 +420,8 @@ export default function Community() {
             <PostArea1>
               <CommunityPost
                 title="Any recommendations on resturaunts in Vancouver?"
-                name="Floyd Miles"
-                src="/Avatar3.png"
+                name="Hailey Kim"
+                src="/Avatar2.png"
                 button_title="restaurants"
                 time="6h ago"
                 text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
@@ -435,8 +436,8 @@ export default function Community() {
               />
               <CommunityPost
                 title="Furniture Sale on December 20 to 23"
-                name="Hannah M"
-                src="/Avatar3.png"
+                name="Chisaki Nakamura"
+                src="/Avatar.png"
                 button_title="Event"
                 time="6h ago"
                 text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
@@ -453,8 +454,8 @@ export default function Community() {
             <PostArea2>
               <CommunityPost
                 title="I Need Roommates by December 15!"
-                name="Jo K"
-                src="/Avatar3.png"
+                name="Leah Ma"
+                src="/Avatar4.png"
                 button_title="roommates"
                 time="2h ago"
                 text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
@@ -470,8 +471,8 @@ export default function Community() {
               />
               <CommunityPost
                 title="Music Festival on Queen Park!"
-                name="Rachel K"
-                src="/Avatar3.png"
+                name="Sean Luo"
+                src="/Avatar6.png"
                 button_title="Event"
                 time="12h ago"
                 text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
@@ -488,8 +489,8 @@ export default function Community() {
             <PostArea2>
               <CommunityPost
                 title="Need Roommates as soon as possible!"
-                name="Jo K"
-                src="/Avatar3.png"
+                name="Maria Monay"
+                src="/Avatar50.png"
                 button_title="roommates"
                 time="2h ago"
                 text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
@@ -504,8 +505,8 @@ export default function Community() {
               />
               <CommunityPost
                 title="Music Festival on Queen Park!"
-                name="Rachel K"
-                src="/Avatar3.png"
+                name="Jason Zhao"
+                src="/Avatar60.png"
                 button_title="Event"
                 time="12h ago"
                 text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "
@@ -526,8 +527,8 @@ export default function Community() {
             ></LeaderBoard>
             <Comments
               title="Any recommendations on resturaunts in Vancouver?"
-              name="Floyd Miles"
-              src="/Avatar3.png"
+              name="Hailey Kim"
+              src="/Avatar2.png"
               button_title="restaurants"
               time="6h ago"
               text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. "

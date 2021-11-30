@@ -20,26 +20,23 @@ const MainCont = styled.div`
 `;
 const NavCont = styled.div`
   display: flex;
-  position: fixed;
+  
 
 `;
 const Heading = styled.div`
+  display:flex;
   font-size: 34px;
   font-weight: 700;
-  margin-left: 260px;
-  margin-top: 50px;
+  margin: 40px 75px 0px 75px;
+  align-items: center;
 `;
 
 const LeftCont = styled.div`
-  display: flex;
-  flex-direction: column;
-  // flex: 3;
-//  border-right: 1px #d6d6d6 solid; 
+display: flex;
+flex-direction: column;
+flex-grow:0.2;
+border-right: 1px #D6D6D6 solid;
 
-  margin-left:175px;
-  width: 50%;
-  height: 100%;
- 
 `;
 const CardCont = styled.div`
   display: flex;
@@ -51,15 +48,9 @@ const CardCont = styled.div`
 
 const RightCont = styled.div`
   display: flex;
-  flex: 1;
+  flex: 0.8;
   flex-direction: column;
   border-left: 1px #d6d6d6 solid;
-
-  position: fixed;
-  right: 0px;
-  width: 800px;
-  height: 100%;
-
 `;
 const ProfileHolder = styled.div`
   display: flex;
