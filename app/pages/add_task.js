@@ -13,6 +13,7 @@ import Assigned from "../comps/TaskComp/assigned";
 import CalEventMerged from "../comps/CalEventMerged";
 import { globalContext } from "../store/globalContext";
 import LoadingSpinner from "../UI/LoadingSpinner";
+import axiosInstance from "./api/axiosInstance";
 
 const MainCont = styled.div`
   display: flex;
@@ -66,6 +67,7 @@ export default function Add_task() {
         const newcards = await (
           await axiosInstance.get("/task/schedule", {})
         ).data.schedules;
+
         setTodoCards(newcards);
       } catch (err) {
         console.log(err.message);
@@ -111,6 +113,7 @@ export default function Add_task() {
   const [buttonstate8, setButtonState8] = useState(0);
   const HandleClickTaskComp1 = () => {
     if (buttonstate8 === 0) {
+      setAddTask(true);
       setButtonState8(1);
     }
   };
@@ -143,7 +146,11 @@ export default function Add_task() {
   return (
     <MainCont>
       <LeftCont>
-        <NavBar3 onLinkClick={onLinkClick} color2 = "#8867EB"  src2 = "/Task_Icon_color.svg"/>
+        <NavBar3
+          onLinkClick={onLinkClick}
+          color2="#8867EB"
+          src2="/Task_Icon_color.svg"
+        />
       </LeftCont>
       {onLinkClicked ? (
         <LoadingSpinner />
@@ -161,7 +168,7 @@ export default function Add_task() {
             <AddTaskCont>
               <div>
                 {(() => {
-                  if (todoCards) {
+                  if (!todoCards.length == 0) {
                     return (
                       <div>
                         <Tab
@@ -187,11 +194,11 @@ export default function Add_task() {
                             }
                           />
                         ) : (
-                          <Assigned/>
+                          <Assigned />
                         )}
                       </div>
                     );
-                  } else {
+                  } else if (todoCards) {
                     return (
                       <div>
                         <AddMembers
@@ -210,6 +217,23 @@ export default function Add_task() {
                               : "flex"
                           }
                         />
+
+                        {addTask ? (
+                          <TaskComp
+                            onClick={() => {
+                              HandleClickTaskComp2();
+                            }}
+                            display={
+                              buttonstate8 || buttonstate10 === 1
+                                ? "flex"
+                                : "none" || buttonstate9 === 1
+                                ? "none"
+                                : "flex"
+                            }
+                          />
+                        ) : (
+                          <Assigned />
+                        )}
                       </div>
                     );
                   }
