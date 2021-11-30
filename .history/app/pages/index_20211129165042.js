@@ -15,11 +15,10 @@ const MainCont = styled.div`
   width:100vw;
   height:100vh;
   
-  
 `;
 const LeftCont = styled.div`
   display: flex;
-  flex-grow: 1;
+  flex-grow: 0.5;
   
 `;
 
@@ -35,9 +34,9 @@ const MiddleCont = styled.div`
 const RightCont = styled.div`
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
-  // position: fixed;
-  // right:20px;
+  flex-grow: 1.5;
+  position: fixed;
+  right:20px;
 `;
 
 export default function Home(props) {
@@ -109,7 +108,7 @@ export default function Home(props) {
   return (
     <MainCont>
       <LeftCont>
-        <NavBar3 onLinkClick={onLinkClick} color1 = "#8867EB"  src1 = "/Home_Icon_Color.svg"/>
+        <NavBar3 onLinkClick={onLinkClick} color1 = "#8867EB"  src1 = "/Home_Icon_color.svg"/>
       </LeftCont>
       {onLinkClicked ? (
         <LoadingSpinner />
@@ -137,7 +136,7 @@ export default function Home(props) {
               onMoreClick={() => {
                 ReminderHandleClick();
               }}
-              height={buttonstate2 === 1 ? "850px" : "630px"}
+              height={buttonstate2 === 1 ? "850px" : "600px"}
               top={buttonstate2 === 1 ? "920px" : "675px"}
               title_more={buttonstate2 === 1 ? "Close " : "More "}
               //complete_display={buttonstate2 === 1 ? 'none' : 'block'}

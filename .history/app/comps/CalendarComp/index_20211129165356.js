@@ -9,7 +9,7 @@ const Cont = styled.div`
   flex-direction: column;
   min-width: 360px;
   max-width: 326px;
-  min-height: 340px;
+  min-height: 360px;
   max-height: 350px;
   border-radius: 10px;
   margin-bottom: 10px;

@@ -91,7 +91,7 @@ const RemindContent = ({
         <MainCont>
           <Heading className="opensans">
           <span>{task_name}</span>
-          <img src="/delete.png" alt="" width="20px" style={{    marginRight:"20px"
+          <img src="/delete.png" alt="" width="20px" style={{    marginRight:"20px", marginTop: "10px"
           }} onClick={() => {
             onHandleDelete(eventId);
           }}/>
