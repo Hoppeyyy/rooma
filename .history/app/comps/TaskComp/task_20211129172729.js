@@ -56,7 +56,7 @@ const Input2 = styled.input`
 const Day = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 40px 20px 10px 20px;
+  margin: 20px 20px 10px 20px;
 `;
 const Head = styled.div`
   font-size: 25px;
@@ -128,7 +128,6 @@ const Details = styled.span`
 font-size: 14px;
 color:#3E3D3D;
 font-weight: 400;
-margin-left: 10px;
 `
 
 
@@ -296,7 +295,7 @@ const TaskComp = ({ display = "", onClick = () => {} }) => {
           </Day>
 
           <Day>
-            <Head className="opensans">Points <Details className="opensans">Choose points for this task</Details></Head>
+            <Head className="opensans">Points</Head>
             <ButtonCont>
               {pointButtons.map((points) => (
                 <PtsButton
@@ -316,7 +315,7 @@ const TaskComp = ({ display = "", onClick = () => {} }) => {
           </Day>
 
           <Day>
-            <Head className="opensans">Members  <Details className="opensans">Assign members for this task</Details></Head>
+            <Head className="opensans">Members</Head>
             <MemWrap>
               {roommates.map((roommate) => (
                 <MemCont key={roommate.id}>
