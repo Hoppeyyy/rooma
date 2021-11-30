@@ -67,6 +67,7 @@ export default function Add_task() {
         const newcards = await (
           await axiosInstance.get("/task/schedule", {})
         ).data.schedules;
+
         setTodoCards(newcards);
       } catch (err) {
         console.log(err.message);
@@ -112,6 +113,7 @@ export default function Add_task() {
   const [buttonstate8, setButtonState8] = useState(0);
   const HandleClickTaskComp1 = () => {
     if (buttonstate8 === 0) {
+      setAddTask(true);
       setButtonState8(1);
     }
   };
@@ -166,7 +168,7 @@ export default function Add_task() {
             <AddTaskCont>
               <div>
                 {(() => {
-                  if (todoCards) {
+                  if (!todoCards.length == 0) {
                     return (
                       <div>
                         <Tab
@@ -196,7 +198,7 @@ export default function Add_task() {
                         )}
                       </div>
                     );
-                  } else {
+                  } else if (todoCards) {
                     return (
                       <div>
                         <AddMembers
@@ -215,6 +217,23 @@ export default function Add_task() {
                               : "flex"
                           }
                         />
+
+                        {addTask ? (
+                          <TaskComp
+                            onClick={() => {
+                              HandleClickTaskComp2();
+                            }}
+                            display={
+                              buttonstate8 || buttonstate10 === 1
+                                ? "flex"
+                                : "none" || buttonstate9 === 1
+                                ? "none"
+                                : "flex"
+                            }
+                          />
+                        ) : (
+                          <Assigned />
+                        )}
                       </div>
                     );
                   }
