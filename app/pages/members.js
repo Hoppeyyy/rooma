@@ -36,7 +36,7 @@ display: flex;
 flex-direction: column;
 flex-grow:0.2;
 border-right: 1px #D6D6D6 solid;
-
+overflow-y:auto;
 `;
 const CardCont = styled.div`
   display: flex;
