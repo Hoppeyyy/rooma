@@ -7,7 +7,7 @@ const Cont = styled.div`
   margin-left: 30px;
   margin-top: 20px;
   visibility: ${(props) => props.visibility};
-
+  align-items:center;
 `;
 const CardCont = styled.div`
   display: flex;
@@ -16,7 +16,6 @@ const CardCont = styled.div`
   height: 65px;
   background-color: ${(props) => props.bgcolor};
   border-radius: 15px;
-
 `;
 const LeftCont = styled.div`
   display: flex;
@@ -91,7 +90,7 @@ const RemindContent = ({
         <MainCont>
           <Heading className="opensans">
           <span>{task_name}</span>
-          <img src="/delete.png" alt="" width="20px" style={{    marginRight:"20px"
+          <img src="/delete.png" alt="" width="20px" style={{    marginRight:"10px"
           }} onClick={() => {
             onHandleDelete(eventId);
           }}/>

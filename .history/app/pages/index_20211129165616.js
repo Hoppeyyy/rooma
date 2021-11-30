@@ -137,7 +137,7 @@ export default function Home(props) {
               onMoreClick={() => {
                 ReminderHandleClick();
               }}
-              height={buttonstate2 === 1 ? "850px" : "630px"}
+              height={buttonstate2 === 1 ? "850px" : "650px"}
               top={buttonstate2 === 1 ? "920px" : "675px"}
               title_more={buttonstate2 === 1 ? "Close " : "More "}
               //complete_display={buttonstate2 === 1 ? 'none' : 'block'}

@@ -56,7 +56,7 @@ const Input2 = styled.input`
 const Day = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 40px 20px 10px 20px;
+  margin: 20px 20px 10px 20px;
 `;
 const Head = styled.div`
   font-size: 25px;

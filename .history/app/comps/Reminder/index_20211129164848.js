@@ -30,7 +30,7 @@ overflow-y:auto;
 const TopCont = styled.div`
   display: flex;
   flex-direction: column;
-  flex-grow: 1.5;
+  flex-grow: 2;
 `;
 const HeadingCont = styled.div`
   display: flex;
