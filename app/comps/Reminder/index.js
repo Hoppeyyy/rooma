@@ -5,7 +5,7 @@ import Completed_RemindContent from "../RemindContent/completed";
 //import Completed from '../Completed';
 import WeeklyRewards from "../WeeklyRewards";
 import { useEffect, useState } from "react";
-import axiosInstance from "../../pages/api/axiosInstance";
+import api from "../../api/axios";
 import dayjs from "dayjs";
 import { confirmAlert } from "react-confirm-alert"; // Import
 import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
@@ -15,18 +15,17 @@ const Cont = styled.div`
   flex-direction: column;
   margin-top: 20px;
   height: 100vh;
-
 `;
 const CardCont = styled.div`
-width:700px;
-min-height:${props=>props.height};
-max-height:100px;
-background-color:white;
-box-shadow: 0px 4.014px 47.8px 0px #0000001C;
-border-radius:22px;
-margin-top: 5px;
-overflow-y:auto;
-`
+  width: 700px;
+  min-height: ${(props) => props.height};
+  max-height: 100px;
+  background-color: white;
+  box-shadow: 0px 4.014px 47.8px 0px #0000001c;
+  border-radius: 22px;
+  margin-top: 5px;
+  overflow-y: auto;
+`;
 const TopCont = styled.div`
   display: flex;
   flex-direction: column;
@@ -117,7 +116,7 @@ const Reminder = ({
       try {
         console.log("sending request");
 
-        const todoRes = await axiosInstance.get("/task/list", {});
+        const todoRes = await api.get("/task/list", {});
 
         const todoResTask = todoRes.data.tasks;
         const newTodoResTask = todoResTask.map((file) => {
@@ -135,7 +134,7 @@ const Reminder = ({
     (async () => {
       try {
         // console.log("if I have todo", todos);
-        const roommate = await axiosInstance.get("/user/roommates", {});
+        const roommate = await api.get("/user/roommates", {});
         console.log(roommate.data);
         setRoommates(roommate.data.roommates);
         //roommates
@@ -210,7 +209,7 @@ const Reminder = ({
         },
       ],
     });
-    console.log(todos)
+    console.log(todos);
   };
   return (
     <Cont>

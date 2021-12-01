@@ -1,7 +1,8 @@
 import react from "react";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
-import axiosInstance from "../../pages/api/axiosInstance";
+// import api from "../../api/axios"
+import api from "../../api/axios";
 
 const Cont = styled.div`
   display: flex;
@@ -71,8 +72,6 @@ const RemindContent = ({
   margintop = "20px",
   onclickfunction = null,
 }) => {
-
-
   return (
     <Cont display={display}>
       <CardCont bgcolor={bgcolor} margintop={margintop}>

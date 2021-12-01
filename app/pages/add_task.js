@@ -13,7 +13,7 @@ import Assigned from "../comps/TaskComp/assigned";
 import CalEventMerged from "../comps/CalEventMerged";
 import { globalContext } from "../store/globalContext";
 import LoadingSpinner from "../UI/LoadingSpinner";
-import axiosInstance from "./api/axiosInstance";
+import api from "../api/axios";
 
 const MainCont = styled.div`
   display: flex;
@@ -65,9 +65,9 @@ export default function Add_task() {
     (async (data) => {
       try {
         const newcards = await (
-          await axiosInstance.get("/task/schedule", {})
+          await api.get("/task/schedule", {})
         ).data.schedules;
-
+        console.timeLog(todoCards);
         setTodoCards(newcards);
       } catch (err) {
         console.log(err.message);
