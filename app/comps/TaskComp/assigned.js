@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Button from "../Button";
 import Assigned_User from "./assigned_user";
 import { useEffect, useState } from "react";
-import axiosInstance from "../../pages/api/axiosInstance";
+import api from "../../api/axios";
 import dayjs from "dayjs";
 
 const MainCont = styled.div`
@@ -92,7 +92,7 @@ const Assigned = () => {
     (async (data) => {
       try {
         console.log("sending request");
-        const roommate = await axiosInstance.get("/user/roommates ", {});
+        const roommate = await api.get("/user/roommates ", {});
         console.log("hey", roommate.data);
         setRoommates(roommate.data.roommates);
 
@@ -109,7 +109,7 @@ const Assigned = () => {
           .map((ele) => ele.id);
 
         const newcards = await (
-          await axiosInstance.get("/task/schedule", {})
+          await api.get("/task/schedule", {})
         ).data.schedules;
         // console.log(newcards);
 

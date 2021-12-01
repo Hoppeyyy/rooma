@@ -3,10 +3,9 @@ import styled from "styled-components";
 import Button from "../Button";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import axiosInstance from "../../pages/api/axiosInstance";
+import api from "../../api/axios";
 import { TimePicker } from "antd";
 import "antd/dist/antd.css";
-import { useRouter } from "next/router";
 
 const MainCont = styled.div`
   display: ${(props) => props.display};
@@ -146,12 +145,12 @@ const TaskComp = ({ display = "", onClick = () => {} }) => {
     (async () => {
       try {
         console.log("sending request");
-        // const user = axiosInstance.post("/auth/local", {
+        // const user = api.post("/auth/local", {
         //   email: "meow@gmail.com",
         //   password: "meow123",
         // });
         // console.log(user.data);
-        const roommate = await axiosInstance.get("/user/roommates", {});
+        const roommate = await api.get("/user/roommates", {});
         console.log("hey", roommate.data);
         setOriginalRoom(roommate.data.roommates);
         setRoommates(roommate.data.roommates);
@@ -206,7 +205,7 @@ const TaskComp = ({ display = "", onClick = () => {} }) => {
     });
     setRoommates(roommateState);
   }
-  const router = useRouter();
+
   //when user submit the form
   const submitForm = async (data, e) => {
     try {
@@ -222,7 +221,7 @@ const TaskComp = ({ display = "", onClick = () => {} }) => {
         .map((ele) => ele.id);
       const date = new Date().toISOString();
 
-      const addTodo = await axiosInstance.post("/task/create", {
+      const addTodo = await api.post("/task/create", {
         title: data.title,
         points: pts,
         assignedUsers: assignedUsers,
