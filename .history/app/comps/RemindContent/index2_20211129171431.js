@@ -88,13 +88,14 @@ const RemindContent = ({
         <LeftCont>
           <VerLine vlcolor={vlcolor} />
         </LeftCont>
-        <MainCont>
-          <Heading className="opensans">
-          <span>{task_name}</span>
-          <img src="/delete.png" alt="" width="20px" style={{    marginRight:"20px"
+        <img src="/delete.png" alt="" width="20px" style={{    marginRight:"20px", marginTop: "2px"
           }} onClick={() => {
             onHandleDelete(eventId);
           }}/>
+        <MainCont>
+          <Heading className="opensans">
+          <span>{task_name}</span>
+          
           </Heading>
           <Details className="opensans">
             <Span>{name} </Span>

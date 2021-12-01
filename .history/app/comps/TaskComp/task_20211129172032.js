@@ -3,9 +3,10 @@ import styled from "styled-components";
 import Button from "../Button";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import api from "../../api/axios";
+import axiosInstance from "../../pages/api/axiosInstance";
 import { TimePicker } from "antd";
 import "antd/dist/antd.css";
+import { useRouter } from "next/router";
 
 const MainCont = styled.div`
   display: ${(props) => props.display};
@@ -55,7 +56,7 @@ const Input2 = styled.input`
 const Day = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 40px 20px 10px 20px;
+  margin: 20px 20px 10px 20px;
 `;
 const Head = styled.div`
   font-size: 25px;
@@ -123,13 +124,9 @@ const ButCont = styled.div`
   justify-content: flex-end;
 `;
 
-const Details = styled.span`
-font-size: 14px;
-color:#3E3D3D;
-font-weight: 400;
-margin-left: 10px;
-`
+const label = styled.label`
 
+`
 
 const TaskComp = ({ display = "", onClick = () => {} }) => {
   const { register, handleSubmit } = useForm({
@@ -153,12 +150,12 @@ const TaskComp = ({ display = "", onClick = () => {} }) => {
     (async () => {
       try {
         console.log("sending request");
-        // const user = api.post("/auth/local", {
+        // const user = axiosInstance.post("/auth/local", {
         //   email: "meow@gmail.com",
         //   password: "meow123",
         // });
         // console.log(user.data);
-        const roommate = await api.get("/user/roommates", {});
+        const roommate = await axiosInstance.get("/user/roommates", {});
         console.log("hey", roommate.data);
         setOriginalRoom(roommate.data.roommates);
         setRoommates(roommate.data.roommates);
@@ -213,7 +210,7 @@ const TaskComp = ({ display = "", onClick = () => {} }) => {
     });
     setRoommates(roommateState);
   }
-
+  const router = useRouter();
   //when user submit the form
   const submitForm = async (data, e) => {
     try {
@@ -229,7 +226,7 @@ const TaskComp = ({ display = "", onClick = () => {} }) => {
         .map((ele) => ele.id);
       const date = new Date().toISOString();
 
-      const addTodo = await api.post("/task/create", {
+      const addTodo = await axiosInstance.post("/task/create", {
         title: data.title,
         points: pts,
         assignedUsers: assignedUsers,
@@ -257,11 +254,10 @@ const TaskComp = ({ display = "", onClick = () => {} }) => {
           <InputCont>
             <Input1
               type="text"
-              name="Name"
+              name="title"
               placeholder="Add New Task"
               {...register("title")}
             />
-            
             {/* <Input2
               className="opensans"
               type="time"
@@ -276,9 +272,8 @@ const TaskComp = ({ display = "", onClick = () => {} }) => {
               onChange={onChange}
             />
           </InputCont>
-          <Day> 
-            
-            <Head className="opensans">Day <Details className="opensans">Choose the recurring day of your task</Details></Head>
+          <Day>
+            <Head className="opensans">Day</Head>
             <ButtonCont>
               {weekButtons.map((button) => (
                 <DayButton
@@ -295,7 +290,7 @@ const TaskComp = ({ display = "", onClick = () => {} }) => {
           </Day>
 
           <Day>
-            <Head className="opensans">Points <Details className="opensans">Choose points for this task</Details></Head>
+            <Head className="opensans">Points</Head>
             <ButtonCont>
               {pointButtons.map((points) => (
                 <PtsButton
@@ -315,7 +310,7 @@ const TaskComp = ({ display = "", onClick = () => {} }) => {
           </Day>
 
           <Day>
-            <Head className="opensans">Members  <Details className="opensans">Assign members for this task</Details></Head>
+            <Head className="opensans">Members</Head>
             <MemWrap>
               {roommates.map((roommate) => (
                 <MemCont key={roommate.id}>
