@@ -135,7 +135,7 @@ const EditProfile = ({
     // console.log(PreferencesInput);
   });
   const onPreferenceSelect = (title) => {
-    if (PreferencesInput.includes(title)) {
+    if (PreferencesInput?.includes(title)) {
       setPreferencesInput(PreferencesInput.filter((item) => item !== title));
     } else {
       setPreferencesInput([...PreferencesInput, title]);
@@ -392,13 +392,13 @@ const EditProfile = ({
             height="40px"
             // bgcolor="#F2EFFD"
             bgcolor={
-              PreferencesInput.includes("No Pets") ? "#7751E8" : "#F2EFFD"
+              PreferencesInput?.includes("No Pets") ? "#7751E8" : "#F2EFFD"
             }
             title="No Pets"
             fontSize="14px"
             // fontcolor="#7751E8"
             fontcolor={
-              !PreferencesInput.includes("No Pets") ? "#7751E8" : "#F2EFFD"
+              !PreferencesInput?.includes("No Pets") ? "#7751E8" : "#F2EFFD"
             }
             border=" 1px solid #7751E8"
             fontWeight="500"
@@ -411,12 +411,12 @@ const EditProfile = ({
             width="125px"
             height="40px"
             bgcolor={
-              PreferencesInput.includes("No smokers") ? "#7751E8" : "#F2EFFD"
+              PreferencesInput?.includes("No smokers") ? "#7751E8" : "#F2EFFD"
             }
             title="No smokers"
             fontSize="14px"
             fontcolor={
-              !PreferencesInput.includes("No smokers") ? "#7751E8" : "#F2EFFD"
+              !PreferencesInput?.includes("No smokers") ? "#7751E8" : "#F2EFFD"
             }
             border=" 1px solid #7751E8"
             fontWeight="500"
@@ -429,14 +429,14 @@ const EditProfile = ({
             width="125px"
             height="40px"
             bgcolor={
-              PreferencesInput.includes("No loud noises")
+              PreferencesInput?.includes("No loud noises")
                 ? "#7751E8"
                 : "#F2EFFD"
             }
             title="No loud noises"
             fontSize="14px"
             fontcolor={
-              !PreferencesInput.includes("No loud noises")
+              !PreferencesInput?.includes("No loud noises")
                 ? "#7751E8"
                 : "#F2EFFD"
             }
@@ -451,12 +451,12 @@ const EditProfile = ({
             width="125px"
             height="40px"
             bgcolor={
-              PreferencesInput.includes("Respect") ? "#7751E8" : "#F2EFFD"
+              PreferencesInput?.includes("Respect") ? "#7751E8" : "#F2EFFD"
             }
             title="Respect"
             fontSize="14px"
             fontcolor={
-              !PreferencesInput.includes("Respect") ? "#7751E8" : "#F2EFFD"
+              !PreferencesInput?.includes("Respect") ? "#7751E8" : "#F2EFFD"
             }
             border=" 1px solid #7751E8"
             fontWeight="500"
