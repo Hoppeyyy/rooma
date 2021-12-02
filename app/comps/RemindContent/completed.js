@@ -72,7 +72,7 @@ for(i=0; i<Radios.length; i++ ) {
 }*/
 const Completed_RemindContent = ({
   bgcolor="rgba(240,199,137,30%)",
-  display="block",
+  display="none",
   task_name="Task Name",
   vlcolor="#F0C789",
   name="Name",
@@ -89,10 +89,10 @@ const Completed_RemindContent = ({
       <Details className="opensans"><Span>{name} </Span>{date}</Details>
       </MainCont>
       <RightCont>
-      <CheckBtn 
+      {/* <CheckBtn 
       type="radio" 
       checked={checked}
-      />
+      /> */}
       </RightCont>
     </CardCont>
   </Cont>
