@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import * as React from "react";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import NavBar3 from "../comps/NavBar3";
 import Greeting from "../comps/Greeting";
 import Reminder from "../comps/Reminder";
@@ -8,19 +8,17 @@ import { requireAuthen } from "../api/require.authen";
 import CalEventMerged from "../comps/CalEventMerged";
 import { getRoomates } from "../api/room.api";
 import LoadingSpinner from "../UI/LoadingSpinner";
+import { globalContext } from "../store/globalContext";
 
 const MainCont = styled.div`
   display: flex;
   flex-direction: row;
-  width:100vw;
-  height:100vh;
-  
-  
+  width: 100vw;
+  height: 100vh;
 `;
 const LeftCont = styled.div`
   display: flex;
   flex-grow: 1;
-  
 `;
 
 const MiddleCont = styled.div`
@@ -29,7 +27,6 @@ const MiddleCont = styled.div`
   flex-grow: 8;
   // margin-left: 10px;
   margin-top: 10px;
- 
 `;
 
 const RightCont = styled.div`
@@ -41,6 +38,21 @@ const RightCont = styled.div`
 `;
 
 export default function Home(props) {
+  const {
+    setCurrentUser,
+    currentUser,
+    currentExpandNav,
+    setCurrentExpandNav,
+    setLoadingSpinner,
+  } = useContext(globalContext);
+
+  useEffect(() => {
+    console.log("vvvvvvvvvvvvvvvvvvv");
+    console.log(props.auth);
+    console.log(props.auth.user);
+    setCurrentUser(props.auth.user);
+  });
+
   // detect button clicked or not
   const [buttonstate1, setButtonState1] = useState(0);
   const [onLinkClicked, setOnLinkClicked] = useState(false);
@@ -109,7 +121,11 @@ export default function Home(props) {
   return (
     <MainCont>
       <LeftCont>
-        <NavBar3 onLinkClick={onLinkClick} color1 = "#8867EB"  src1 = "/Home_Icon_Color.svg"/>
+        <NavBar3
+          onLinkClick={onLinkClick}
+          color1="#8867EB"
+          src1="/Home_Icon_Color.svg"
+        />
       </LeftCont>
       {onLinkClicked ? (
         <LoadingSpinner />
@@ -148,8 +164,6 @@ export default function Home(props) {
               title_complete={buttonstate3 === 1 ? "Hide " : "Completed "}
               reminder_display={buttonstate3 === 1 ? "none" : "block"}
               reminder_completed_display={buttonstate3 === 1 ? "block" : "none"}
-
-
               onChecked_trigger={() => {
                 CompleteAfterHandleClick();
               }}

@@ -1,5 +1,6 @@
 import react from "react";
 import styled from "styled-components";
+import { useRouter } from "next/router";
 
 const Cont = styled.div`
   display: flex;
@@ -75,6 +76,9 @@ const Message = styled.button`
   border: 1px solid #7751e8;
   color: #7751e8;
   font-weight: 600;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const MembersProfile = ({
@@ -86,7 +90,7 @@ const MembersProfile = ({
   margintop = "38px",
 }) => {
   let formattedphone = "";
-
+  const router = useRouter();
   if (phone) {
     formattedphone =
       "(" + phone.slice(0, 3) + ") " + phone.slice(3, 6) + "-" + phone.slice(6);
@@ -106,7 +110,14 @@ const MembersProfile = ({
 
           <ButtonCont>
             <Point className="opensans">{points}pts</Point>
-            <Message className="opensans">Message</Message>
+            <Message
+              className="opensans"
+              onClick={() => {
+                router.push("/chat");
+              }}
+            >
+              Message
+            </Message>
           </ButtonCont>
         </InfoCont>
       </CardCont>

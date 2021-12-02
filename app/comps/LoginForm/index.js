@@ -124,7 +124,7 @@ const Signup = styled.div`
   font-size: 20px;
   width: 70%;
   position: relative;
-  top: 150px;
+  top: 50px;
 `;
 
 const Text = styled.div`

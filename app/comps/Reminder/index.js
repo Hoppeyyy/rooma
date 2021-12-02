@@ -9,6 +9,7 @@ import api from "../../api/axios";
 import dayjs from "dayjs";
 import { confirmAlert } from "react-confirm-alert"; // Import
 import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
+import { useRouter } from "next/router";
 
 const Cont = styled.div`
   display: flex;
@@ -109,19 +110,25 @@ const Reminder = ({
   const [todotoday, setTodoToday] = useState([]);
   const [todotmw, setTodoTmw] = useState([]);
   const [completeWork, SetCompleteWork] = useState([]);
-  const [clicked, setClicked] = useState(false);
+  const [clicked, setClicked] = useState("");
+  const [compoRefresh, setCompoRefresh] = useState(false);
 
   const backgroundColor = (e) => {
     // console.log(e);
     return e + "70";
   };
+
+  const router = useRouter();
+
   useEffect(() => {
     (async () => {
       try {
         console.log("sending request");
 
         const todoRes = await api.get("/task/list", {});
-
+        console.log("444444444444444444");
+        console.log(todoRes.data.tasks);
+        console.log("444444444444444444");
         const todoResTask = todoRes.data.tasks;
         const newTodoResTask = todoResTask.map((file) => {
           return { ...file, color: "", name: "" };
@@ -132,7 +139,7 @@ const Reminder = ({
         console.log(err.message);
       }
     })();
-  }, []);
+  }, [compoRefresh]);
 
   useEffect(() => {
     (async () => {
@@ -195,7 +202,7 @@ const Reminder = ({
   //   console.log(todos)
   // }
 
-  const handleButtonClick = (todoId) => {
+  const handleButtonClick = (todoDate, todoId) => {
     confirmAlert({
       title: "Confirm to get point",
       message: "Are you sure to do this.",
@@ -203,9 +210,9 @@ const Reminder = ({
         {
           label: "Yes",
           onClick: (e) => {
-            setClicked(true);
+            setClicked(todoDate + todoId);
             todos.forEach(function (e) {
-              if (e.date == todoId) {
+              if (e.date == todoDate) {
                 if (e.status == "incomplete") {
                   e.status = "complete";
                   // console.log(e);
@@ -218,9 +225,12 @@ const Reminder = ({
                     .then((response) => {
                       console.log("task complete");
                       console.log(response);
+                      setCompoRefresh(!compoRefresh);
 
                       // Below added by Sean to force refresh the page so that the updated points can be seen.
-                      location.reload();
+                      // location.reload();
+                      // router.reload(window.location.pathname);
+                      router.replace(router.asPath);
                     });
                 }
               }
@@ -230,7 +240,7 @@ const Reminder = ({
         {
           label: "No",
           onClick: (e) => {
-            setClicked(false);
+            setClicked("");
           },
         },
       ],
@@ -261,7 +271,7 @@ const Reminder = ({
                 ) : (
                   todotoday.map((todo, index) => (
                     <RemindContent
-                      checked={clicked}
+                      checked={todo.date + todo.id === clicked ? true : false}
                       key={index}
                       bgcolor={backgroundColor(todo.color)}
                       display={reminder_display}
@@ -270,7 +280,9 @@ const Reminder = ({
                       name={todo.name}
                       date="5:00-7:00PM"
                       margintop="0px;"
-                      onclickfunction={(event) => handleButtonClick(todo.date)}
+                      onclickfunction={(event) =>
+                        handleButtonClick(todo.date, todo.id)
+                      }
                     />
                   ))
                 )}
@@ -282,7 +294,7 @@ const Reminder = ({
                 ) : (
                   todotmw.map((todo, index) => (
                     <RemindContent
-                      checked={clicked}
+                      checked={todo.date + todo.id === clicked ? true : false}
                       key={index}
                       bgcolor={backgroundColor(todo.color)}
                       display={reminder_display}
@@ -291,7 +303,9 @@ const Reminder = ({
                       name={todo.name}
                       date="5:00-7:00PM"
                       margintop="0px;"
-                      onclickfunction={(event) => handleButtonClick(todo.date)}
+                      onclickfunction={(event) =>
+                        handleButtonClick(todo.date, todo.id)
+                      }
                     />
                   ))
                 )}

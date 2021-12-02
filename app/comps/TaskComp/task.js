@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import api from "../../api/axios";
 import { TimePicker } from "antd";
 import "antd/dist/antd.css";
+import { useRouter } from "next/router";
 
 const MainCont = styled.div`
   display: ${(props) => props.display};
@@ -124,12 +125,11 @@ const ButCont = styled.div`
 `;
 
 const Details = styled.span`
-font-size: 14px;
-color:#3E3D3D;
-font-weight: 400;
-margin-left: 10px;
-`
-
+  font-size: 14px;
+  color: #3e3d3d;
+  font-weight: 400;
+  margin-left: 10px;
+`;
 
 const TaskComp = ({ display = "", onClick = () => {} }) => {
   const { register, handleSubmit } = useForm({
@@ -148,6 +148,7 @@ const TaskComp = ({ display = "", onClick = () => {} }) => {
   const [weekButtons, setWeekButtons] = useState(weekends);
   const [originalRoom, setOriginalRoom] = useState([]);
   const [roommates, setRoommates] = useState([]);
+  const router = useRouter();
 
   useEffect(() => {
     (async () => {
@@ -261,7 +262,7 @@ const TaskComp = ({ display = "", onClick = () => {} }) => {
               placeholder="Add New Task"
               {...register("title")}
             />
-            
+
             {/* <Input2
               className="opensans"
               type="time"
@@ -276,9 +277,13 @@ const TaskComp = ({ display = "", onClick = () => {} }) => {
               onChange={onChange}
             />
           </InputCont>
-          <Day> 
-            
-            <Head className="opensans">Day <Details className="opensans">Choose the recurring day of your task</Details></Head>
+          <Day>
+            <Head className="opensans">
+              Day{" "}
+              <Details className="opensans">
+                Choose the recurring day of your task
+              </Details>
+            </Head>
             <ButtonCont>
               {weekButtons.map((button) => (
                 <DayButton
@@ -295,7 +300,12 @@ const TaskComp = ({ display = "", onClick = () => {} }) => {
           </Day>
 
           <Day>
-            <Head className="opensans">Points <Details className="opensans">Choose points for this task</Details></Head>
+            <Head className="opensans">
+              Points{" "}
+              <Details className="opensans">
+                Choose points for this task
+              </Details>
+            </Head>
             <ButtonCont>
               {pointButtons.map((points) => (
                 <PtsButton
@@ -315,7 +325,12 @@ const TaskComp = ({ display = "", onClick = () => {} }) => {
           </Day>
 
           <Day>
-            <Head className="opensans">Members  <Details className="opensans">Assign members for this task</Details></Head>
+            <Head className="opensans">
+              Members{" "}
+              <Details className="opensans">
+                Assign members for this task
+              </Details>
+            </Head>
             <MemWrap>
               {roommates.map((roommate) => (
                 <MemCont key={roommate.id}>
