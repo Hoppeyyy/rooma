@@ -111,7 +111,7 @@ const Invite = ({
           Invite a member to join your team from another device.
         </Text>
         <Copy>
-          <Img src="/link.svg"></Img>
+          <Img src="/Link.svg"></Img>
           <ButtonTxt className="opensans">Copy Link</ButtonTxt>
         </Copy>
       </Cont>

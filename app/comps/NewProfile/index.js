@@ -58,9 +58,7 @@ const Input = styled.input`
 `;
 const Btnarea = styled.div`
   display: flex;
-  margin-left: 570px;
   margin-top: 20px;
-  
 `;
 
 const AgeInput = styled.div`
@@ -77,27 +75,24 @@ const PreferencesDiv = styled.div`
   border-top: #c8c8c8 1px solid;
   width: 100%;
   padding: 10px 0px 10px 15px;
-
- 
 `;
 
-const Label= styled.div`
-font-size: 19px;
-color:#757575;
-margin-left: 5px;
-margin-right: 20px;
-`
+const Label = styled.div`
+  font-size: 19px;
+  color: #757575;
+  margin-left: 5px;
+  margin-right: 20px;
+`;
 const Select = styled.select`
   height: 50px;
   width: 70px;
   margin-right: 0.5em;
   font-size: 18px;
-  border:none;
-  background:#F2EFFD;
-  padding:10px;
-  color:#724FE9;
+  border: none;
+  background: #f2effd;
+  padding: 10px;
+  color: #724fe9;
   border-radius: 5px;
-
 `;
 
 const NewProfile = ({ user }) => {
@@ -246,9 +241,7 @@ const NewProfile = ({ user }) => {
           onChange={(e) => {
             onFormChange(e);
           }}
-        >
-          
-        </Input>
+        ></Input>
         {/* <Input
           borderbtm="none"
           className="opensans"
@@ -271,7 +264,6 @@ const NewProfile = ({ user }) => {
         </AgeInput>
 
         <Input
-        
           name="phone"
           borderbtm="none"
           className="opensans"
@@ -431,7 +423,6 @@ const NewProfile = ({ user }) => {
             fontcolor="#724FE9"
             fontSize="20px"
             fontWeight="700"
-           
             onClick={(e) => {
               postSubmit(e, true);
             }}

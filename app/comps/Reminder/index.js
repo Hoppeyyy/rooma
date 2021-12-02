@@ -130,23 +130,14 @@ const Reminder = ({
         console.log(todoRes.data.tasks);
         console.log("444444444444444444");
         const todoResTask = todoRes.data.tasks;
-        const newTodoResTask = todoResTask.map((file) => {
+        let newTodoResTask = todoResTask.map((file) => {
           return { ...file, color: "", name: "" };
         });
         // console.log("11111111", newTodoResTask);
-        setTodos(newTodoResTask);
-      } catch (err) {
-        console.log(err.message);
-      }
-    })();
-  }, [compoRefresh]);
 
-  useEffect(() => {
-    (async () => {
-      try {
         // console.log("if I have todo", todos);
-        const roommate = await api.get("/user/roommates", {});
-        console.log(roommate.data);
+        // const roommate = await api.get("/user/roommates", {});
+        const roommate = await api.get("/user/roommates");
         setRoommates(roommate.data.roommates);
         //roommates
 
@@ -157,36 +148,93 @@ const Reminder = ({
         tomorrowdate.setDate(todaydate.getDate() + 1);
         const tomorrow = dayjs(tomorrowdate).format("MM-DD-YY");
         //days
+        console.log("55555555555555555");
+        console.log(newTodoResTask);
+        console.log("55555555555555555");
 
-        todos.forEach(function (e) {
-          if (e.color == "") {
-            const user = roommates.find((o) => o.id === e.userId);
-            e.color = user.color;
-            e.name = user.name;
+        newTodoResTask.forEach((each) => {
+          if (each.color == "") {
+            const user = roommate.data.roommates.find(
+              (o) => o.id === each.userId
+            );
+            each.color = user.color;
+            each.name = user.name;
           }
         });
-        console.log("heheheh", todos);
+        console.log("heheheh", newTodoResTask);
 
-        const todayTodos = todos
+        const todayTodos = newTodoResTask
           .filter((o) => dayjs(o.date).format("MM-DD-YY") === today)
           .filter((o) => o.status == "incomplete");
 
-        const tomorrowTodos = todos
+        const tomorrowTodos = newTodoResTask
           .filter((o) => dayjs(o.date).format("MM-DD-YY") === tomorrow)
           .filter((o) => o.status == "incomplete");
 
         console.log("Todaydfasdf", todayTodos, tomorrowTodos);
 
-        const completeTodos = todos.filter((o) => o.status == "complete");
+        const completeTodos = newTodoResTask.filter(
+          (o) => o.status == "complete"
+        );
         // const completeTodostmw = todos
         //   .filter((o) => o.status == "complete");
         SetCompleteWork(completeTodos);
+        setTodos(newTodoResTask);
 
         setTodoToday(todayTodos);
         setTodoTmw(tomorrowTodos);
-      } catch (err) {}
+      } catch (err) {
+        console.log(err.message);
+      }
     })();
-  }, [todos]);
+  }, [compoRefresh]);
+
+  // useEffect(() => {
+  //   (async () => {
+  //     try {
+  //       // console.log("if I have todo", todos);
+  //       const roommate = await api.get("/user/roommates", {});
+  //       console.log(roommate.data);
+  //       setRoommates(roommate.data.roommates);
+  //       //roommates
+
+  //       const date = new Date().toString();
+  //       const today = dayjs(date).format("MM-DD-YY");
+  //       const todaydate = new Date();
+  //       let tomorrowdate = new Date();
+  //       tomorrowdate.setDate(todaydate.getDate() + 1);
+  //       const tomorrow = dayjs(tomorrowdate).format("MM-DD-YY");
+  //       //days
+
+  //       todos.forEach(function (e) {
+  //         if (e.color == "") {
+  //           const user = roommates.find((o) => o.id === e.userId);
+  //           e.color = user.color;
+  //           e.name = user.name;
+  //         }
+  //       });
+  //       console.log("heheheh", todos);
+
+  //       const todayTodos = todos
+  //         .filter((o) => dayjs(o.date).format("MM-DD-YY") === today)
+  //         .filter((o) => o.status == "incomplete");
+
+  //       const tomorrowTodos = todos
+  //         .filter((o) => dayjs(o.date).format("MM-DD-YY") === tomorrow)
+  //         .filter((o) => o.status == "incomplete");
+
+  //       console.log("Todaydfasdf", todayTodos, tomorrowTodos);
+
+  //       const completeTodos = todos.filter((o) => o.status == "complete");
+  //       // const completeTodostmw = todos
+  //       //   .filter((o) => o.status == "complete");
+  //       SetCompleteWork(completeTodos);
+
+  //       setTodoToday(todayTodos);
+  //       setTodoTmw(tomorrowTodos);
+  //     } catch (err) {}
+  //   })();
+  // }, [todos]);
 
   // function handleButtonClick(todoId) {
   //   alert("hey");
@@ -245,7 +293,6 @@ const Reminder = ({
         },
       ],
     });
-    console.log(todos);
   };
   return (
     <Cont>

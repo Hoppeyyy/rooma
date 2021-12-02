@@ -149,7 +149,7 @@ export default function Add_task() {
         <NavBar3
           onLinkClick={onLinkClick}
           color2="#8867EB"
-          src2="/Task_Icon_Color.svg"
+          src2="/Task_Icon_color.svg"
         />
       </LeftCont>
       {onLinkClicked ? (
