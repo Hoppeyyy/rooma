@@ -111,6 +111,7 @@ const Reminder = ({
   const [todotmw, setTodoTmw] = useState([]);
   const [completeWork, SetCompleteWork] = useState([]);
   const [clicked, setClicked] = useState("");
+  const [compoRefresh, setCompoRefresh] = useState(false);
 
   const backgroundColor = (e) => {
     // console.log(e);
@@ -125,7 +126,9 @@ const Reminder = ({
         console.log("sending request");
 
         const todoRes = await api.get("/task/list", {});
-
+        console.log("444444444444444444");
+        console.log(todoRes.data.tasks);
+        console.log("444444444444444444");
         const todoResTask = todoRes.data.tasks;
         const newTodoResTask = todoResTask.map((file) => {
           return { ...file, color: "", name: "" };
@@ -136,7 +139,7 @@ const Reminder = ({
         console.log(err.message);
       }
     })();
-  }, []);
+  }, [compoRefresh]);
 
   useEffect(() => {
     (async () => {
@@ -207,7 +210,7 @@ const Reminder = ({
         {
           label: "Yes",
           onClick: (e) => {
-            setClicked(todoId);
+            setClicked(todoDate + todoId);
             todos.forEach(function (e) {
               if (e.date == todoDate) {
                 if (e.status == "incomplete") {
@@ -222,6 +225,7 @@ const Reminder = ({
                     .then((response) => {
                       console.log("task complete");
                       console.log(response);
+                      setCompoRefresh(!compoRefresh);
 
                       // Below added by Sean to force refresh the page so that the updated points can be seen.
                       // location.reload();
@@ -236,7 +240,6 @@ const Reminder = ({
         {
           label: "No",
           onClick: (e) => {
-            console.log("cccccccccccccccccccc");
             setClicked("");
           },
         },
@@ -268,7 +271,7 @@ const Reminder = ({
                 ) : (
                   todotoday.map((todo, index) => (
                     <RemindContent
-                      checked={todo.id === clicked ? true : false}
+                      checked={todo.date + todo.id === clicked ? true : false}
                       key={index}
                       bgcolor={backgroundColor(todo.color)}
                       display={reminder_display}
@@ -291,7 +294,7 @@ const Reminder = ({
                 ) : (
                   todotmw.map((todo, index) => (
                     <RemindContent
-                      checked={todo.id === clicked ? true : false}
+                      checked={todo.date + todo.id === clicked ? true : false}
                       key={index}
                       bgcolor={backgroundColor(todo.color)}
                       display={reminder_display}
