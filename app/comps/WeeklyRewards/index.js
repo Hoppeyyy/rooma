@@ -1,6 +1,7 @@
 import react, { useEffect, useState } from "react";
 import styled from "styled-components";
 import WeeklyUserCont from "../WeeklyUserCont";
+import _ from "lodash";
 
 const Cont = styled.div`
   display: flex;
@@ -28,14 +29,18 @@ const WeeklyRewards = ({
   roomates,
 }) => {
   const grabRoomates = () => {
+    console.log("rrrrrrrrrrr");
+    console.log(roomates);
     let rm_list = [];
-    for (let i = 0; i < roomates.length; i++) {
+
+    let winners = _.orderBy(roomates, ["points"], ["desc"]);
+    for (let i = 0; i < winners.length; i++) {
       if (i < 2) {
         rm_list.push(
           <WeeklyUserCont
-            src={roomates[i].pfp ? roomates[i].pfp : "/upload_pic.png"}
-            user_name={roomates[i].name}
-            user_point={roomates[i].points + " pts"}
+            src={winners[i].pfp ? winners[i].pfp : "/upload_pic.png"}
+            user_name={winners[i].name}
+            user_point={winners[i].points}
           />
         );
       }
