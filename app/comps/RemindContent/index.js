@@ -71,6 +71,7 @@ const RemindContent = ({
   date = "5:00-7:00PM",
   margintop = "20px",
   onclickfunction = null,
+  checked = false,
 }) => {
   return (
     <Cont display={display}>
@@ -86,7 +87,7 @@ const RemindContent = ({
           </Details>
         </MainCont>
         <RightCont>
-          <CheckBtn onClick={onclickfunction} type="checkbox" />
+          <CheckBtn onClick={onclickfunction} type="radio" checked={checked} />
         </RightCont>
       </CardCont>
     </Cont>

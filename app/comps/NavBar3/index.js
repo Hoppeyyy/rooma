@@ -135,13 +135,12 @@ const Name = styled.p`
   font-weight: 700;
   margin-top: 15px;
   margin-bottom: 15px;
-  text-align:center;
+  text-align: center;
 `;
 const BellIconArea = styled.div`
   position: relative;
   left: 245px;
-  height:30px;
-
+  height: 30px;
 `;
 const BellIcon = styled.img`
   width: 25px;
@@ -269,7 +268,7 @@ const NavBar3 = ({
                     <PointCont
                       width="90px"
                       height="40px"
-                      user_point={user_point}
+                      user_point={currentUser.points}
                     />
                   </>
                 )}
