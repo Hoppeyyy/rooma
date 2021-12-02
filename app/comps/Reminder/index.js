@@ -218,6 +218,9 @@ const Reminder = ({
                     .then((response) => {
                       console.log("task complete");
                       console.log(response);
+
+                      // Below added by Sean to force refresh the page so that the updated points can be seen.
+                      location.reload();
                     });
                 }
               }

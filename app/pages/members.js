@@ -84,8 +84,6 @@ export default function Members(props) {
   const [DisplayedUser, setDisplayedUser] = useState(props.users[0]);
   const [onLinkClicked, setOnLinkClicked] = useState(false);
 
-  console.log("eeeeeeeeeeeeeeeeeeeeee");
-  console.log(props.users);
   const GlobalNavClick = () => {
     if (buttonstate5 === 0) {
       setButtonState5(1);
@@ -196,6 +194,7 @@ export default function Members(props) {
                   name={DisplayedUser.name}
                   avatar={DisplayedUser.pfp}
                   phone={DisplayedUser.phone}
+                  points={DisplayedUser.points}
                 />
               )}
             </ProfileHolder>

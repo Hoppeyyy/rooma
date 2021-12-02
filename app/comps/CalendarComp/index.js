@@ -43,7 +43,71 @@ const CalendarComp = ({ onDateSelect, calTrigger }) => {
 
   useEffect(() => {
     getMonthEvents();
+
+    // react-calendar__navigation
+    // react-calendar__navigation__label
+    // react-calendar__navigation__label__labelText
+
+    let calendar__navigation = document.querySelector(
+      ".react-calendar__navigation"
+    );
+
+    let calendar__navigation__label = calendar__navigation.querySelector(
+      ".react-calendar__navigation__label"
+    );
+
+    let calendar__navigation__label__labelText =
+      calendar__navigation__label.querySelector(
+        ".react-calendar__navigation__label__labelText"
+      );
+
+    let inserted = document.createElement("span");
+    inserted.innerHTML = `${calendar__navigation__label__labelText.textContent}`;
+
+    inserted.classList.add("toRemove");
+
+    calendar__navigation__label.style.display = "none";
+
+    let prevInserts = document.querySelectorAll(".toRemove");
+    prevInserts.forEach((e) => {
+      e.remove();
+    });
+
+    calendar__navigation.insertBefore(
+      inserted,
+      calendar__navigation.childNodes[2]
+    );
+
+    // calendar__navigation__label.appendChild(inserted);
+
+    // if (dates_arr.length > 0) {
+    //   dates_arr.forEach((da) => {
+    //     console.log("cccccccccccccccccccc");
+    //     console.log(da);
+    //     var new_element = da.cloneNode(true);
+    //     da.parentNode.replaceChild(new_element, da);
+    //   });
+    // }
   }, [dateTrigger, calTrigger]);
+
+  // useEffect(() => {
+
+  //   let dates_arr = document.querySelectorAll(
+  //     ".react-calendar__navigation__label .react-calendar__navigation__label__labelText"
+  //   );
+
+  //   if(dates_arr.length > 0) {
+  //     dates_arr.forEach((da) => {
+
+  //       const newItem = document.createElement('span');
+  //       newItem.innerHTML = `${da.textContent}`;
+
+  //       da.parentNode.parentNode.replaceChild(newItem, da.parentNode);
+
+  //     })
+  //   }
+
+  // })
 
   const getMonthEvents = () => {
     // document.querySelectorAll(

@@ -285,8 +285,11 @@ const NavBar3 = ({
               color={color1}
               onClick={(e) => {
                 e.stopPropagation();
-                onLinkClick();
-                router.push("/");
+                
+                if (window.location.pathname !== "/") {
+                  onLinkClick();
+                  router.push("/");
+                }
               }}
             >
               <TabCont>
@@ -301,8 +304,10 @@ const NavBar3 = ({
               color={color2}
               onClick={(e) => {
                 e.stopPropagation();
-                onLinkClick();
-                router.push("/add_task");
+                if (window.location.pathname !== "/add_task") {
+                  onLinkClick();
+                  router.push("/add_task");
+                }
               }}
             >
               <TabCont>
@@ -317,8 +322,10 @@ const NavBar3 = ({
               color={color3}
               onClick={(e) => {
                 e.stopPropagation();
-                onLinkClick();
-                router.push("/chat");
+                if (window.location.pathname !== "/chat") {
+                  onLinkClick();
+                  router.push("/chat");
+                }
               }}
             >
               <TabCont>
@@ -333,8 +340,10 @@ const NavBar3 = ({
               color={color4}
               onClick={(e) => {
                 e.stopPropagation();
-                onLinkClick();
-                router.push("/members");
+                if (window.location.pathname !== "/members") {
+                  onLinkClick();
+                  router.push("/members");
+                }
               }}
             >
               <TabCont>
@@ -349,8 +358,10 @@ const NavBar3 = ({
               color={color5}
               onClick={(e) => {
                 e.stopPropagation();
-                onLinkClick();
-                router.push("/community");
+                if (window.location.pathname !== "/community") {
+                  onLinkClick();
+                  router.push("/community");
+                }
               }}
             >
               <TabCont>
@@ -366,8 +377,10 @@ const NavBar3 = ({
             onClick={(e) => {
               e.stopPropagation();
               // setLoadingSpinner(true);
-              onLinkClick();
-              router.push("/setting");
+              if (window.location.pathname !== "/setting") {
+                onLinkClick();
+                router.push("/setting");
+              }
             }}
           >
             <SetIconCont justifyContent={justifyContent}>
