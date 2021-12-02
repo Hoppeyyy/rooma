@@ -52,6 +52,9 @@ const TabCont = styled.div`
   align-items: center;
   margin-left: 50px;
   margin-right: 50px;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 const Hover = styled.div`
   justify-content: ${(props) => props.justifyContent};
@@ -72,6 +75,9 @@ const SetIconCont = styled.div`
   align-items: center;
   margin-left: 50px;
   margin-right: 50px;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 /*oepn nav:
 justify-content:space-even;
@@ -82,7 +88,6 @@ justify-content:center;
 
 const SetHover = styled.div`
   display: flex;
-  position: relative;
   top: 100px;
   color: ${(props) => props.color};
   :hover {
@@ -285,7 +290,7 @@ const NavBar3 = ({
               color={color1}
               onClick={(e) => {
                 e.stopPropagation();
-                
+
                 if (window.location.pathname !== "/") {
                   onLinkClick();
                   router.push("/");
@@ -349,7 +354,7 @@ const NavBar3 = ({
               <TabCont>
                 <Icon src={src4} />
                 <Title className="opensans" display={flexExpand}>
-                  Memebers
+                  Members
                 </Title>
               </TabCont>
             </Hover>

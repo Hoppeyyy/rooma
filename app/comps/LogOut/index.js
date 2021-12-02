@@ -41,6 +41,9 @@ const Line = styled.hr`
 const ButtonDiv = styled.div`
   margin-left: 65%;
   margin-top: 30px;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const LogOut = ({ display = "none" }) => {

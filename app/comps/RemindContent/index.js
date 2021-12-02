@@ -87,7 +87,12 @@ const RemindContent = ({
           </Details>
         </MainCont>
         <RightCont>
-          <CheckBtn onClick={onclickfunction} type="radio" checked={checked} />
+          <CheckBtn
+            // onClick={onclickfunction}
+            onChange={onclickfunction}
+            type="radio"
+            checked={checked}
+          />
         </RightCont>
       </CardCont>
     </Cont>

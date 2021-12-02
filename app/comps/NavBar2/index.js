@@ -275,7 +275,7 @@ const NavBar2 = ({
             >
               <Icon src={src4} />
               <Title className="opensans" display={displayMember}>
-                Memebers
+                Members
               </Title>
             </TabCont>
           </Hover>
