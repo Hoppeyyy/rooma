@@ -156,13 +156,13 @@ const Reminder = ({
         });
         console.log("heheheh", todos);
 
-        const todayTodos = todos.filter(
-          (o) => dayjs(o.date).format("MM-DD-YY") === today
-        );
+        const todayTodos = todos
+          .filter((o) => dayjs(o.date).format("MM-DD-YY") === today)
+          .filter((o) => o.status == "incomplete");
 
-        const tomorrowTodos = todos.filter(
-          (o) => dayjs(o.date).format("MM-DD-YY") === tomorrow
-        );
+        const tomorrowTodos = todos
+          .filter((o) => dayjs(o.date).format("MM-DD-YY") === tomorrow)
+          .filter((o) => o.status == "incomplete");
 
         console.log("Todaydfasdf", todayTodos, tomorrowTodos);
 
@@ -193,11 +193,22 @@ const Reminder = ({
       buttons: [
         {
           label: "Yes",
-          onClick: () => {
+          onClick: (e) => {
             todos.forEach(function (e) {
               if (e.date == todoId) {
                 if (e.status == "incomplete") {
                   e.status = "complete";
+                  // console.log(e);
+                  api
+                    .post("/task/complete", {
+                      id: e.id,
+                      userId: e.userId,
+                      date: e.date,
+                    })
+                    .then((response) => {
+                      console.log("task complete");
+                      console.log(response);
+                    });
                 }
               }
             });
@@ -205,7 +216,7 @@ const Reminder = ({
         },
         {
           label: "No",
-          onClick: () => alert("Click No"),
+          onClick: (e) => {},
         },
       ],
     });
@@ -265,6 +276,27 @@ const Reminder = ({
                 />
               ))
             )}
+
+            {/* <Heading className="opensans">Tomorrow</Heading>
+            {todotmw.length == 0 ? (
+              <DefMessage className="opensans">
+                Nothing is scheduled for tomorrow.
+              </DefMessage>
+            ) : (
+              todotmw.map((todo, index) => (
+                <RemindContent
+                  key={index}
+                  bgcolor={backgroundColor(todo.color)}
+                  display={reminder_completed_display}
+                  task_name={todo.title}
+                  vlcolor={todo.color}
+                  name={todo.name}
+                  date="5:00-7:00PM"
+                  margintop="0px;"
+                  onclickfunction={(event) => handleButtonClick(todo.date)}
+                />
+              ))
+            )} */}
             {/* <RemindContent
               bgcolor="rgba(240,199,137,30%)"
               display={reminder_display}
@@ -297,8 +329,8 @@ const Reminder = ({
           </scrollable-component>
         </CardCont>
         {/*completed cont */}
-        {/* 
-  <Completed 
+
+        {/* <Completed 
   display={complete_display}
   onCompleteClick={onCompleteClick}
   width={complete_width}
@@ -308,8 +340,7 @@ const Reminder = ({
   more_after_display={more_after_display}
 
   onClick={onCompleteClick_After}
-  />
-  */}
+  /> */}
       </TopCont>
       {/*WeeklyRewards cont */}
       <BotCont>
