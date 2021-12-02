@@ -338,7 +338,7 @@ const TaskComp = ({ display = "", onClick = () => {} }) => {
                     key={roommate.id}
                     onClick={() => handleRoommatesClick(roommate.id)}
                     className={roommate.clicked ? "memberBorder" : null}
-                    src={roommate.pfp}
+                    src={roommate.pfp ? roommate.pfp : "/upload_pic.png"}
                   />
                   <Name className="opensans">{roommate.name}</Name>
                 </MemCont>
