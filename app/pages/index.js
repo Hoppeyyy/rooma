@@ -148,11 +148,7 @@ export default function Home(props) {
               title_complete={buttonstate3 === 1 ? "Hide " : "Completed "}
               reminder_display={buttonstate3 === 1 ? "none" : "block"}
               reminder_completed_display={buttonstate3 === 1 ? "block" : "none"}
-              //complete_width={buttonstate3 === 1 ? '685px' : '235px'}
-              //complete_height={buttonstate3 === 1 ? '360px' : '47px'}
-              //complete_borderRadius={buttonstate3 === 1 ? '22px' : '8px'}
-              //more_display={buttonstate3 === 1 ? 'none' : 'flex'}
-              //more_after_display={buttonstate3 === 1 ? 'flex' : 'none'}
+
 
               onChecked_trigger={() => {
                 CompleteAfterHandleClick();

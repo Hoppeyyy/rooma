@@ -105,7 +105,7 @@ const MembersProfile = ({
           </Phone>
 
           <ButtonCont>
-            <Point className="opensans">{points}</Point>
+            <Point className="opensans">{points}pts</Point>
             <Message className="opensans">Message</Message>
           </ButtonCont>
         </InfoCont>

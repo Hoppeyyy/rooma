@@ -16,15 +16,12 @@ const MainCont = styled.div`
   display: flex;
   width: 100vw;
   height: 100vh;
-  
 `;
 const NavCont = styled.div`
   display: flex;
-  
-
 `;
 const Heading = styled.div`
-  display:flex;
+  display: flex;
   font-size: 34px;
   font-weight: 700;
   margin: 40px 75px 0px 75px;
@@ -32,11 +29,10 @@ const Heading = styled.div`
 `;
 
 const LeftCont = styled.div`
-display: flex;
-flex-direction: column;
-flex-grow:0.2;
-border-right: 1px #D6D6D6 solid;
-
+  display: flex;
+  flex-direction: column;
+  flex-grow: 0.2;
+  border-right: 1px #d6d6d6 solid;
 `;
 const CardCont = styled.div`
   display: flex;
@@ -135,6 +131,7 @@ export default function Members(props) {
             name={user.name}
             avatar={user.pfp}
             phone={user.phone}
+            points={user.points}
           />
         </CardCont>
       );
@@ -159,7 +156,11 @@ export default function Members(props) {
   return (
     <MainCont>
       <NavCont>
-        <NavBar3 onLinkClick={onLinkClick} color4 = "#8867EB"  src4 = "/Members_Icon_Color.svg"/>
+        <NavBar3
+          onLinkClick={onLinkClick}
+          color4="#8867EB"
+          src4="/Members_Icon_Color.svg"
+        />
       </NavCont>
 
       {onLinkClicked ? (

@@ -48,7 +48,9 @@ const Heading = styled.h3`
   margin-top: 32px;
   margin-left: 35px;
   margin-bottom: 20px;
+  visibility: ${(props) => props.reminder_display};
 `;
+
 const DefMessage = styled.p`
   visibility: ${(props) => props.visibility};
   text-align: center;
@@ -106,6 +108,8 @@ const Reminder = ({
   const [roommates, setRoommates] = useState([]);
   const [todotoday, setTodoToday] = useState([]);
   const [todotmw, setTodoTmw] = useState([]);
+  const [completeWork, SetCompleteWork] = useState([]);
+  const [clicked, setClicked] = useState(false);
 
   const backgroundColor = (e) => {
     // console.log(e);
@@ -156,15 +160,20 @@ const Reminder = ({
         });
         console.log("heheheh", todos);
 
-        const todayTodos = todos.filter(
-          (o) => dayjs(o.date).format("MM-DD-YY") === today
-        );
+        const todayTodos = todos
+          .filter((o) => dayjs(o.date).format("MM-DD-YY") === today)
+          .filter((o) => o.status == "incomplete");
 
-        const tomorrowTodos = todos.filter(
-          (o) => dayjs(o.date).format("MM-DD-YY") === tomorrow
-        );
+        const tomorrowTodos = todos
+          .filter((o) => dayjs(o.date).format("MM-DD-YY") === tomorrow)
+          .filter((o) => o.status == "incomplete");
 
         console.log("Todaydfasdf", todayTodos, tomorrowTodos);
+
+        const completeTodos = todos.filter((o) => o.status == "incomplete");
+        // const completeTodostmw = todos
+        //   .filter((o) => o.status == "complete");
+        SetCompleteWork(completeTodos);
 
         setTodoToday(todayTodos);
         setTodoTmw(tomorrowTodos);
@@ -193,11 +202,23 @@ const Reminder = ({
       buttons: [
         {
           label: "Yes",
-          onClick: () => {
+          onClick: (e) => {
+            setClicked(true);
             todos.forEach(function (e) {
               if (e.date == todoId) {
                 if (e.status == "incomplete") {
                   e.status = "complete";
+                  // console.log(e);
+                  api
+                    .post("/task/complete", {
+                      id: e.id,
+                      userId: e.userId,
+                      date: e.date,
+                    })
+                    .then((response) => {
+                      console.log("task complete");
+                      console.log(response);
+                    });
                 }
               }
             });
@@ -205,7 +226,9 @@ const Reminder = ({
         },
         {
           label: "No",
-          onClick: () => alert("Click No"),
+          onClick: (e) => {
+            setClicked(false);
+          },
         },
       ],
     });
@@ -217,99 +240,114 @@ const Reminder = ({
         {/*Main task cont within CardCont */}
         <CardCont height={height}>
           <scrollable-component>
-            <HeadingCont>
-              <Heading className="opensans">Today</Heading>
-              <CompleteCont onClick={onCompleteClick}>
-                <Completed className="opensans">
-                  {title_complete}
-                  <Icon src="/downarrow.svg" />
-                </Completed>
-              </CompleteCont>
-            </HeadingCont>
-            {todotoday.length == 0 ? (
-              <DefMessage className="opensans">
-                Nothing is scheduled for today.
-              </DefMessage>
+            {reminder_display == "block" ? (
+              <div>
+                <HeadingCont>
+                  <Heading className="opensans">Today</Heading>
+                  <CompleteCont onClick={onCompleteClick}>
+                    <Completed className="opensans">
+                      {title_complete}
+                      <Icon src="/downarrow.svg" />
+                    </Completed>
+                  </CompleteCont>
+                </HeadingCont>
+                {todotoday.length == 0 ? (
+                  <DefMessage className="opensans">
+                    Nothing is scheduled for today.
+                  </DefMessage>
+                ) : (
+                  todotoday.map((todo, index) => (
+                    <RemindContent
+                      checked={clicked}
+                      key={index}
+                      bgcolor={backgroundColor(todo.color)}
+                      display={reminder_display}
+                      task_name={todo.title}
+                      vlcolor={todo.color}
+                      name={todo.name}
+                      date="5:00-7:00PM"
+                      margintop="0px;"
+                      onclickfunction={(event) => handleButtonClick(todo.date)}
+                    />
+                  ))
+                )}
+                <Heading className="opensans">Tomorrow</Heading>
+                {todotmw.length == 0 ? (
+                  <DefMessage className="opensans">
+                    Nothing is scheduled for tomorrow.
+                  </DefMessage>
+                ) : (
+                  todotmw.map((todo, index) => (
+                    <RemindContent
+                      checked={clicked}
+                      key={index}
+                      bgcolor={backgroundColor(todo.color)}
+                      display={reminder_display}
+                      task_name={todo.title}
+                      vlcolor={todo.color}
+                      name={todo.name}
+                      date="5:00-7:00PM"
+                      margintop="0px;"
+                      onclickfunction={(event) => handleButtonClick(todo.date)}
+                    />
+                  ))
+                )}
+              </div>
             ) : (
-              todotoday.map((todo, index) => (
-                <RemindContent
-                  key={index}
-                  bgcolor={backgroundColor(todo.color)}
-                  display={reminder_display}
-                  task_name={todo.title}
-                  vlcolor={todo.color}
-                  name={todo.name}
-                  date="5:00-7:00PM"
-                  margintop="0px;"
-                  onclickfunction={(event) => handleButtonClick(todo.date)}
-                />
-              ))
+              <div>
+                <HeadingCont>
+                  <Heading className="opensans">Completed</Heading>
+                  <CompleteCont onClick={onCompleteClick}>
+                    <Completed className="opensans">
+                      {title_complete}
+                      <Icon src="/downarrow.svg" />
+                    </Completed>
+                  </CompleteCont>
+                </HeadingCont>
+                {completeWork.length == 0 ? (
+                  <DefMessage className="opensans">
+                    Nothing is completed yet.
+                  </DefMessage>
+                ) : (
+                  completeWork.map((todo, index) => (
+                    <Completed_RemindContent
+                      key={index}
+                      bgcolor={backgroundColor(todo.color)}
+                      display={reminder_completed_display}
+                      task_name={todo.title}
+                      vlcolor={todo.color}
+                      name={todo.name}
+                      date="5:00-7:00PM"
+                      margintop="0px;"
+                      onclickfunction={(event) => handleButtonClick(todo.date)}
+                    />
+                  ))
+                )}
+              </div>
             )}
-            <Heading className="opensans">Tomorrow</Heading>
-            {todotmw.length == 0 ? (
-              <DefMessage className="opensans">
-                Nothing is scheduled for tomorrow.
-              </DefMessage>
-            ) : (
-              todotmw.map((todo, index) => (
-                <RemindContent
-                  key={index}
-                  bgcolor={backgroundColor(todo.color)}
-                  display={reminder_display}
-                  task_name={todo.title}
-                  vlcolor={todo.color}
-                  name={todo.name}
-                  date="5:00-7:00PM"
-                  margintop="0px;"
-                  onclickfunction={(event) => handleButtonClick(todo.date)}
-                />
-              ))
-            )}
-            {/* <RemindContent
-              bgcolor="rgba(240,199,137,30%)"
-              display={reminder_display}
-              task_name="On going Task Name"
-              vlcolor="#F0C789"
-              name="Name"
-              date="5:00-7:00PM"
-              margintop="0px;"
-            />
 
-            <mpleted_RemindContent
-              bgcolor="rgba(240,199,137,15%)"
-              display={reminder_completed_display}
-              task_name="Completed Task Name"
-              vlcolor="rgba(241,178,82,25%)"
-              name="Name"
-              date="5:00-7:00PM"
-              checked={checked}
-            /> */}
-            {/* <DefMessage className="opensans">
-              Nothing is scheduled for today.
-            </DefMessage> */}
-            {/* <MoreCont onClick={onMoreClick} top={top}>
-              <More className="opensans">
-                <Divider />
-                {title_more}
-                <Icon src="/down_arrow.png" />
-              </More>
-            </MoreCont> */}
+            {/* {completeWorkTmw.length == 0 ? (
+              <DefMessage className="opensans">
+                Nothing is completed for tomorrow.
+              </DefMessage>
+            ) : (
+              completeWorkTmw.map((todo, index) => (
+                <Completed_RemindContent
+                  key={index}
+                  bgcolor={backgroundColor(todo.color)}
+                  display={reminder_completed_display}
+                  task_name={todo.title}
+                  vlcolor={todo.color}
+                  name={todo.name}
+                  date="5:00-7:00PM"
+                  margintop="0px;"
+                  onclickfunction={(event) => handleButtonClick(todo.date)}
+                />
+              ))
+            )} */}
           </scrollable-component>
         </CardCont>
         {/*completed cont */}
-        {/* 
-  <Completed 
-  display={complete_display}
-  onCompleteClick={onCompleteClick}
-  width={complete_width}
-  height={complete_height}
-  borderRadius={complete_borderRadius}
-  more_display={more_display}
-  more_after_display={more_after_display}
-
-  onClick={onCompleteClick_After}
-  />
-  */}
       </TopCont>
       {/*WeeklyRewards cont */}
       <BotCont>
