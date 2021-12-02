@@ -177,7 +177,7 @@ const Reminder = ({
 
         console.log("Todaydfasdf", todayTodos, tomorrowTodos);
 
-        const completeTodos = todos.filter((o) => o.status == "incomplete");
+        const completeTodos = todos.filter((o) => o.status == "complete");
         // const completeTodostmw = todos
         //   .filter((o) => o.status == "complete");
         SetCompleteWork(completeTodos);

@@ -66,8 +66,8 @@ function BasicSwitch(props) {
     'Switch-disabled': disabled,
     'Switch-focusVisible': focusVisible,
   };
- 
-  
+
+
   return (
     <BasicSwitchRoot className={clsx(stateClasses)}>
       <BasicSwitchThumb className={clsx(stateClasses)} />
@@ -77,10 +77,10 @@ function BasicSwitch(props) {
 }
 
 const ToggleBtn = ({
- onClick=()=>{},
-})=>{
+  onClick = () => { },
+}) => {
   return <div>
-  <BasicSwitch onClick={onClick}/>
-</div>
+    <BasicSwitch onClick={onClick} />
+  </div>
 }
 export default ToggleBtn
