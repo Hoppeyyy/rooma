@@ -33,6 +33,7 @@ const LeftCont = styled.div`
   flex-direction: column;
   flex-grow: 0.2;
   border-right: 1px #d6d6d6 solid;
+  overflow-y: scroll;
 `;
 const CardCont = styled.div`
   display: flex;
@@ -155,7 +156,11 @@ export default function Members(props) {
   return (
     <MainCont>
       <NavCont>
-        <NavBar3 onLinkClick={onLinkClick} color4="#8867EB" src4="/Members_Icon_Color.svg" />
+        <NavBar3
+          onLinkClick={onLinkClick}
+          color4="#8867EB"
+          src4="/Members_Icon_Color.svg"
+        />
       </NavCont>
 
       {onLinkClicked ? (
